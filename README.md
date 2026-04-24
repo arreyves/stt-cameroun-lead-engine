@@ -9,7 +9,7 @@ To intercept high-intent Google search traffic for AI and IT diplomas in Yaound�
 
 ## 🏗️ Architecture Overview
 * **Hosting / Domain:** `promo.stt-cameroun.com` (Subdomain Strategy)
-* **Frontend:** [Insert your tech stack here, e.g., HTML5, Tailwind CSS]
+* **Frontend:** [HTML5, Tailwind CSS]
 * **Analytics Engine:** Google Tag Manager (GTM) + Google Analytics 4 (GA4)
 * **Conversion Mechanism:** WhatsApp Business API Direct Routing
 
