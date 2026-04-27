@@ -3,164 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devenez Pro IA & Digital | DQP Officiel STT-Cameroun</title>
-    <meta name="description" content="Formation DQP en Intelligence Artificielle, Cybersecurité, Marketing Digital et plus à Yaoundé. Équipement de pointe, Internet Starlink, Rentrée Sept 2026 !">
+    <title>Inscriptions DQP | STT-Cameroun</title>
+    <meta name="description" content="Formation DQP en Intelligence Artificielle, Santé, Gestion et Ingénierie à Yaoundé. Rentrée Sept 2026 !">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    </head>
+</head>
 <body class="bg-slate-50 font-sans text-slate-800">
 
     <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <div class="flex items-center">
-                <img src="./assets/logos/School-Logo.jpeg" alt="Logo STT-Cameroun" class="h-16 w-auto">
+                <div class="text-2xl font-black text-blue-900 tracking-tighter">STT<span class="text-blue-600">-CAMEROUN</span></div>
             </div>
             <div class="flex items-center space-x-2">
-                <span class="text-sm font-semibold text-slate-500 hidden sm:block">Partenaire Académique BSU</span>
-                <span class="text-sm font-bold text-slate-800 bg-slate-100 px-3 py-1 rounded-full">System Builder Core</span>
+                <span class="text-sm font-semibold text-slate-500 hidden sm:block">Partenaire Digital</span>
+                <span class="text-sm font-bold text-slate-800 bg-slate-100 px-3 py-1 rounded-full">AbbaTek Group</span>
             </div>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
             
-            <div>
-                <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-800 font-semibold text-sm mb-4">
-                    🎓 Rentrée Académique Spéciale : 28 Septembre 2026
+            <div class="sticky top-24">
+                <span class="inline-block py-1 px-3 rounded-full bg-red-100 text-red-800 font-bold text-sm mb-4 border border-red-200">
+                    📢 Rentrée Académique : 28 Septembre 2026
                 </span>
                 
-                <div class="bg-white p-2 rounded-2xl shadow-lg border border-slate-100 mb-8 overflow-hidden transform hover:scale-[1.01] transition-transform">
-                    <img src="./assets/images/TIC2.jpg (2).jpeg" alt="Flyer Officiel STT IA & Digital" class="w-full h-auto rounded-xl">
+                <div class="bg-white p-2 rounded-2xl shadow-xl border border-slate-200 overflow-hidden transition-all duration-500">
+                    <img id="dynamic-flyer" src="assets/images/ai-flyer.jpg" alt="Flyer de Formation STT" class="w-full h-auto rounded-xl">
                 </div>
             </div>
 
             <div class="bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-slate-100">
-                <h2 class="text-3xl font-extrabold mb-2 text-center text-slate-900 tracking-tight">Devenez Un <span class="text-blue-600">Professionnel</span></h2>
-                <p class="text-center text-slate-600 mb-8 text-base">Inscriptions En Cours pour tous nos Diplômes d'État DQP-CQP en 12 Mois.</p>
+                <h2 class="text-3xl font-extrabold mb-2 text-center text-slate-900">Pré-Inscription <span class="text-blue-600">Officielle</span></h2>
+                <p class="text-center text-slate-600 mb-8 text-sm">Obtenez un Diplôme d'État (DQP, CQP, AQP) en 12 Mois. Formation en alternance (École & Entreprise).</p>
 
-                <form id="leadForm" onsubmit="sendToWhatsApp(event)" class="space-y-6">
+                <form id="leadForm" onsubmit="sendToWhatsApp(event)" class="space-y-5">
                     <div>
-                        <label for="fullName" class="block text-sm font-medium text-slate-700 mb-1.5">Nom Complet</label>
-                        <input type="text" id="fullName" required class="w-full px-4 py-3.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder="Ex: Jean Dupont">
+                        <label for="fullName" class="block text-sm font-medium text-slate-700 mb-1">Nom Complet</label>
+                        <input type="text" id="fullName" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder="Ex: Jean Dupont">
                     </div>
 
                     <div>
-                        <label for="level" class="block text-sm font-medium text-slate-700 mb-1.5">Niveau Actuel Requîs</label>
-                        <select id="level" required class="w-full px-4 py-3.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none bg-white">
+                        <label for="level" class="block text-sm font-medium text-slate-700 mb-1">Niveau Actuel</label>
+                        <select id="level" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none bg-white">
                             <option value="" disabled selected>Sélectionnez votre niveau...</option>
-                            <option value="BEPC">BEPC (Minimum)</option>
+                            <option value="BEPC">BEPC</option>
                             <option value="Probatoire">Probatoire</option>
                             <option value="BACC">BACC et plus</option>
-                            <option value="En_Reconversion">Professionnel en reconversion</option>
                         </select>
                     </div>
 
                     <div>
-                        <label for="course" class="block text-sm font-medium text-slate-700 mb-1.5">Programme Souhaité</label>
-                        <div>
-                        <select id="course" required class="w-full px-4 py-3.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none bg-white">
-                            <option value="" disabled selected>Sélectionnez une formation...</option>
+                        <label for="course" class="block text-sm font-medium text-slate-700 mb-1">Filière Souhaitée (Modifie l'affiche)</label>
+                        <select id="course" required onchange="changeFlyer()" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none bg-white">
+                            <option value="" disabled selected>Choisissez votre formation...</option>
                             
-                            <optgroup label="Le Cœur de l'Innovation (AbbaTek System Builder)">
-                                <option value="Intelligence Artificielle & Data">✅ DQP - Intelligence Artificielle & Data (12 Mois)</option>
-                            </optgroup>
-
                             <optgroup label="Informatique & Numérique">
-                                <option value="Cybersecurité & Hacking">Cybersecurité & Hacking</option>
-                                <option value="Marketing Digital">Marketing Digital</option>
-                                <option value="Community Management">Community Management</option>
-                                <option value="Maintenance Informatique & Réseau">Maintenance Informatique & Réseau</option>
-                                <option value="Télécommunications & Réseaux">Télécommunications & Réseaux</option>
-                                <option value="Développeur d'Application">Développeur d'Application</option>
-                                <option value="Infographie 2D 3D & Montage">Infographie 2D 3D & Montage Vidéo</option>
+                                <option value="Intelligence Artificielle & Data" data-flyer="assets/images/ai-flyer.jpg">Intelligence Artificielle & Data (Premium)</option>
+                                <option value="Cybersecurité & Hacking" data-flyer="assets/images/ai-flyer.jpg">Cybersecurité & Hacking</option>
+                                <option value="Telecommunications et Reseaux" data-flyer="assets/images/ai-flyer.jpg">Télécommunications et Réseaux</option>
+                                <option value="Community Management" data-flyer="assets/images/ai-flyer.jpg">Community Management</option>
+                                <option value="Marketing Digital" data-flyer="assets/images/ai-flyer.jpg">Marketing Digital</option>
+                                <option value="Maintenance Informatique et Reseau" data-flyer="assets/images/ai-flyer.jpg">Maintenance Informatique et Réseau</option>
+                                <option value="Developpeur d'Application" data-flyer="assets/images/ai-flyer.jpg">Développeur d'Application</option>
+                                <option value="Montage Audio Visuel" data-flyer="assets/images/ai-flyer.jpg">Montage Audio Visuel</option>
+                                <option value="Infographie 2D & 3D" data-flyer="assets/images/ai-flyer.jpg">Infographie 2D & 3D Graphisme de Production</option>
                             </optgroup>
 
                             <optgroup label="Paramédical & Santé">
-                                <option value="Délégué Médical">Délégué Médical</option>
-                                <option value="Vendeur en Pharmacie">Vendeur / Auxiliaire en Pharmacie</option>
-                                <option value="Technicien de Laboratoire">Technicien de Laboratoire Assistant</option>
-                                <option value="Assistant Kinésithérapie">Assistant en Kinésithérapie</option>
-                                <option value="Aide Soignante">Aide Soignante / Auxiliaire de Vie</option>
+                                <option value="Delegue Medical" data-flyer="assets/images/paramedical-flyer.jpg">Délégué Médical</option>
+                                <option value="Vendeur / Auxilliaire en Pharmacie" data-flyer="assets/images/paramedical-flyer.jpg">Vendeur / Auxilliaire en Pharmacie</option>
+                                <option value="Technicien de Laboratoire Assistant" data-flyer="assets/images/paramedical-flyer.jpg">Technicien de Laboratoire Assistant</option>
+                                <option value="Aide Chimiste Biologiste" data-flyer="assets/images/paramedical-flyer.jpg">Aide Chimiste Biologiste</option>
+                                <option value="Assistant en Kinesitherapie" data-flyer="assets/images/paramedical-flyer.jpg">Assistant en Kinésithérapie</option>
+                                <option value="Auxilliaire de Vie / Aide Soignante" data-flyer="assets/images/paramedical-flyer.jpg">Auxilliaire de Vie / Aide Soignante</option>
                             </optgroup>
 
                             <optgroup label="Gestion & Administration">
-                                <option value="Logistique et Transport">Logistique et Transport</option>
-                                <option value="Douane et Transit">Douane et Transit / Déclarant</option>
-                                <option value="Comptabilité Informatisée">Comptabilité Informatisée</option>
-                                <option value="Secrétariat Bureautique">Secrétariat Bureautique / Direction</option>
+                                <option value="Logistique et Transport" data-flyer="assets/images/gestion-flyer.jpg">Logistique et Transport</option>
+                                <option value="Douane et Transit" data-flyer="assets/images/gestion-flyer.jpg">Douane et Transit</option>
+                                <option value="Declarant en Douane" data-flyer="assets/images/gestion-flyer.jpg">Déclarant en Douane</option>
+                                <option value="Comptabilite Informatisee et Gestion" data-flyer="assets/images/gestion-flyer.jpg">Comptabilité Informatisée et Gestion</option>
+                                <option value="Secretariat Comptable" data-flyer="assets/images/gestion-flyer.jpg">Secrétariat Comptable</option>
+                                <option value="Secretariat Bureautique" data-flyer="assets/images/gestion-flyer.jpg">Secrétariat Bureautique</option>
+                                <option value="Secretariat de Direction" data-flyer="assets/images/gestion-flyer.jpg">Secrétariat de Direction</option>
+                                <option value="Management Gestion Suivi Projets" data-flyer="assets/images/gestion-flyer.jpg">Management, Gestion, Suivi et Évaluation des Projets</option>
                             </optgroup>
 
-                            <optgroup label="Industrie & Génie Civil">
-                                <option value="Energie Renouvelable">Energie Renouvelable</option>
-                                <option value="Plomberie & Installation">Plomberie & Installation Sanitaire</option>
-                                <option value="Dessin Bâtiment">Dessin Bâtiment & Architecture</option>
+                            <optgroup label="Industrie & Génie Civile">
+                                <option value="Energie Renouvellable" data-flyer="assets/images/genie-civil-flyer.jpg">Energie Renouvelable</option>
+                                <option value="Geometre-Topographe" data-flyer="assets/images/genie-civil-flyer.jpg">Géomètre-Topographe</option>
+                                <option value="Plomberie-Installation Sanitaire" data-flyer="assets/images/genie-civil-flyer.jpg">Plomberie-Installation Sanitaire</option>
+                                <option value="Dessin Batiment & Architecture" data-flyer="assets/images/genie-civil-flyer.jpg">Dessin Bâtiment & Architecture</option>
+                            </optgroup>
+
+                            <optgroup label="Langues (A1-C2)">
+                                <option value="Allemand - Espagnol" data-flyer="assets/images/langues-flyer.jpg">Allemand - Espagnol</option>
+                                <option value="Anglais - Francais" data-flyer="assets/images/langues-flyer.jpg">Anglais - Français</option>
+                                <option value="Chinois - Italien" data-flyer="assets/images/langues-flyer.jpg">Chinois - Italien</option>
+                                <option value="Arabe - Russe" data-flyer="assets/images/langues-flyer.jpg">Arabe - Russe</option>
+                                <option value="Preparation Examens Langues" data-flyer="assets/images/langues-flyer.jpg">Préparation aux différents examens</option>
                             </optgroup>
                         </select>
                     </div>
-                    </div>
 
-                    <button type="submit" class="w-full bg-[#25D366] hover:bg-[#1DA851] text-white font-black py-4 px-6 rounded-lg transition-transform transform hover:scale-[1.02] shadow-lg flex items-center justify-center text-xl mt-6">
-                        <i class="fa-brands fa-whatsapp text-3xl mr-3"></i>
-                        Réserver via WhatsApp
+                    <button type="submit" class="w-full bg-[#25D366] hover:bg-[#1DA851] text-white font-bold py-4 px-6 rounded-lg transition-transform transform hover:scale-[1.02] shadow-lg flex items-center justify-center text-lg mt-4">
+                        <i class="fa-brands fa-whatsapp text-2xl mr-2"></i>
+                        Soumettre ma candidature
                     </button>
                 </form>
-                <p class="text-xs text-center text-slate-400 mt-6 font-mono">
-                    ID d'acquisition AbbaTek active :: conversion_wa
-                </p>
             </div>
             
         </div>
     </main>
 
-    <section class="bg-blue-900 text-white py-16 md:py-24">
+    <section class="bg-blue-900 py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h3 class="text-4xl font-extrabold leading-tight mb-4 tracking-tight">Apprenez Dans Nos <span class="text-blue-300">Laboratoires Connectés</span></h3>
-                <p class="text-xl text-blue-100 max-w-3xl mx-auto">La théorie, c'est bien. La pratique, c'est mieux. Vous apprendrez sur cet équipement professionnel.</p>
+            <div class="text-center mb-10">
+                <h3 class="text-3xl font-bold text-white mb-2">Découvrez STT-Cameroun</h3>
+                <p class="text-blue-200">L'École des futurs entrepreneurs. Rond-Point Damas.</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                <div class="bg-white p-3 rounded-3xl shadow-2xl border border-blue-800">
-                    <img src="./assets/images/lab-space.jpeg" alt="Vue Laboratoire Maintenance STT" class="w-full h-auto rounded-2xl shadow-inner">
-                    <p class="text-sm font-semibold text-slate-800 mt-4 px-4 pb-2 text-center">Équipement de pointe pour la Maintenance et la Cybersecurité.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                <div class="bg-white p-2 rounded-xl shadow-lg">
+                    <img src="assets/images/team-photo.jpg" alt="Équipe STT Cameroun" class="w-full h-auto rounded-lg">
+                    <p class="text-center text-sm text-slate-600 font-semibold mt-2 pb-1">Des formateurs expérimentés</p>
                 </div>
 
-                <div class="bg-white p-3 rounded-3xl shadow-2xl border border-blue-800">
-                    <img src="./assets/images/students-learning.jpeg" alt="Vue Salle Informatique Laptops" class="w-full h-auto rounded-2xl shadow-inner">
-                    <p class="text-sm font-semibold text-slate-800 mt-4 px-4 pb-2 text-center">Postes de travail mobiles connectés via Internet Starlink.</p>
+                <div class="bg-white p-2 rounded-xl shadow-lg">
+                    <img src="assets/images/general-flyer.jpg" alt="Affiche Générale STT" class="w-full h-auto rounded-lg">
+                    <p class="text-center text-sm text-slate-600 font-semibold mt-2 pb-1">Toutes nos filières DQP</p>
                 </div>
-            </div>
 
-            <div class="flex justify-center items-center gap-6 mt-16 p-6 rounded-xl bg-blue-800">
-                <i class="fa-solid fa-wifi text-6xl text-white"></i>
-                <div class="text-left">
-                    <h4 class="text-2xl font-black text-white">Connectivité Starlink Haute Vitesse</h4>
-                    <p class="text-lg text-blue-200">Disponible et gratuit sur le campus de Rond-Point Damas pour tous les étudiants.</p>
+                <div class="bg-white p-2 rounded-xl shadow-lg">
+                    <img src="assets/images/lab-space.jpg" alt="Laboratoire STT" class="w-full h-auto rounded-lg">
+                    <p class="text-center text-sm text-slate-600 font-semibold mt-2 pb-1">Laboratoires et équipements</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-white border-t border-slate-100 py-10 mt-12 text-center">
-        <div class="max-w-7xl mx-auto px-4">
-            <img src="./assets/logos/School-Logo.jpeg" alt="Logo STT-Cameroun" class="h-14 mx-auto mb-6">
-            <p class="text-lg font-bold text-slate-900">Institut de Formation Professionnelle et d'Ingénierie STT-CAMEROUN</p>
-            <p class="text-sm text-slate-500 mb-6 font-mono">Diplôme Officiel DQP-CQP | Équipements de Pointe | Yaoundé</p>
-            
-            <div class="inline-block bg-slate-100 px-6 py-3 rounded-xl shadow-inner mb-6">
-                <div class="text-slate-700 font-bold flex gap-3 items-center">
-                    <i class="fa-solid fa-location-dot text-red-600"></i>
-                    Rond point Damas, Yaoundé
-                </div>
-            </div>
-        </div>
-    </footer-->
-
     <script>
+        // FUNCTION 1: Dynamic Flyer Changer
+        function changeFlyer() {
+            const courseSelect = document.getElementById('course');
+            const flyerImage = document.getElementById('dynamic-flyer');
+            
+            // Get the selected option element
+            const selectedOption = courseSelect.options[courseSelect.selectedIndex];
+            
+            // Get the image path from the 'data-flyer' attribute
+            const newFlyerPath = selectedOption.getAttribute('data-flyer');
+            
+            // Update the image src if a path exists
+            if (newFlyerPath) {
+                flyerImage.src = newFlyerPath;
+            }
+        }
+
+        // FUNCTION 2: WhatsApp Lead Router
         function sendToWhatsApp(event) {
             event.preventDefault();
 
@@ -168,20 +172,17 @@
             const level = document.getElementById('level').value;
             const course = document.getElementById('course').value;
 
-            // 1. The Lead Router Array (Add both numbers here)
+            // WhatsApp Routing Array
             const admissionAgents = [
-                "237695403580", // Thierry (From the flyer)
-                "237675397033"  // <-- Ivo 
+                "237695403580", // Agent 1 from Flyer
+                // "237XXXXXXXXX"  // Uncomment and add Agent 2 if needed
             ];
 
-            // 2. Randomly select an agent (50/50 split)
             const randomAgent = admissionAgents[Math.floor(Math.random() * admissionAgents.length)];
 
-            // 3. Construct the message
-            const message = `Bonjour, je m'appelle ${name} (Niveau : ${level}). Je souhaite m'inscrire via votre site web AbbaTek Promo pour le Diplôme d'État en [${course}] pour la rentrée de Septembre.`;
+            const message = `Bonjour, je m'appelle ${name} (Niveau : ${level}). Je souhaite m'inscrire via votre site web pour la formation en [${course}] pour la rentrée du 28 Septembre.`;
             const encodedMessage = encodeURIComponent(message);
 
-            // 4. Redirect the user to the selected WhatsApp Business number
             const whatsappLink = `https://wa.me/${randomAgent}?text=${encodedMessage}`;
             window.open(whatsappLink, '_blank');
         }
