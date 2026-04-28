@@ -62,11 +62,16 @@
 
                     <div>
                         <label for="course" class="block text-sm font-medium text-slate-700 mb-1">Filière Souhaitée (Modifie l'affiche)</label>
+                        <div>
+                        <label for="course" class="block text-sm font-medium text-slate-700 mb-1">Filière Souhaitée (Modifie l'affiche)</label>
                         <select id="course" required onchange="changeFlyer()" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none bg-white">
                             <option value="" disabled selected>Choisissez votre formation...</option>
                             
+                            <optgroup label="Le Cœur de l'Innovation (AbbaTek System Builder)">
+                                <option value="Intelligence Artificielle & Data" data-flyer="assets/images/ai-flyer.jpg">✅ DQP - Intelligence Artificielle & Data (12 Mois)</option>
+                            </optgroup>
+
                             <optgroup label="Informatique & Numérique">
-                                <option value="Intelligence Artificielle & Data" data-flyer="assets/images/ai-flyer.jpg">Intelligence Artificielle & Data (Premium)</option>
                                 <option value="Cybersecurité & Hacking" data-flyer="assets/images/ai-flyer.jpg">Cybersecurité & Hacking</option>
                                 <option value="Telecommunications et Reseaux" data-flyer="assets/images/ai-flyer.jpg">Télécommunications et Réseaux</option>
                                 <option value="Community Management" data-flyer="assets/images/ai-flyer.jpg">Community Management</option>
@@ -112,6 +117,7 @@
                                 <option value="Preparation Examens Langues" data-flyer="assets/images/langues-flyer.jpg">Préparation aux différents examens</option>
                             </optgroup>
                         </select>
+                    </div>
                     </div>
 
                     <button type="submit" class="w-full bg-[#25D366] hover:bg-[#1DA851] text-white font-bold py-4 px-6 rounded-lg transition-transform transform hover:scale-[1.02] shadow-lg flex items-center justify-center text-lg mt-4">
