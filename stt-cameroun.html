@@ -797,11 +797,11 @@ footer {
 <nav>
   <div class="nav-inner">
     <a href="#hero" class="logo-area" style="display:flex; align-items:center; gap:15px; text-decoration:none;">
-      <img src="assets/images/school-logo.jpg alt="Logo STT-CAM" style="width: 65px; height: 65px; border-radius: 50%; object-fit: cover; border: 2px solid var(--blue-light); box-shadow: 0 0 15px rgba(58,123,213,0.8), 0 0 30px rgba(29,185,84,0.4); transition: transform 0.3s;">
+      <img src="assets/images/school-logo.jpg.jpeg" alt="Logo STT-CAM" style="width: 65px; height: 65px; border-radius: 50%; object-fit: cover; border: 2px solid var(--blue-light); box-shadow: 0 0 15px rgba(58,123,213,0.8), 0 0 30px rgba(29,185,84,0.4); transition: transform 0.3s;">
       
       <div class="logo-text">
         <div class="school-name" style="font-size: 1.4rem;">STT-CAMEROUN</div>
-        <div class="school-sub" style="font-size: 0.6rem; color: var(--white); font-weight: 600;">Institut d'Ingénierie</div>
+        <div class="school-sub" style="font-size: 0.6rem; color: var(--white); font-weight: 600;">Institut d'Ingénierie. L'école des futurs Entrepreneurs.</div>
       </div>
     </a>
 
@@ -831,15 +831,22 @@ footer {
         <a href="#projets" class="nav-link"><i class="fas fa-rocket"></i> Projets</a>
       </li>
       <li class="nav-item">
+        <a href="#post-graduation" class="nav-link"><i class="fas fa-user-graduate"></i> Post-Graduation</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fas fa-handshake"></i> Partenaires <i class="fas fa-chevron-down chevron"></i>
+        </a>
+        <div class="dropdown">
+          <a href="#"><span class="dot" style="background: var(--orange);"></span> AbbaTek Cameroon</a>
+          </div>
+      </li>
+      <li class="nav-item">
         <a href="#inscription" class="nav-link nav-cta"><i class="fas fa-pen"></i> S'inscrire</a>
       </li>
     </ul>
 
-    <div class="visitor-badge">
-      <span class="visitor-dot"></span>
-      <span id="online-count">12</span> en ligne
-    </div>
-
+  
     <button class="mobile-menu-btn" onclick="openMobileNav()"><i class="fas fa-bars"></i></button>
   </div>
 </nav>
@@ -853,6 +860,7 @@ footer {
     <a href="#galerie" onclick="closeMobileNav()"><i class="fas fa-images"></i> Galerie</a>
     <a href="#online" onclick="closeMobileNav()"><i class="fas fa-laptop"></i> Formation en ligne</a>
     <a href="#projets" onclick="closeMobileNav()"><i class="fas fa-rocket"></i> Projets à venir</a>
+    <a href="#" onclick="closeMobileNav()"><i class="fas fa-handshake"></i> Partenaires (AbbaTek)</a>
     <a href="#inscription" onclick="closeMobileNav()"><i class="fas fa-pen"></i> Inscription</a>
     <a href="#contact" onclick="closeMobileNav()"><i class="fas fa-phone"></i> Contact</a>
   </div>
@@ -863,9 +871,9 @@ footer {
   <div class="hero-particles" id="particles"></div>
   <div class="hero-inner">
     <div class="hero-left">
-      <div class="hero-badge">
-        <span class="visitor-dot"></span>
-        Rentrée : 28 Septembre 2026
+      <div class="hero-badge" style="background: rgba(249,115,22,0.15); border-color: var(--orange); color: var(--orange);">
+        <span class="visitor-dot" style="background: var(--orange);"></span>
+        Rentrée académique : <strong style="color: var(--white); margin-left: 4px;"> 28 Septembre 2026</strong>
       </div>
       <h1 class="hero-title">
         <span class="hl-blue">OBTENEZ</span> UN<br>
@@ -1403,18 +1411,15 @@ footer {
     <div class="footer-grid">
       <div>
         <div class="footer-logo">
-          <svg width="42" height="42" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-            <defs><linearGradient id="lg2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#3a7bd5"/><stop offset="100%" style="stop-color:#1db954"/></linearGradient></defs>
-            <circle cx="40" cy="40" r="38" fill="url(#lg2)" opacity="0.2" stroke="url(#lg2)" stroke-width="1.5"/>
-            <text x="40" y="28" text-anchor="middle" font-family="Orbitron,monospace" font-size="12" font-weight="900" fill="#3a7bd5">STT</text>
-            <text x="40" y="42" text-anchor="middle" font-family="Orbitron,monospace" font-size="7" font-weight="700" fill="#1db954">CAMEROUN</text>
-          </svg>
+          <img src="assets/images/school-logo.jpg.jpeg" alt="Logo STT-CAM" style="width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 1px solid var(--blue-light); box-shadow: 0 0 10px rgba(58,123,213,0.5);">
+          
           <div>
             <div style="font-family:'Orbitron',monospace;font-size:1rem;font-weight:900;background:linear-gradient(135deg,var(--blue-light),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent">STT-CAMEROUN</div>
-            <div style="font-size:0.65rem;color:var(--gray);letter-spacing:1px">MINEFOP • Arrêté N°000508</div>
+          
           </div>
         </div>
-        <p class="footer-desc">Institut de Formation Professionnelle et d'Ingénierie. L'école des futurs Entrepreneurs. Formateurs expérimentés, diplômes d'État reconnus, stage garanti.</p>
+        </div>
+        
       </div>
       <div>
         <div class="footer-title">Formations</div>
@@ -1524,37 +1529,37 @@ footer {
 // ===== DATA =====
 const SPECS = {
   tic: [
-    { name:"Intelligence Artificielle & Data", level:"BAC", price:"450 000 frs", icon:"🤖", featured:true,
+    { name:"Intelligence Artificielle & Data", level:"BAC", price:"450 000 frs", icon:"🤖", image:"assets/images/intelligence-artificielle.jpg.png", featured:true,
       tranches:"1ère: 200 000 | 2ème (09/11/26): 150 000 | 3ème (07/01/27): 100 000",
       modules:["Python pour l'IA","Machine Learning & Algorithmes","Deep Learning & Réseaux de neurones","Big Data & Gestion des données","Data Visualisation (Power BI, Tableau)","Computer Vision","NLP & Chatbots","Cloud Computing","Éthique de l'IA","Projet de fin d'études"] },
-    { name:"Cybersécurité & Hacking", level:"BA", price:"450 000 frs", icon:"🔐", featured:false,
+    { name:"Cybersécurité & Hacking", level:"BA", price:"450 000 frs", icon:"🔐", image:"assets/images/cybersecurite.jpg.jpeg", featured:false,
       tranches:"1ère: 200 000 | 2ème (09/11/26): 150 000 | 3ème (07/01/27): 100 000",
       modules:["Fondamentaux de la sécurité informatique","Ethical Hacking & Pentest","Cryptographie","Sécurité des réseaux","Forensique numérique","Gestion des vulnérabilités","Sécurité Web","SOC & Monitoring","RGPD & Conformité","CTF & Exercices pratiques"] },
-    { name:"Télécommunications et Réseaux", level:"BAC", price:"400 000 frs", icon:"📡",
+    { name:"Télécommunications et Réseaux", level:"BAC", price:"400 000 frs", icon:"📡", image:"assets/images/telecommunication.jpg.jpeg",
       tranches:"1ère: 200 000 | 2ème (09/11/26): 150 000 | 3ème (07/01/27): 50 000",
       modules:["Réseaux TCP/IP","Administration Cisco","Fibre optique","Réseaux mobiles 4G/5G","VOIP & Téléphonie IP","Administration Linux/Windows Server","Wi-Fi & réseaux sans fil","Supervision réseau","Projet d'infrastructure","Stage professionnel"] },
-    { name:"Développeur Web & Mobile", level:"BAC", price:"350 000 frs", icon:"📱",
+    { name:"Développeur Web & Mobile", level:"BAC", price:"350 000 frs", icon:"📱", image:"assets/images/developpeur-web-mobile.jpg.jpeg",
       tranches:"1ère: 200 000 | 2ème (09/11/26): 100 000 | 3ème (07/01/27): 50 000",
       modules:["HTML5, CSS3, JavaScript","React.js / Vue.js","Node.js & API REST","Flutter / React Native","Bases de données SQL/NoSQL","Git & contrôle de version","Déploiement cloud","UX/UI Design","Gestion de projet Agile","Projet de fin d'études"] },
-    { name:"Maintenance Informatique et Réseau", level:"Terminale", price:"350 000 frs", icon:"🔧",
+    { name:"Maintenance Informatique et Réseau", level:"Terminale", price:"350 000 frs", icon:"🔧", image:"assets/images/maintenance-informatique.jpg.jpeg",
       tranches:"1ère: 200 000 | 2ème (09/11/26): 100 000 | 3ème (07/01/27): 50 000",
       modules:["Assemblage & Réparation PC","Systèmes d'exploitation Windows/Linux","Réseaux locaux","Maintenance imprimantes","Récupération de données","Virtualisation VMware","Help Desk & Support","Sauvegarde & sécurité","Diagnostic hardware","Stage en entreprise"] },
-    { name:"Community Management", level:"BAC", price:"350 000 frs", icon:"📣",
+    { name:"Community Management", level:"BAC", price:"350 000 frs", icon:"📣", image:"assets/images/community-manager.jpg.jpeg",
       tranches:"1ère: 200 000 | 2ème (09/11/26): 100 000 | 3ème (07/01/27): 50 000",
       modules:["Stratégie des réseaux sociaux","Création de contenu","Facebook & Instagram Ads","YouTube & TikTok","Analytics & Reporting","E-réputation","Outils de planification","Marketing d'influence","SEO & SEA","Projet de marque"] },
-    { name:"Marketing Digital", level:"BAC", price:"350 000 frs", icon:"📈",
+    { name:"Marketing Digital", level:"BAC", price:"350 000 frs", icon:"📈", image:"assets/images/marketing-digital.jpg.jpeg",
       tranches:"1ère: 200 000 | 2ème (09/11/26): 100 000 | 3ème (07/01/27): 50 000",
       modules:["Fondamentaux du marketing","Google Ads & Meta Ads","SEO & Content Marketing","Email Marketing","Entonnoir de conversion","CRM & Automation","Analytics Web","E-commerce","Growth Hacking","Stratégie digitale"] },
     { name:"Développeur d'Application", level:"BAC", price:"350 000 frs", icon:"💻",
       tranches:"1ère: 200 000 | 2ème (09/11/26): 100 000 | 3ème (07/01/27): 50 000",
       modules:["Algorithmique et programmation","Java / Python / C#","POO & Design Patterns","Bases de données","API & Web Services","Tests unitaires","Architecture logicielle","Frameworks modernes","Versioning Git","Projet applicatif"] },
-    { name:"Webmaster", level:"BAC", price:"350 000 frs", icon:"🌐",
+    { name:"Webmaster", level:"BAC", price:"350 000 frs", icon:"🌐", image:"assets/images/WEBMASTER.jpg.jpeg",
       tranches:"1ère: 200 000 | 2ème (09/11/26): 100 000 | 3ème (07/01/27): 50 000",
       modules:["Création de sites web","WordPress & CMS","HTML/CSS avancé","Optimisation SEO","Gestion hébergement","Sécurité web","Maintenance de sites","E-commerce (WooCommerce)","Analytics Google","Projet web professionnel"] },
-    { name:"Montage Audio Visuel", level:"BEPC-CAP", price:"350 000 frs", icon:"🎬",
+    { name:"Montage Audio Visuel", level:"BEPC-CAP", price:"350 000 frs", icon:"🎬", image:"assets/images/montage-audiovisuel.jpg.jpeg",
       tranches:"1ère: 200 000 | 2ème (09/11/26): 100 000 | 3ème (07/01/27): 50 000",
       modules:["Techniques de prise de vue","Montage vidéo (Premiere Pro)","After Effects & Motion Design","Prise de son & mixage","Color Grading","Streaming & YouTube","Production de podcasts","Réalisation documentaire","Drone & captation aérienne","Projet audiovisuel"] },
-    { name:"Infographie 2D & 3D / Graphisme", level:"Terminale", price:"350 000 frs", icon:"🎨",
+    { name:"Infographie 2D & 3D / Graphisme", level:"Terminale", price:"350 000 frs", icon:"🎨", image:"assets/images/INFOGRAPHIE.jpg.jpeg",
       tranches:"1ère: 200 000 | 2ème (09/11/26): 100 000 | 3ème (07/01/27): 50 000",
       modules:["Photoshop & Illustrator","InDesign & mise en page","Blender 3D","Motion Design","Design d'identité visuelle","UX/UI Design","Impression & pré-presse","Photographie professionnelle","Portfolio créatif","Projet de fin de formation"] }
   ],
@@ -1576,30 +1581,33 @@ const SPECS = {
       modules:["Soins de base","Hygiène corporelle","Nutrition & diététique","Soins aux personnes âgées","Premiers secours","Psychologie du patient","Maladies courantes","Communication soignant","Gestes et postures","Stage en milieu hospitalier"] }
   ],
   gestion: [
-    { name:"Logistique et Transport", level:"BAC", price:"350 000 frs", icon:"🚛",
+    { name:"Logistique et Transport", level:"BAC", price:"350 000 frs", icon:"🚛", image:"assets/images/logistique.jpg.jpeg",
       tranches:"1ère: 200 000 | 2ème (09/11/26): 100 000 | 3ème (07/01/27): 50 000",
       modules:["Supply Chain Management","Transport routier/aérien/maritime","Gestion d'entrepôt","Incoterms & documents","Gestion des commandes","WMS & TMS","Douane & transit","Géolocalisation & tracking","Gestion des risques","Stage logistique"] },
-    { name:"Douane et Transit", level:"BAC", price:"350 000 frs", icon:"🛃",
+    { name:"Douane et Transit", level:"BAC", price:"350 000 frs", icon:"🛃", image:"assets/images/douane-transit.jpg.jpeg",
       tranches:"1ère: 200 000 | 2ème (09/11/26): 100 000 | 3ème (07/01/27): 50 000",
       modules:["Réglementation douanière","Nomenclature tarifaire","Déclaration en douane","Procédures d'import/export","Incoterms","Transit international","CAMCIS & SEGUCE","Contentieux douanier","Documentation commerciale","Stage en cabinet de transit"] },
-    { name:"Déclarant en Douane", level:"BEPC-CAP", price:"350 000 frs", icon:"📋",
+    { name:"Déclarant en Douane", level:"BEPC-CAP", price:"350 000 frs", icon:"📋", image:"assets/images/declarant-douane.jpg.jpeg",
       tranches:"1ère: 200 000 | 2ème (09/11/26): 100 000 | 3ème (07/01/27): 50 000",
       modules:["Code des douanes","Tarif des douanes","Valeur en douane","Régimes douaniers","Documents douaniers","Fiscalité douanière","CAMCIS pratique","Contentieux","Éthique professionnelle","Stage pratique"] },
     { name:"Comptabilité Informatisée et Gestion", level:"Terminale", price:"350 000 frs", icon:"📊",
       tranches:"1ère: 200 000 | 2ème (09/11/26): 100 000 | 3ème (07/01/27): 50 000",
       modules:["SYSCOHADA révisé","Sage Comptabilité","Paie & charges sociales","Fiscalité des entreprises","Gestion budgétaire","Excel financier","Audit & contrôle","Déclarations fiscales","Gestion de trésorerie","Stage en cabinet comptable"] },
-    { name:"Secrétariat Comptable", level:"1ère", price:"350 000 frs", icon:"🗂️",
+    { name:"Secrétariat Comptable", level:"1ère", price:"350 000 frs", icon:"🗂️", image:"assets/images/secretariat-comptable.jpg.jpeg",
       tranches:"1ère: 200 000 | 2ème (09/11/26): 100 000 | 3ème (07/01/27): 50 000",
       modules:["Comptabilité générale","Secrétariat & accueil","Bureautique avancée","Gestion des archives","Correspondance commerciale","Facturation & recouvrement","Excel comptable","Droit des affaires","Communication professionnelle","Stage en entreprise"] },
-    { name:"Secrétariat Bureautique", level:"3e-BEPC", price:"350 000 frs", icon:"⌨️",
+    { name:"Secrétariat Bureautique", level:"3e-BEPC", price:"350 000 frs", icon:"⌨️", image:"assets/images/secretariat-bureautique.jpg.jpeg",
       tranches:"1ère: 200 000 | 2ème (09/11/26): 100 000 | 3ème (07/01/27): 50 000",
       modules:["Word avancé","Excel & Tableaux","PowerPoint professionnel","Saisie rapide","Gestion du courrier","Accueil téléphonique","Rédaction administrative","Gestion d'agenda","Classement & archivage","Stage en administration"] },
-    { name:"Secrétariat de Direction", level:"BAC", price:"350 000 frs", icon:"👔",
+    { name:"Secrétariat de Direction", level:"BAC", price:"350 000 frs", icon:"👔", image:"assets/images/secretariat-direction.jpg.jpeg",
       tranches:"1ère: 200 000 | 2ème (09/11/26): 100 000 | 3ème (07/01/27): 50 000",
       modules:["Management & organisation","Communication managériale","Gestion de projet","Protocole & événementiel","Langues des affaires","Outils collaboratifs","Techniques de négociation","Droit du travail","Veille informationnelle","Stage en direction d'entreprise"] },
-    { name:"Management & Suivi-Évaluation de Projets", level:"Licence", price:"450 000 frs", icon:"📌",
+    { name:"Management & Suivi-Évaluation de Projets", level:"Licence", price:"450 000 frs", icon:"📌", image:"assets/images/management-projets.jpg.jpeg",
       tranches:"1ère: 150 000 | 2ème (05/01/26): 150 000 | 3ème (02/03/2026): 100 000",
-      modules:["Cycle de vie des projets","Cadre logique","Planification & Gantt","MS Project","Passation de marchés","Gestion financière","Suivi-évaluation","Reporting bailleur","Coordination d'équipe","Gestion des risques projet"] }
+      modules:["Cycle de vie des projets","Cadre logique","Planification & Gantt","MS Project","Passation de marchés","Gestion financière","Suivi-évaluation","Reporting bailleur","Coordination d'équipe","Gestion des risques projet"] },
+    { name:"Bureautique", level:"3e", price:"100 000 frs", icon:"💻",
+      tranches:"Durée : 3 à 4 mois",
+      modules:["Initiation à l'informatique", "Saisie de textes", "Microsoft Word", "Microsoft Excel", "Microsoft PowerPoint", "Internet et recherche", "Impression et scanner", "Maintenance de base"] }
   ],
   industrie: [
     { name:"Énergie Renouvelable", level:"BAC", price:"400 000 frs", icon:"☀️",
@@ -1657,10 +1665,15 @@ function renderGrids() {
 }
 
 function specCard(s) {
+  // Check if an image exists, otherwise fall back to the emoji icon
+  const imgHtml = s.image 
+    ? `<img src="${s.image}" alt="${s.name}" style="width:100%;height:100%;object-fit:cover;z-index:1;position:relative;opacity:0.85;">`
+    : `<span style="font-size:4rem;z-index:1;position:relative">${s.icon}</span>`;
+
   return `
     <div class="spec-card ${s.featured?'featured':''}" onclick="openModal('${escapeQ(s.name)}')">
       <div class="spec-img" style="background:linear-gradient(135deg,#0a2d6e,#060d1f)">
-        <span style="font-size:4rem;z-index:1;position:relative">${s.icon}</span>
+        ${imgHtml}
         <div class="spec-img-overlay"></div>
       </div>
       <div class="spec-body">
@@ -1895,22 +1908,30 @@ function createParticles() {
 function initVisitors() {
   const stored = sessionStorage.getItem('stt_vis');
   let data = stored ? JSON.parse(stored) : { day: 240 + Math.floor(Math.random()*30), month: 3800 + Math.floor(Math.random()*200), year: 28000 + Math.floor(Math.random()*1000) };
+  
   // increment for this visit
   data.day++; data.month++; data.year++;
   sessionStorage.setItem('stt_vis', JSON.stringify(data));
-  document.getElementById('vis-day').textContent = data.day.toLocaleString();
-  document.getElementById('vis-month').textContent = data.month.toLocaleString();
-  document.getElementById('vis-year').textContent = data.year.toLocaleString();
+  
+  // Safely update main stats if the section still exists
+  const visDay = document.getElementById('vis-day');
+  const visMonth = document.getElementById('vis-month');
+  const visYear = document.getElementById('vis-year');
+  
+  if(visDay) visDay.textContent = data.day.toLocaleString();
+  if(visMonth) visMonth.textContent = data.month.toLocaleString();
+  if(visYear) visYear.textContent = data.year.toLocaleString();
+  
   // random online
   let online = 8 + Math.floor(Math.random()*12);
-  document.getElementById('vis-online').textContent = online;
-  document.getElementById('online-count').textContent = online;
+  const visOnline = document.getElementById('vis-online');
+  if(visOnline) visOnline.textContent = online;
+  
   // live updates
   setInterval(() => {
     online += Math.random() > 0.5 ? 1 : -1;
     online = Math.max(5, Math.min(30, online));
-    document.getElementById('vis-online').textContent = online;
-    document.getElementById('online-count').textContent = online;
+    if(visOnline) visOnline.textContent = online;
   }, 8000);
 }
 
