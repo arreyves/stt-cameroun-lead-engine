@@ -6,6 +6,7 @@
 <title>STT-Cameroun | Institut de Formation Professionnelle et d'Ingénierie</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Orbitron:wght@700;900&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 :root {
   --blue: #0a2d6e;
@@ -1393,12 +1394,15 @@ footer {
           </div>
         </div>
         <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap">
-          <button class="btn btn-orange" onclick="submitForm()" style="flex:1;justify-content:center">
-            <i class="fas fa-paper-plane"></i> Envoyer ma réservation
+          
+          <button type="button" onclick="generatePDF()" class="btn btn-outline" style="flex:1;justify-content:center; border-color: var(--blue-light); color: var(--blue-light); background: rgba(58,123,213,0.1);">
+            <i class="fas fa-file-pdf" style="color: #ff4757;"></i> Télécharger ma fiche
           </button>
-          <a href="tel:+237695403580" class="btn btn-primary" style="flex:1;justify-content:center">
-            <i class="fas fa-phone"></i> Appeler directement
-          </a>
+          
+          <button type="button" class="btn btn-orange" onclick="submitForm()" style="flex:1;justify-content:center">
+            <i class="fab fa-whatsapp"></i> Envoyer via WhatsApp
+          </button>
+
         </div>
         <div style="margin-top:1.2rem;background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.2);border-radius:12px;padding:1rem">
           <p style="font-size:0.78rem;color:var(--gray)">
@@ -2044,6 +2048,48 @@ setTimeout(() => {
     }
   });
 }, 100);
+
+// ===== DYNAMIC PDF GENERATOR =====
+function generatePDF() {
+  const nom = document.getElementById('f-nom').value.trim();
+  const prenom = document.getElementById('f-prenom').value.trim();
+  const tel = document.getElementById('f-tel').value.trim();
+  const spec = document.getElementById('f-spec').value;
+  const niveau = document.getElementById('f-niveau').value;
+
+  if(!nom || !tel || !spec) {
+    alert("⚠️ Veuillez remplir au moins votre Nom, Téléphone et Spécialité avant de télécharger la fiche.");
+    return;
+  }
+
+  // Initialize jsPDF
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  
+  // Design the PDF
+  doc.setFontSize(18);
+  doc.setTextColor(10, 45, 110); // STT Blue
+  doc.text("FICHE DE PRE-INSCRIPTION : STT-CAMEROUN", 20, 20);
+  
+  doc.setFontSize(12);
+  doc.setTextColor(0, 0, 0); // Black
+  doc.text(`Date : ${new Date().toLocaleDateString('fr-FR')}`, 20, 30);
+  doc.text("----------------------------------------------------------------", 20, 35);
+  
+  doc.text(`Nom de l'etudiant : ${prenom} ${nom}`, 20, 45);
+  doc.text(`Telephone : ${tel}`, 20, 55);
+  doc.text(`Niveau d'etudes : ${niveau || 'Non precise'}`, 20, 65);
+  doc.text(`Filiere choisie : ${spec}`, 20, 75);
+  
+  doc.text("----------------------------------------------------------------", 20, 85);
+  doc.setFontSize(10);
+  doc.setTextColor(100, 100, 100); // Gray
+  doc.text("Ceci est un document de pre-reservation genere en ligne.", 20, 95);
+  doc.text("Veuillez cliquer sur 'Envoyer via WhatsApp' sur le site pour valider votre place.", 20, 102);
+
+  // Trigger the download automatically
+  doc.save(`Pre-inscription_STT_${nom.toUpperCase()}.pdf`);
+}
 </script>
 </body>
 </html>
