@@ -172,9 +172,42 @@ nav {
   font-weight:700; text-transform:uppercase; letter-spacing:2px;
   margin-bottom:1.5rem; animation:slideInLeft 0.8s ease both;
 }
+/* ===== RENTRÉE ANIMATION (Va-et-Vient) ===== */
+@keyframes vaEtVient {
+  0%, 100% { 
+    transform: translateX(0) scale(1); 
+    box-shadow: 0 0 15px rgba(249,115,22,0.4); 
+    border-color: rgba(249,115,22,0.5);
+  }
+  50% { 
+    transform: translateX(20px) scale(1.05); 
+    box-shadow: 0 0 30px rgba(249,115,22,0.9); 
+    border-color: var(--orange);
+  }
+}
+
+.rentree-banner {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(6,13,31,0.8));
+  border: 2px solid var(--orange);
+  padding: 15px 30px;
+  border-radius: 16px;
+  font-family: 'Orbitron', monospace;
+  margin-bottom: 2rem;
+  animation: vaEtVient 2.5s ease-in-out infinite;
+  backdrop-filter: blur(10px);
+}
+
+.rentree-banner .highlight {
+  color: var(--orange);
+  font-weight: 900;
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  text-shadow: 0 0 15px rgba(249,115,22,0.6);
+  letter-spacing: 1px;
+}
 .hero-title {
-  font-family:'Orbitron',monospace; font-size:clamp(2rem,4vw,3.5rem); font-weight:900;
-  line-height:1.1; margin-bottom:1rem;
+  font-family:'Orbitron',monospace; font-size:clamp(1.8rem, 3.5vw, 2.6rem); font-weight:900;
+  line-height:1.2; margin-bottom:1rem;
   animation:slideInLeft 0.8s 0.2s ease both;
 }
 .hero-title .hl-blue { color:var(--blue-light); }
@@ -901,9 +934,11 @@ footer {
   <div class="hero-particles" id="particles"></div>
   <div class="hero-inner">
     <div class="hero-left">
-      <div class="hero-badge" style="background: rgba(249,115,22,0.15); border-color: var(--orange); color: var(--orange);">
-        <span class="visitor-dot" style="background: var(--orange);"></span>
-        Rentrée académique : <strong style="color: var(--white); margin-left: 4px;"> 28 Septembre 2026</strong>
+      <div class="rentree-banner">
+        <div style="font-size: 0.85rem; color: var(--gray); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px;">
+          <i class="fas fa-calendar-check" style="color: var(--green);"></i> Rentrée Académique
+        </div>
+        <div class="highlight">28 SEPTEMBRE 2026</div>
       </div>
       <h1 class="hero-title">
         <span class="hl-blue">DEVENEZ UN PROFESSIONNEL</span><br>
@@ -942,19 +977,19 @@ footer {
     <div class="hero-right">
       <div class="ai-showcase">
         <div class="ai-icon"><i class="fas fa-brain"></i></div>
-        <section id="mot-du-promoteur" style="background:var(--dark); padding: 2.5rem 2rem; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
-  <div class="section-inner" style="max-width: 950px; margin: 0 auto; display:grid; grid-template-columns: 1fr 3fr; gap: 2.5rem; align-items: center;">
+        <section id="mot-du-promoteur" style="padding: 2rem; margin: 0 auto;">
+  <div style="max-width: 950px; margin: 0 auto; background: linear-gradient(135deg, rgba(29,185,84,0.1), rgba(6,13,31,0.8)); border: 1px solid var(--green); border-radius: 20px; padding: 1.5rem; display: grid; grid-template-columns: 1fr 3fr; gap: 1.5rem; align-items: center; box-shadow: 0 10px 30px rgba(29,185,84,0.1);">
     
-    <div style="position: relative; max-width: 180px; margin: 0 auto;">
-      <img src="assets/images/promoteur.jpg" alt="Le Promoteur" style="width: 100%; border-radius: 12px; border: 2px solid var(--blue-light); box-shadow: 0 5px 15px rgba(58,123,213,0.2);">
-      <div style="position: absolute; bottom: -8px; right: -12px; background: var(--green); padding: 4px 10px; border-radius: 6px; font-weight: 900; font-size: 0.65rem; color: var(--dark); text-transform: uppercase;">M. TANKEU</div>
+    <div style="position: relative; max-width: 140px; margin: 0 auto;">
+      <img src="assets/images/promoteur.jpg" alt="Le Promoteur" style="width: 100%; border-radius: 12px; border: 2px solid var(--green); box-shadow: 0 5px 15px rgba(29,185,84,0.2);">
+      <div style="position: absolute; bottom: -8px; right: -12px; background: var(--orange); padding: 4px 10px; border-radius: 6px; font-weight: 900; font-size: 0.65rem; color: var(--white); text-transform: uppercase;">M. TANKEU</div>
     </div>
     
     <div>
-      <div class="section-tag" style="margin-bottom: 0.5rem; padding: 3px 10px; font-size: 0.65rem;"><i class="fas fa-quote-left"></i> Mot du Promoteur</div>
-      <h2 class="section-title" style="font-size: 1.4rem; margin-bottom: 0.5rem;">Bienvenue à <span class="blue">STT-Cameroun</span></h2>
-      <p style="color: var(--gray); line-height: 1.6; font-size: 0.85rem;">
-        "Notre mission est de transformer la jeunesse camerounaise en une élite professionnelle. À STT-Cameroun, nous ne délivrons pas seulement des diplômes du MINEFOP, nous forgeons des carrières. Avec nos infrastructures de pointe, notre connexion Starlink, et nos formateurs dévoués, nous vous garantissons une insertion socioprofessionnelle rapide. Rejoignez l'école des futurs entrepreneurs."
+      <div class="section-tag" style="margin-bottom: 0.5rem; padding: 3px 10px; font-size: 0.65rem; background: rgba(29,185,84,0.2); border-color: var(--green); color: var(--green);"><i class="fas fa-quote-left"></i> Mot du Promoteur</div>
+      <h2 class="section-title" style="font-size: 1.3rem; margin-bottom: 0.5rem;">Bienvenue à <span class="green">STT-Cameroun</span></h2>
+      <p style="color: var(--gray); line-height: 1.5; font-size: 0.85rem; margin: 0;">
+        "Chers futurs apprenants, le monde change et la technologie est son moteur. Notre institut s'est donné pour mission de vous transformer en experts opérationnels. Ne subissez plus le marché de l'emploi, dominez-le par vos compétences. Rejoignez-nous pour une année qui changera votre vie."
       </p>
     </div>
     
