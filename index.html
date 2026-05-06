@@ -1299,8 +1299,8 @@ footer {
       </div>
 
       <div class="gallery-item" onclick="openGalleryModal(2)">
-        <div class="gallery-img" style="background:linear-gradient(135deg,#0f8c3a,#1db954)">🎓</div>
-        <div class="gallery-caption">Cérémonie de remise des diplômes</div>
+        <img src="assets/images/team-photo.jpeg" alt="Apprenants en formation" class="gallery-img" style="object-fit: cover; object-position: center; background: #fff;">
+        <div class="gallery-caption">Apprenants déjà en formation</div>
       </div>
 
       <div class="gallery-item" onclick="openGalleryModal(3)">
@@ -2109,11 +2109,18 @@ const galleryItems = [
   {
     title: "Agrément MINEFOP", 
     desc: "Arrêté d'Agrément officiel délivré par le MINEFOP et liste des filières autorisées.", 
-    images: ["assets/images/agrement-1.jpg", "assets/images/agrement-2.jpg"] // Array pour plusieurs images
+    images: ["assets/images/agrement-1.jpg.jpeg", "assets/images/agrement-2.jpg.jpeg"] // Array pour plusieurs images
   },
-  {title:"Salle informatique", desc:"Nos salles sont équipées de postes modernes et connectés via Starlink.", 
-  img:"assets/images/lecture-room.jpg.jpeg"},
-  {title:"Remise des diplômes", desc:"Nos diplômés lors de la cérémonie annuelle de remise des diplômes d'État.", img:""},
+  {
+    title: "Salle informatique", 
+    desc: "Nos salles sont équipées de postes modernes et connectés via Starlink.", 
+    img: "assets/images/lecture-room.jpg.jpeg"
+  },
+  {
+    title: "Apprenants déjà en formation", 
+    desc: "Découvrez nos étudiants actuels, futurs professionnels et entrepreneurs, en plein apprentissage sur notre campus.", 
+    img: "assets/images/team-photo.jpeg"
+  },
   {title:"Travaux pratiques", desc:"Les étudiants en biotechnologie et laboratoire lors de leurs TP.", img:""},
   {title:"Sessions de coaching", desc:"Accompagnement personnalisé à la fin de chaque formation.", img:""},
   {title:"Connexion Starlink", desc:"Notre antenne Starlink garantit une connexion haut débit gratuite pour tous.", img:""},
