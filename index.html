@@ -543,11 +543,11 @@ section { position:relative; z-index:1; padding:5rem 2rem; }
   padding:0.8rem; font-size:0.8rem; color:var(--gray);
   background:rgba(6,13,31,0.9);
 }
-/* ===== MINI-SLIDER GALERIE ===== */
+/* ===== MINI-SLIDER GALERIE (4 Images) ===== */
 .mini-slider {
   position: relative;
   width: 100%;
-  height: 200px; /* Doit correspondre à la hauteur de .gallery-img */
+  height: 200px;
   background: #fff;
   overflow: hidden;
 }
@@ -559,17 +559,21 @@ section { position:relative; z-index:1; padding:5rem 2rem; }
   object-fit: cover;
   object-position: top;
   opacity: 0;
-  animation: miniFade 8s infinite;
+  animation: miniFade4 16s infinite; /* 16 secondes au total */
 }
+
+/* Les délais pour chaque image (4s d'écart) */
 .mini-slider img:nth-child(1) { animation-delay: 0s; }
 .mini-slider img:nth-child(2) { animation-delay: 4s; }
+.mini-slider img:nth-child(3) { animation-delay: 8s; }
+.mini-slider img:nth-child(4) { animation-delay: 12s; }
 
-@keyframes miniFade {
-  0%, 40% { opacity: 1; }
-  50%, 90% { opacity: 0; }
+/* L'animation d'apparition/disparition pour 4 images */
+@keyframes miniFade4 {
+  0%, 20% { opacity: 1; }
+  25%, 95% { opacity: 0; }
   100% { opacity: 1; }
 }
-
 /* ===== PROJETS ===== */
 .projet-card {
   background:var(--glass); border:1px solid rgba(58,123,213,0.2);
@@ -1309,8 +1313,13 @@ footer {
       </div>
 
       <div class="gallery-item" onclick="openGalleryModal(4)">
-        <div class="gallery-img" style="background:linear-gradient(135deg,#1a4fb5,#1db954)">🤝</div>
-        <div class="gallery-caption">Séances de coaching et mentorat</div>
+        <div class="mini-slider">
+          <img src="assets/images/flyer-tic.jpg.jpeg" alt="Flyer TIC">
+          <img src="assets/images/flyer-sante.jpg.jpeg" alt="Flyer Santé">
+          <img src="assets/images/flyer-gestion.jpg.jpeg" alt="Flyer Gestion">
+          <img src="assets/images/flyer-geniecivil.jpg.jpeg" alt="Flyer Genie Civil">
+        </div>
+        <div class="gallery-caption">Tous nos programmes de formation</div>
       </div>
 
       <div class="gallery-item" onclick="openGalleryModal(5)">
@@ -2125,7 +2134,15 @@ const galleryItems = [
   desc:"Les étudiants en biotechnologie et laboratoire lors de leurs TP.", 
   img:"assets/images/lab-space.jpg.jpeg"
 },
-  {title:"Sessions de coaching", desc:"Accompagnement personnalisé à la fin de chaque formation.", img:""},
+  {title:"Tous nos programmes", 
+  desc:"Découvrez l'ensemble de nos offres de formation professionnelle, conçues pour vous garantir une insertion rapide.", 
+  img: [
+    "assets/images/flyer-tic.jpg.jpeg", 
+    "assets/images/flyer-sante.jpg.jpeg", 
+    "assets/images/flyer-gestion.jpg.jpeg", 
+    "assets/images/flyer-geniecivil.jpg.jpeg"
+  ]
+},
   {title:"Connexion Starlink", desc:"Notre antenne Starlink garantit une connexion haut débit gratuite pour tous.", img:""},
   {title:"Ateliers de génie civil", desc:"Travaux pratiques sur les techniques de construction et d'architecture.", img:""}
 ];
