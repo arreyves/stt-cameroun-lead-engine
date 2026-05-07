@@ -1633,41 +1633,9 @@ footer {
 </footer>
 
 <!-- CHAT BUTTON -->
-<button id="chat-toggle" onclick="toggleChat()">
-  <i class="fas fa-comments" id="chat-icon"></i>
-  <span class="chat-notif">1</span>
-</button>
-
-<div id="chat-window">
-  <div class="chat-header">
-    <div class="chat-avatar">🎓</div>
-    <div class="chat-hinfo">
-      <h4>STT-Cameroun Support</h4>
-      <p>Nous répondons en temps réel</p>
-    </div>
-    <div class="chat-online"></div>
-  </div>
-  <div class="chat-messages" id="chatMessages">
-    <div class="chat-msg bot">
-      <div class="chat-bubble">Bonjour ! 👋 Bienvenue à STT-Cameroun. Comment puis-je vous aider aujourd'hui ?</div>
-      <div class="chat-time">Maintenant</div>
-    </div>
-    <div class="chat-msg bot">
-      <div class="chat-bubble">Vous pouvez me poser des questions sur nos formations, les inscriptions, les frais ou les horaires.</div>
-      <div class="chat-time">Maintenant</div>
-    </div>
-  </div>
-  <div class="chat-quick">
-    <button class="quick-btn" onclick="quickMsg('Informations sur les formations')">📚 Formations</button>
-    <button class="quick-btn" onclick="quickMsg('Comment s\'inscrire ?')">✏️ Inscription</button>
-    <button class="quick-btn" onclick="quickMsg('Quels sont les frais ?')">💰 Frais</button>
-    <button class="quick-btn" onclick="quickMsg('IA & Data Science')">🤖 IA & Data</button>
-  </div>
-  <div class="chat-input-area">
-    <input type="text" class="chat-input" id="chatInput" placeholder="Écrivez votre message..." onkeypress="if(event.key==='Enter')sendChat()">
-    <button class="chat-send" onclick="sendChat()"><i class="fas fa-paper-plane"></i></button>
-  </div>
-</div>
+<a href="https://wa.me/237695403580?text=Bonjour%20STT-Cameroun,%20j'aimerais%20avoir%20plus%20d'informations%20sur%20vos%20formations." target="_blank" id="chat-toggle" style="text-decoration: none;">
+  <i class="fab fa-whatsapp" style="font-size: 2rem;"></i>
+</a>
 
 <!-- MODAL (specialite modules) -->
 <div class="modal-overlay" id="specModal" onclick="if(event.target===this)closeModal()">
@@ -2000,67 +1968,7 @@ function showNotif() {
   setTimeout(() => n.classList.remove('show'), 4000);
 }
 
-// ===== CHAT =====
-let chatOpen = false;
-const chatResponses = {
-  default: ["Merci pour votre message ! Un conseiller STT-Cameroun vous répondra très bientôt. Vous pouvez aussi nous appeler au **695 40 35 80**.", "Je transmets votre question à notre équipe. Pour une réponse immédiate, appelez le 695 40 35 80."],
-  formations: ["Nous proposons plus de 30 spécialités réparties en 4 secteurs : TIC & Numérique, Paramédical & Santé, Gestion & Administration, et Industrie & Génie Civil. La rentrée est fixée au **28 Septembre 2026**."],
-  inscription: ["Pour vous inscrire, constituez votre dossier : demande au promoteur, acte de naissance, CNI/passeport, diplôme, 2 rames A4, 2 rouleaux papier hygiénique, enveloppe A4 + chemise. Frais d'inscription : **25 000 FCFA**."],
-  frais: ["Les frais varient selon la filière. Par exemple : IA & Data = **450 000 frs**, Cybersécurité = **450 000 frs**, Délégué Médical = **500 000 frs**, et la plupart des autres formations = **350 000 frs**. Paiement en 3 tranches possibles !"],
-  ia: ["La formation **IA & Data Science** est notre filière phare ! Elle dure 12 mois, niveau BAC requis, scolarité de 450 000 FCFA. Modules : Python, Machine Learning, Deep Learning, Big Data, Computer Vision, NLP... 🤖 C'est la formation du futur au Cameroun !"]
-};
 
-function toggleChat() {
-  chatOpen = !chatOpen;
-  document.getElementById('chat-window').classList.toggle('open', chatOpen);
-  document.querySelector('.chat-notif').style.display = chatOpen ? 'none' : 'flex';
-  document.getElementById('chat-icon').className = chatOpen ? 'fas fa-times' : 'fas fa-comments';
-}
-
-function sendChat() {
-  const input = document.getElementById('chatInput');
-  const msg = input.value.trim();
-  if(!msg) return;
-  addChatMsg(msg, 'user');
-  input.value = '';
-  // typing indicator
-  const typing = document.createElement('div');
-  typing.className = 'chat-msg bot';
-  typing.id = 'typing';
-  typing.innerHTML = '<div class="chat-bubble"><div class="typing"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div></div>';
-  document.getElementById('chatMessages').appendChild(typing);
-  scrollChat();
-  setTimeout(() => {
-    typing.remove();
-    let response;
-    const lower = msg.toLowerCase();
-    if(lower.includes('form') || lower.includes('filière') || lower.includes('spécialit')) response = chatResponses.formations[0];
-    else if(lower.includes('inscri') || lower.includes('dossier')) response = chatResponses.inscription[0];
-    else if(lower.includes('frais') || lower.includes('prix') || lower.includes('scolar') || lower.includes('coût')) response = chatResponses.frais[0];
-    else if(lower.includes('ia') || lower.includes('intelligence') || lower.includes('data') || lower.includes('artific')) response = chatResponses.ia[0];
-    else response = chatResponses.default[Math.floor(Math.random()*chatResponses.default.length)];
-    addChatMsg(response, 'bot');
-  }, 1200);
-}
-
-function quickMsg(msg) {
-  document.getElementById('chatInput').value = msg;
-  sendChat();
-}
-
-function addChatMsg(text, role) {
-  const now = new Date().toLocaleTimeString('fr-FR', {hour:'2-digit',minute:'2-digit'});
-  const div = document.createElement('div');
-  div.className = 'chat-msg ' + role;
-  div.innerHTML = `<div class="chat-bubble">${text}</div><div class="chat-time">${now}</div>`;
-  document.getElementById('chatMessages').appendChild(div);
-  scrollChat();
-}
-
-function scrollChat() {
-  const cm = document.getElementById('chatMessages');
-  cm.scrollTop = cm.scrollHeight;
-}
 
 // ===== PARTICLES =====
 function createParticles() {
