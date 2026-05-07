@@ -947,10 +947,13 @@ footer {
         <a href="#online" class="nav-link"><i class="fas fa-laptop"></i> Formation en ligne</a>
       </li>
       <li class="nav-item">
-        <a href="#projets" class="nav-link"><i class="fas fa-rocket"></i> Projets</a>
-      </li>
-      <li class="nav-item">
-        <a href="#post-graduation" class="nav-link"><i class="fas fa-user-graduate"></i> Post-Graduation</a>
+        <a href="#projets" class="nav-link">
+          <i class="fas fa-rocket"></i> Projets <i class="fas fa-chevron-down chevron"></i>
+        </a>
+        <div class="dropdown">
+          <a href="#projets"><span class="dot"></span> Projets à venir</a>
+          <a href="#post-graduation"><span class="dot" style="background: var(--orange);"></span> Post-Graduation</a>
+        </div>
       </li>
       <li class="nav-item">
         <a href="#" class="nav-link">
@@ -1040,18 +1043,22 @@ footer {
     <div class="hero-right">
       <div class="ai-showcase">
         <div class="ai-icon"><i class="fas fa-brain"></i></div>
-        <section id="mot-du-promoteur" style="padding: 2rem; margin: 0 auto;">
+       <section id="mot-du-promoteur" style="padding: 2rem; margin: 0 auto;">
   <div style="max-width: 950px; margin: 0 auto; background: linear-gradient(135deg, rgba(29,185,84,0.1), rgba(6,13,31,0.8)); border: 1px solid var(--green); border-radius: 20px; padding: 1.5rem; display: grid; grid-template-columns: 1fr 3fr; gap: 1.5rem; align-items: center; box-shadow: 0 10px 30px rgba(29,185,84,0.1);">
     
-    <div style="position: relative; max-width: 140px; margin: 0 auto;">
+    <div style="position: relative; max-width: 140px; margin: 0 auto; cursor: pointer; transition: transform 0.3s;" 
+         onmouseover="this.style.transform='scale(1.05)'" 
+         onmouseout="this.style.transform='scale(1)'"
+         onclick="document.getElementById('modalTitle').textContent='Mr. Steve Thierry TANKEU'; document.getElementById('modalContent').innerHTML='<img src=&quot;assets/images/promoteur.jpg.jpeg&quot; style=&quot;width:100%; border-radius:12px; object-fit:cover;&quot;>'; document.getElementById('specModal').classList.add('open'); document.body.style.overflow='hidden';">
+      
       <img src="assets/images/promoteur.jpg.jpeg" alt="Le Promoteur" style="width: 100%; border-radius: 12px; border: 2px solid var(--green); box-shadow: 0 5px 15px rgba(29,185,84,0.2);">
-      <div style="position: absolute; bottom: -8px; right: -12px; background: var(--orange); padding: 4px 10px; border-radius: 6px; font-weight: 900; font-size: 0.65rem; color: var(--white); text-transform: uppercase;">M. TANKEU</div>
+      <div style="position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); background: var(--orange); padding: 5px 12px; border-radius: 6px; font-weight: 900; font-size: 0.6rem; color: var(--white); text-transform: uppercase; white-space: nowrap; box-shadow: 0 4px 10px rgba(249,115,22,0.4);">Mr. Steve Thierry TANKEU</div>
     </div>
     
     <div>
       <div class="section-tag" style="margin-bottom: 0.5rem; padding: 3px 10px; font-size: 0.65rem; background: rgba(29,185,84,0.2); border-color: var(--green); color: var(--green);"><i class="fas fa-quote-left"></i> Mot du Promoteur</div>
       <h2 class="section-title" style="font-size: 1.3rem; margin-bottom: 0.5rem;">Bienvenue à <span class="green">STT-Cameroun</span></h2>
-      <p style="color: var(--gray); line-height: 1.5; font-size: 0.85rem; margin: 0;">
+      <p style="color: var(--white); line-height: 1.6; font-size: 0.9rem; font-weight: 700; font-style: italic; margin: 0;">
         "Chers futurs apprenants, le monde change et la technologie est son moteur. Notre institut s'est donné pour mission de vous transformer en experts opérationnels. Ne subissez plus le marché de l'emploi, dominez-le par vos compétences. Rejoignez-nous pour une année qui changera votre vie."
       </p>
     </div>
