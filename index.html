@@ -1790,15 +1790,15 @@ const SPECS = {
       tranches:"1ère: 200 000 | 2ème (09/11/26): 100 000 | 3ème (07/01/27): 50 000",
       modules:["Lecture de plans","Tuyauterie & raccords","Sanitaires & robinetterie","Chauffage & climatisation","Traitement des eaux","Normes de sécurité","Soudure & assemblage","Dépannage & maintenance","Devis & chiffrage","Stage en chantier"] }
   ],
-  langues: [
-    { name:"Anglais", flag:"🇬🇧", price:"70 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" },
-    { name:"Français", flag:"🇫🇷", price:"70 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" },
-    { name:"Allemand", flag:"🇩🇪", price:"105 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" },
-    { name:"Espagnol", flag:"🇪🇸", price:"105 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" },
-    { name:"Chinois (Mandarin)", flag:"🇨🇳", price:"100 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" },
-    { name:"Italien", flag:"🇮🇹", price:"100 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" },
-    { name:"Arabe", flag:"🇸🇦", price:"100 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" },
-    { name:"Russe", flag:"🇷🇺", price:"100 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" }
+ langues: [
+    { name:"Anglais", image:"assets/images/USA.png", price:"70 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" },
+    { name:"Français", image:"assets/images/FRANCE.jpeg", price:"70 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" },
+    { name:"Allemand", image:"assets/images/ALLEMAND.jpeg", price:"105 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" },
+    { name:"Espagnol", image:"assets/images/ESPAGNOLE.png", price:"105 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" },
+    { name:"Chinois (Mandarin)", image:"assets/images/CHINOIS.png", price:"100 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" },
+    { name:"Italien", image:"assets/images/ITALIEN.jpeg", price:"100 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" },
+    { name:"Arabe", image:"assets/images/ARABE.png", price:"100 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" },
+    { name:"Russe", image:"assets/images/RUSSE.png", price:"100 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" }
   ]
 };
 
@@ -1823,7 +1823,7 @@ function renderGrids() {
   SPECS.langues.forEach(l => {
     gL.innerHTML += `
       <div class="lang-card">
-        <div class="lang-flag">${l.flag}</div>
+        <img src="${l.image}" alt="${l.name}" style="width: 50px; height: 35px; object-fit: cover; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.4); flex-shrink: 0;">
         <div class="lang-info">
           <h4>${l.name}</h4>
           <p>${l.niveaux} • ${l.duree}</p>
