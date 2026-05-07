@@ -1575,7 +1575,7 @@ footer {
       <div style="background:var(--glass);border:1px solid rgba(58,123,213,0.2);border-radius:20px;padding:1.5rem;text-align:center;transition:all 0.3s">
         <i class="fas fa-clock" style="font-size:2rem;color:var(--orange);margin-bottom:0.8rem;display:block"></i>
         <h4 style="margin-bottom:0.4rem">Horaires</h4>
-        <p style="font-size:0.82rem;color:var(--gray)">Lundi – Vendredi<br>2h / séance</p>
+        <p style="font-size:0.82rem;color:var(--gray)">Lundi – Vendredi<br><strong style="color:var(--white)">07h30 - 21h</strong></p>
       </div>
     </div>
   </div>
@@ -2036,7 +2036,7 @@ const galleryItems = [
   {
     title: "Agrément MINEFOP", 
     desc: "Arrêté d'Agrément officiel délivré par le MINEFOP et liste des filières autorisées.", 
-    images: ["assets/images/agrement-1.jpg.jpeg", "assets/images/agrement-2.jpg.jpeg"] // Array pour plusieurs images
+    images: ["assets/images/agrement-1.jpg.jpeg", "assets/images/agrement-2.jpg.jpeg"]
   },
   {
     title: "Salle informatique", 
@@ -2048,19 +2048,21 @@ const galleryItems = [
     desc: "Découvrez nos étudiants actuels, futurs professionnels et entrepreneurs, en plein apprentissage sur notre campus.", 
     img: "assets/images/team-photo.jpeg"
   },
-  {title:"Travaux pratiques", 
-  desc:"Les étudiants en biotechnologie et laboratoire lors de leurs TP.", 
-  img:"assets/images/lab-space.jpg.jpeg"
-},
-  {title:"Tous nos programmes", 
-  desc:"Découvrez l'ensemble de nos offres de formation professionnelle, conçues pour vous garantir une insertion rapide.", 
-  img: [
-    "assets/images/flyer-tic.jpg.jpeg", 
-    "assets/images/flyer-sante.jpg.jpeg", 
-    "assets/images/flyer-gestion.jpg.jpeg", 
-    "assets/images/flyer-geniecivil.jpg.jpeg"
-  ]
-},
+  {
+    title: "Travaux pratiques", 
+    desc: "Les étudiants en biotechnologie et laboratoire lors de leurs TP.", 
+    img: "assets/images/lab-space.jpg.jpeg"
+  },
+  {
+    title: "Tous nos programmes", 
+    desc: "Découvrez l'ensemble de nos offres de formation professionnelle, conçues pour vous garantir une insertion rapide.", 
+    images: [
+      "assets/images/flyer-tic.jpg.jpeg", 
+      "assets/images/flyer-sante.jpg.jpeg", 
+      "assets/images/flyer-gestion.jpg.jpeg", 
+      "assets/images/flyer-geniecivil.jpg.jpeg"
+    ]
+  },
   {title:"Connexion Starlink", desc:"Notre antenne Starlink garantit une connexion haut débit gratuite pour tous.", img:""},
   {title:"Ateliers de génie civil", desc:"Travaux pratiques sur les techniques de construction et d'architecture.", img:""}
 ];
@@ -2071,24 +2073,23 @@ function openGalleryModal(i) {
   
   let contentHtml = '';
   
-  // Si le tableau "images" existe (ex: Agrément), on boucle pour tout afficher
-  if (g.images) {
+  // Handle multiple images (arrays) safely
+  if (g.images && Array.isArray(g.images)) {
     g.images.forEach(src => {
-      contentHtml += `<img src="${src}" style="width:100%; max-height:60vh; object-fit:contain; border-radius:12px; margin-bottom:1rem; background:#fff; padding:10px;">`;
+      contentHtml += `<img src="${src}" style="width:100%; max-height:60vh; object-fit:contain; border-radius:12px; margin-bottom:1rem; background:#fff; padding:10px; border: 1px solid rgba(58,123,213,0.3);">`;
     });
   } 
-  // S'il n'y a qu'une seule image "img"
-  else if (g.img) {
-    contentHtml += `<img src="${g.img}" style="width:100%; max-height:60vh; object-fit:contain; border-radius:12px; margin-bottom:1rem; background:#fff; padding:10px;">`;
+  // Handle single images
+  else if (g.img && g.img !== "") {
+    contentHtml += `<img src="${g.img}" style="width:100%; max-height:60vh; object-fit:contain; border-radius:12px; margin-bottom:1rem; background:#fff; padding:10px; border: 1px solid rgba(58,123,213,0.3);">`;
   }
   
-  contentHtml += `<p style="color:var(--gray);line-height:1.7">${g.desc}</p>`;
+  contentHtml += `<p style="color:var(--gray);line-height:1.7;text-align:center;margin-top:0.5rem;">${g.desc}</p>`;
   
   document.getElementById('modalContent').innerHTML = contentHtml;
   document.getElementById('specModal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-
 // ===== INIT =====
 renderGrids();
 createParticles();
