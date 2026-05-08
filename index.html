@@ -543,7 +543,7 @@ section { position:relative; z-index:1; padding:5rem 2rem; }
   padding:0.8rem; font-size:0.8rem; color:var(--gray);
   background:rgba(6,13,31,0.9);
 }
-/* ===== MINI-SLIDER GALERIE (4 Images) ===== */
+/* ===== MINI-SLIDER GALERIE (5 Images) ===== */
 .mini-slider {
   position: relative;
   width: 100%;
@@ -559,7 +559,7 @@ section { position:relative; z-index:1; padding:5rem 2rem; }
   object-fit: cover;
   object-position: top;
   opacity: 0;
-  animation: miniFade4 16s infinite; /* 16 secondes au total */
+  animation: miniFade5 20s infinite; /* 20 secondes au total pour 5 images */
 }
 
 /* Les délais pour chaque image (4s d'écart) */
@@ -567,11 +567,12 @@ section { position:relative; z-index:1; padding:5rem 2rem; }
 .mini-slider img:nth-child(2) { animation-delay: 4s; }
 .mini-slider img:nth-child(3) { animation-delay: 8s; }
 .mini-slider img:nth-child(4) { animation-delay: 12s; }
+.mini-slider img:nth-child(5) { animation-delay: 16s; }
 
-/* L'animation d'apparition/disparition pour 4 images */
-@keyframes miniFade4 {
-  0%, 20% { opacity: 1; }
-  25%, 95% { opacity: 0; }
+/* L'animation d'apparition/disparition pour 5 images */
+@keyframes miniFade5 {
+  0%, 15% { opacity: 1; }
+  20%, 95% { opacity: 0; }
   100% { opacity: 1; }
 }
 /* ===== PROJETS ===== */
@@ -1328,6 +1329,7 @@ footer {
           <img src="assets/images/flyer-sante.jpg.jpeg" alt="Flyer Santé">
           <img src="assets/images/flyer-gestion.jpg.jpeg" alt="Flyer Gestion">
           <img src="assets/images/flyer-geniecivil.jpg.jpeg" alt="Flyer Genie Civil">
+          <img src="assets/images/flyer-langues.jpeg" alt="Flyer Langues">
         </div>
         <div class="gallery-caption">Tous nos programmes de formation</div>
       </div>
@@ -1342,6 +1344,7 @@ footer {
         <div class="gallery-caption">Ateliers de génie civil</div>
       </div>
 
+      
     </div>
   </div>
 </section>
@@ -2063,7 +2066,8 @@ const galleryItems = [
       "assets/images/flyer-tic.jpg.jpeg", 
       "assets/images/flyer-sante.jpg.jpeg", 
       "assets/images/flyer-gestion.jpg.jpeg", 
-      "assets/images/flyer-geniecivil.jpg.jpeg"
+      "assets/images/flyer-geniecivil.jpg.jpeg",
+      "assets/images/flyer-langues.jpeg"
     ]
   },
   {title:"Connexion Starlink", desc:"Notre antenne Starlink garantit une connexion haut débit gratuite pour tous.", img:""},
