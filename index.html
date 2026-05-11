@@ -832,18 +832,21 @@ footer {
 }
 
 @media(max-width:900px){
-  section { padding: 3rem 1rem; } /* Moins d'espace vide sur les côtés */
+  nav { padding: 0 1rem; } /* Donne plus d'espace à la barre de navigation */
+  .school-name { font-size: 1rem !important; white-space: normal !important; }
+  .school-sub { font-size: 0.45rem !important; white-space: normal !important; }
+  section { padding: 3rem 1rem; } 
   .hero-inner { grid-template-columns:1fr; gap: 2rem; }
-  .hero-right { display:block; margin-top: 2rem; } /* On ne cache plus l'IA sur mobile ! */
-  .promo-grid { grid-template-columns:1fr !important; text-align:center; } /* Le mot du promoteur s'empile */
+  .hero-right { display:block; margin-top: 2rem; } 
+  .promo-grid { grid-template-columns:1fr !important; text-align:center; } 
   .promo-grid > div:first-child { margin: 0 auto 1rem auto; }
-  .footer-grid { grid-template-columns:1fr !important; gap: 2rem; text-align: center; } /* Le footer s'empile proprement */
+  .footer-grid { grid-template-columns:1fr !important; gap: 2rem; text-align: center; } 
   .footer-logo { justify-content: center; }
   .footer-contact p { justify-content: center; }
   .form-grid { grid-template-columns:1fr; }
   .nav-menu { display:none; }
-  .mobile-menu-btn { display:flex; }
-  .specs-grid { grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); } /* Cartes adaptées aux petits écrans */
+  .mobile-menu-btn { display:flex; background:none; border:none; color:var(--white); font-size:1.6rem; cursor:pointer; }
+  .specs-grid { grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); } 
 }
 
 /* ===== PROGRESS BARS ===== */
@@ -898,7 +901,7 @@ footer {
 .ticker-content {
   display: flex;
   white-space: nowrap;
-  animation: ticker 25s linear infinite;
+  animation: ticker 45s linear infinite;
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 1px;
