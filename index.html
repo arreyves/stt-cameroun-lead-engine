@@ -1957,7 +1957,11 @@ function submitForm() {
     alert('⚠️ Veuillez remplir les champs obligatoires (Nom, Prénom, Téléphone, Spécialité).');
     return;
   }
-
+// --- META PIXEL LEAD TRACKING ---
+  if (typeof fbq === 'function') {
+    fbq('track', 'Lead');
+  }
+  // --------------------------------
   // Hide form, show redirect message
   document.getElementById('formContainer').style.display = 'none';
   document.getElementById('formSuccess').style.display = 'block';
