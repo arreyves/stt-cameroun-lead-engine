@@ -313,7 +313,47 @@ nav {
   color:var(--orange);
 }
 .stat-lbl { font-size:0.7rem; color:var(--gray); text-transform:uppercase; letter-spacing:1px; }
+/* ===== VACANCES ANIMATION (Bleu) ===== */
+@keyframes vaEtVientRight {
+  0%, 100% { 
+    transform: translateX(0) scale(1); 
+    box-shadow: 0 0 15px rgba(58,123,213,0.4); 
+    border-color: rgba(58,123,213,0.5);
+  }
+  50% { 
+    transform: translateX(-15px) scale(1.05); /* Moves left for symmetry */
+    box-shadow: 0 0 30px rgba(58,123,213,0.9); 
+    border-color: var(--blue-light);
+  }
+}
 
+.vacances-banner {
+  display: block;
+  background: linear-gradient(135deg, rgba(58,123,213,0.15), rgba(6,13,31,0.8));
+  border: 2px solid var(--blue-light);
+  padding: 15px 20px;
+  border-radius: 16px;
+  font-family: 'Orbitron', monospace;
+  margin-bottom: 1.5rem;
+  animation: vaEtVientRight 2.5s ease-in-out infinite;
+  backdrop-filter: blur(10px);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.vacances-banner:hover {
+  background: linear-gradient(135deg, rgba(58,123,213,0.3), rgba(6,13,31,0.9));
+}
+
+.vacances-banner .highlight-blue {
+  color: var(--blue-light);
+  font-weight: 900;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  text-shadow: 0 0 15px rgba(58,123,213,0.6);
+  letter-spacing: 1px;
+  margin: 8px 0;
+}
 /* ===== VISITOR COUNTER SECTION ===== */
 #visitors {
   position:relative; z-index:1;
@@ -1088,6 +1128,17 @@ src="https://www.facebook.com/tr?id=981275201257875&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="hero-right">
+      <a href="https://wa.me/237695403580?text=Bonjour,%20je%20souhaite%20inscrire%20mon%20enfant%20aux%20Vacances%20Utiles%20(Informatique%20et%20Anglais)." target="_blank" style="text-decoration: none;">
+        <div class="vacances-banner">
+          <div style="font-size: 0.8rem; color: var(--gray); text-transform: uppercase; letter-spacing: 2px;">
+            <i class="fas fa-sun" style="color: #ffcc00;"></i> Spécial Vacances Utiles
+          </div>
+          <div class="highlight-blue">INFORMATIQUE & ANGLAIS</div>
+          <div style="font-size: 0.75rem; color: var(--white); font-family: 'Raleway', sans-serif; font-weight: 700;">
+            Du 08 Juin au 31 Août 2026 | <span style="color: var(--orange);">30 000 FCFA</span>
+          </div>
+        </div>
+      </a>
       <div class="ai-showcase">
         <div class="ai-icon"><i class="fas fa-brain"></i></div>
      
