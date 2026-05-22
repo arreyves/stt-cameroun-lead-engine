@@ -1130,17 +1130,16 @@ src="https://www.facebook.com/tr?id=981275201257875&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="hero-right">
-      <a href="https://wa.me/237695403580?text=Bonjour,%20je%20souhaite%20inscrire%20mon%20enfant%20aux%20Vacances%20Utiles%20(Informatique%20et%20Anglais)." target="_blank" style="text-decoration: none;">
-        <div class="vacances-banner">
-          <div style="font-size: 0.8rem; color: var(--gray); text-transform: uppercase; letter-spacing: 2px;">
-            <i class="fas fa-sun" style="color: #ffcc00;"></i> Spécial Vacances Utiles
-          </div>
-          <div class="highlight-blue">INFORMATIQUE & ANGLAIS</div>
-          <div style="font-size: 0.75rem; color: var(--white); font-family: 'Raleway', sans-serif; font-weight: 700;">
-            Du 08 Juin au 31 Août 2026 | <span style="color: var(--orange);">30 000 FCFA</span>
-          </div>
+      
+      <div class="vacances-banner" onclick="openVacancesModal()">
+        <div style="font-size: 0.8rem; color: var(--gray); text-transform: uppercase; letter-spacing: 2px;">
+          <i class="fas fa-sun" style="color: #ffcc00;"></i> Spécial Vacances Utiles <i class="fas fa-sun" style="color: #ffcc00;"></i>
         </div>
-      </a>
+        <div class="highlight-blue">INFORMATIQUE & ANGLAIS</div>
+        <div style="font-size: 0.75rem; color: var(--white); font-family: 'Raleway', sans-serif; font-weight: 700;">
+          Du 08 Juin au 31 Août 2026  <span style="color: var(--orange);"></span>
+        </div>
+      </div>
       <div class="ai-showcase">
         <div class="ai-icon"><i class="fas fa-brain"></i></div>
      
@@ -1984,7 +1983,59 @@ function closeModal() {
   document.getElementById('specModal').classList.remove('open');
   document.body.style.overflow = '';
 }
+function openVacancesModal() {
+  document.getElementById('modalTitle').textContent = "☀️ Spécial Vacances Utiles 2026";
+  
+  const whatsappLink = "https://wa.me/237695403580?text=Bonjour%20STT-Cameroun%2C%20je%20souhaite%20inscrire%20mon%20enfant%20aux%20Cours%20de%20Vacances%20Utiles%20(Informatique%20%26%20Anglais).";
+  
+  let html = `
+    <div style="text-align:center; margin-bottom:1.5rem;">
+      <img src="assets/images/flyer-vacances.jpeg" alt="Flyer Vacances Utiles" style="width:100%; max-height:45vh; object-fit:contain; border-radius:12px; border: 2px solid var(--blue-light); box-shadow: 0 5px 15px rgba(58,123,213,0.3); background:#fff; padding:5px;">
+    </div>
 
+    <div style="color: var(--white); font-family: 'Raleway', sans-serif; line-height:1.6; font-size:0.9rem; text-align:justify;">
+      <p style="font-weight: bold; color: var(--orange); margin-bottom: 1rem; text-align: center; font-size: 1rem;">
+        "Chers parents, ne laissez pas vos enfants passer toutes leurs vacances devant les écrans... apprenez-leur à les maîtriser en leur offrant des vacances utiles ! 🎓"
+      </p>
+      
+      <p style="margin-bottom: 1rem;">
+        Nos cours de vacances en informatique & Anglais sont spécialement conçus pour les rendre créatifs et autonomes.
+      </p>
+      
+      <h4 style="color: var(--green); font-family: 'Orbitron', monospace; font-size: 0.85rem; margin-bottom: 0.5rem; letter-spacing: 1px;">
+        POURQUOI LES INSCRIRE ?
+      </h4>
+      <ul style="list-style: none; padding-left: 0; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem;">
+        <li>🧠 <strong>Développement logique :</strong> Initiation à la programmation (création d'histoires et de jeux) à travers les Langages Web (HTML, CSS, JavaScript, PHP) et autres.</li>
+        <li>💼 <strong>Préparation scolaire :</strong> Maîtrise de l'outil informatique (Word, Excel, PowerPoint, Publisher), des Logiciels de Gestion (Sage Saari, …), Logiciels de Génie civil & Bâtiment (AutoCAD, ArchiCAD, …), l'Électricité, ….</li>
+        <li>🎨 <strong>Développement de la créativité IA :</strong> Infographie (Photoshop, InDesign, Illustrator, …), création de contenu, …</li>
+        <li>🛡️ <strong>Sécurité :</strong> Sensibilisation au bon usage et à l'utilisation d'Internet et de l'Intelligence Artificielle.</li>
+        <li>🌍 <strong>Le Bilinguisme :</strong> Apprentissage de l'anglais, du français, et autres.</li>
+      </ul>
+
+      <h4 style="color: var(--blue-light); font-family: 'Orbitron', monospace; font-size: 0.85rem; margin-bottom: 0.5rem; letter-spacing: 1px;">
+        INFORMATIONS PRATIQUES
+      </h4>
+      <p style="font-size: 0.85rem; background: var(--glass); padding: 10px; border-radius: 8px; border-left: 3px solid var(--blue-light); margin-bottom: 1.5rem;">
+        📅 <strong>Date de début :</strong> 08 Juin 2026<br>
+        📍 <strong>Lieu :</strong> Rond-point Damas en face du poste de police<br>
+        💰 <strong>Tarif :</strong> Inscription : 5 000 FRS et 15 000 FRS / mois (payable en deux tranches)<br>
+        🌟 <strong>Nos atouts :</strong> Attestation à la fin de la formation, salle multimédia équipée et connectée à l'internet STARLINK, Formateurs experts.<br>
+        ⚠️ <strong>Places limitées !</strong>
+      </p>
+    </div>
+
+    <div style="margin-top: 1.5rem; text-align: center;">
+      <a href="${whatsappLink}" target="_blank" class="btn btn-orange" style="width: 100%; justify-content: center; font-size: 1.1rem; padding: 15px;">
+        <i class="fab fa-whatsapp"></i> J'inscris mon enfant
+      </a>
+    </div>
+  `;
+  
+  document.getElementById('modalContent').innerHTML = html;
+  document.getElementById('specModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
 // ===== FORM =====
 const SPEC_BY_SECTOR = {
   tic: SPECS.tic.map(s => s.name),
