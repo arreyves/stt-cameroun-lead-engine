@@ -52,6 +52,7 @@
             align-items: center;
             max-width: 1400px;
             margin: 0 auto;
+            gap: 20px;
         }
         .logo-container {
             display: flex;
@@ -75,50 +76,57 @@
         }
         .logo-text p { font-size: 0.6rem; color: var(--orange); font-weight: bold; letter-spacing: 2px; }
 
-        /* Upgraded Linked Portal Button Layout */
-        .btn-portal {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 22px;
-            background: linear-gradient(135deg, var(--orange), #d95e00);
-            color: var(--white);
-            text-decoration: none;
-            border-radius: 50px;
-            box-shadow: 0 5px 15px rgba(249,115,22,0.3);
-            transition: all 0.3s;
+        /* Structure du bloc de l'école (Demande de M. Tankeu) */
+        .school-portal-block {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
         }
-        .btn-portal:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(249,115,22,0.5);
+        .portal-header-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .portal-title-text {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: 0.5px;
         }
         .portal-school-logo {
-            width: 38px;
-            height: 38px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             object-fit: cover;
             background: #fff;
-            border: 1.5px solid var(--white);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            border: 1.5px solid var(--blue-light);
         }
-        .portal-text-wrapper {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-            line-height: 1.2;
-        }
-        .portal-main-text {
-            font-size: 0.88rem;
-            font-weight: 800;
-            letter-spacing: 0.3px;
-        }
-        .portal-sub-text {
-            font-size: 0.68rem;
+        .portal-sub-line {
+            font-size: 0.72rem;
             font-weight: 600;
-            opacity: 0.9;
+            color: var(--gray);
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-top: 2px;
+        }
+        .btn-school-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: linear-gradient(135deg, var(--orange), #d95e00);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 700;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(249,115,22,0.25);
+            transition: all 0.3s ease;
+        }
+        .btn-school-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(249,115,22,0.45);
         }
 
         header.hero {
@@ -276,21 +284,6 @@
             line-height: 1.5;
         }
 
-        .preview-modal {
-            position: fixed; inset: 0; z-index: 2000;
-            background: rgba(4, 9, 22, 0.95);
-            backdrop-filter: blur(10px);
-            display: flex; align-items: center; justify-content: center;
-            padding: 2rem; opacity: 0; visibility: hidden; transition: all 0.3s ease;
-        }
-        .preview-modal.open { opacity: 1; visibility: visible; }
-        .modal-wrap { max-width: 650px; width: 100%; position: relative; }
-        .modal-wrap img { width: 100%; max-height: 85vh; object-fit: contain; border-radius: 12px; background: #fff; padding: 5px; }
-        .modal-close {
-            position: absolute; top: -40px; right: 0;
-            background: none; border: none; color: var(--white); font-size: 1.8rem; cursor: pointer;
-        }
-
         footer {
             background: rgba(4, 9, 22, 0.98);
             border-top: 1px solid var(--border-glass);
@@ -323,6 +316,7 @@
 
         @media(max-width: 768px) {
             nav { flex-direction: column; gap: 1.5rem; text-align: center; }
+            .school-portal-block { align-items: center; }
             .legal-top-bar { justify-content: center; text-align: center; font-size: 0.65rem; }
         }
     </style>
@@ -336,7 +330,7 @@
     <div class="legal-top-bar">
         <span><i class="fas fa-file-contract"></i> RCCM: <strong>RC/YAO/2024/B/522</strong></span>
         <span><i class="fas fa-fingerprint"></i> NIU: <strong>M022416498543H</strong></span>
-        <span><i class="fas fa-building"></i> Groupe: <strong> Groupe STT</strong></span>
+        <span><i class="fas fa-building"></i> Groupe: <strong>Groupe STT</strong></span>
     </div>
 
     <nav>
@@ -347,13 +341,17 @@
                 <p>SERVICES & PRESTATIONS TECHNIQUES</p>
             </div>
         </div>
-        <div class="nav-actions">
-            <a href="/rentree/" class="btn-portal">
+        
+        <div class="school-portal-block">
+            <div class="portal-header-line">
+                <span class="portal-title-text">STT-Cameroun</span>
                 <img src="rentree/assets/images/school-logo.jpg.jpeg" alt="Logo École" class="portal-school-logo">
-                <div class="portal-text-wrapper">
-                    <span class="portal-main-text">Portail Académique</span>
-                    <span class="portal-sub-text">Formation Professionnelle</span>
-                </div>
+            </div>
+            <div class="portal-sub-line">
+                Formation Professionnelle et Education
+            </div>
+            <a href="/rentree/" class="btn-school-link">
+                <i class="fas fa-external-link-alt"></i> Link to school
             </a>
         </div>
     </nav>
@@ -561,7 +559,7 @@
             </div>
             <div class="footer-info">
                 <h4>Notre Devise</h4>
-                <p style="color: var(--blue-light); font-weight: bold; font-style: italic;">"Ensemble, battisons un avenir meilleur!"</p>
+                <p style="color: var(--blue-light); font-weight: bold; font-style: italic;">"Ensemble, bâtissons un avenir meilleur!"</p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -577,23 +575,21 @@
             const imgElement = document.getElementById('modalPreviewImg');
             imgElement.src = imageSrc;
 
-            // Destroy any old instances to prevent memory leaks
             if (galleryViewer) {
                 galleryViewer.destroy();
             }
 
-            // Launch the smart zoom/pan engine instantly
             galleryViewer = new Viewer(imgElement, {
                 inline: false,
-                button: true,    // Displays a clean top-right close button
-                navbar: false,    // Hides redundant preview thumbnails
-                title: false,     // Hides file names
+                button: true,    
+                navbar: false,    
+                title: false,     
                 toolbar: {
                     zoomIn: 4,
                     zoomOut: 4,
                     oneToOne: 4,
                     reset: 4,
-                    prev: 0,      // Disables carousel controls
+                    prev: 0,      
                     play: 0,
                     next: 0,
                     rotateLeft: 4,
@@ -602,16 +598,13 @@
                     flipVertical: 4,
                 },
                 viewed() {
-                    // Zoom in slightly automatically upon opening so the text is instantly readable
                     galleryViewer.zoomTo(0.15);
                 }
             });
 
-            // Trigger the display immediately
             galleryViewer.show();
         }
 
-        // Keep this fallback function intact so your HTML click attributes don't break
         function closePreview() {
             if (galleryViewer) {
                 galleryViewer.hide();
