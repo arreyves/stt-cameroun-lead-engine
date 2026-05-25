@@ -75,23 +75,50 @@
         }
         .logo-text p { font-size: 0.6rem; color: var(--orange); font-weight: bold; letter-spacing: 2px; }
 
+        /* Upgraded Linked Portal Button Layout */
         .btn-portal {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
+            gap: 12px;
+            padding: 10px 22px;
             background: linear-gradient(135deg, var(--orange), #d95e00);
             color: var(--white);
             text-decoration: none;
-            font-weight: bold;
             border-radius: 50px;
-            font-size: 0.85rem;
             box-shadow: 0 5px 15px rgba(249,115,22,0.3);
             transition: all 0.3s;
         }
         .btn-portal:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(249,115,22,0.5);
+        }
+        .portal-school-logo {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #fff;
+            border: 1.5px solid var(--white);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        .portal-text-wrapper {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            line-height: 1.2;
+        }
+        .portal-main-text {
+            font-size: 0.88rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+        }
+        .portal-sub-text {
+            font-size: 0.68rem;
+            font-weight: 600;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
         }
 
         header.hero {
@@ -212,7 +239,6 @@
             color: var(--white);
         }
 
-        /* Text Services Sub-Grid Layout */
         .text-services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -250,7 +276,6 @@
             line-height: 1.5;
         }
 
-        /* Lightbox Window overlay */
         .preview-modal {
             position: fixed; inset: 0; z-index: 2000;
             background: rgba(4, 9, 22, 0.95);
@@ -301,6 +326,8 @@
             .legal-top-bar { justify-content: center; text-align: center; font-size: 0.65rem; }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js"></script>
 </head>
 <body>
 
@@ -309,7 +336,7 @@
     <div class="legal-top-bar">
         <span><i class="fas fa-file-contract"></i> RCCM: <strong>RC/YAO/2024/B/522</strong></span>
         <span><i class="fas fa-fingerprint"></i> NIU: <strong>M022416498543H</strong></span>
-        <span><i class="fas fa-building"></i> Groupe: <strong> Groupe STT </strong></span>
+        <span><i class="fas fa-building"></i> Groupe: <strong> Groupe STT</strong></span>
     </div>
 
     <nav>
@@ -322,14 +349,18 @@
         </div>
         <div class="nav-actions">
             <a href="/rentree/" class="btn-portal">
-                <i class="fas fa-graduation-cap"></i> Portail Académique (Inscriptions)
+                <img src="rentree/assets/images/school-logo.jpg.jpeg" alt="Logo École" class="portal-school-logo">
+                <div class="portal-text-wrapper">
+                    <span class="portal-main-text">Portail Académique</span>
+                    <span class="portal-sub-text">Formation Professionnelle</span>
+                </div>
             </a>
         </div>
     </nav>
 
     <header class="hero">
-        <span class="badge">Ingénierie, Numérique & Fiscalité</span>
-        <h2>Prestations Technologiques & Solutions d'Entreprises à la Carte</h2>
+        <span class="badge">Expertise Industrielle & Numérique</span>
+        <h2>Prestations Technologiques & solutions d'Ingénierie Clé en Main</h2>
         <p>Découvrez notre catalogue complet de services aux entreprises, professionnels et particuliers à Yaoundé.</p>
     </header>
 
@@ -404,7 +435,7 @@
                 </div>
                 <div class="flyer-body">
                     <div>
-                        <h3>5. Ingénierie Juridique & Agréments</h3>
+                        <h3>5. Ingenierie Juridique & Agréments</h3>
                         <p>Rédaction de statuts aux normes OHADA, légalisation d'associations et montage complet de dossiers d'agrément ou renouvellement MINEFOP.</p>
                     </div>
                     <button class="btn-zoom" onclick="openPreview('Services3.jpeg')">
@@ -421,8 +452,8 @@
             <div class="text-service-box">
                 <i class="fas fa-network-wired"></i>
                 <div>
-                    <h4>Réseaux Informatiques</h4>
-                    <p>Installation avancée, maintenance préventive/corrective et administration complète de vos serveurs et infrastructures réseaux d'entreprise.</p>
+                    <h4>Installation, Maintenance & Administration Réseaux</h4>
+                    <p>Déploiement complet d'architectures d'entreprise, maintenance corrective d'urgence et gestion avancée de vos infrastructures serveurs.</p>
                 </div>
             </div>
 
@@ -430,7 +461,7 @@
                 <i class="fas fa-brain"></i>
                 <div>
                     <h4>Services d'Intelligence Artificielle</h4>
-                    <p>Étude, conseil et intégration d'outils d'IA et de modèles automatisés intelligents pour booster la productivité de vos services.</p>
+                    <p>Intégration opérationnelle de modèles intelligents d'IA et de systèmes d'automatisation pour optimiser vos workflows industriels.</p>
                 </div>
             </div>
 
@@ -438,15 +469,15 @@
                 <i class="fas fa-code"></i>
                 <div>
                     <h4>Développement Web & Plateformes</h4>
-                    <p>Conception sur mesure de sites internet vitrines modernes et de plateformes numériques cloud intelligentes pour votre activité.</p>
+                    <p>Conception sur mesure de vitrines d'entreprise modernes, d'écosystèmes applicatifs et de plateformes logicielles cloud intelligentes.</p>
                 </div>
             </div>
 
             <div class="text-service-box">
                 <i class="fas fa-mobile-alt"></i>
                 <div>
-                    <h4>Développement d'Applications</h4>
-                    <p>Conception et programmation d'applications logicielles intelligentes et adaptatives pour environnements mobiles et de bureau.</p>
+                    <h4>Développement d'Applications Intelligentes</h4>
+                    <p>Programmation d'applications natives et cross-platform performantes (iOS & Android) dotées de fonctionnalités prédictives adaptatives.</p>
                 </div>
             </div>
 
@@ -454,23 +485,23 @@
                 <i class="fas fa-rocket"></i>
                 <div>
                     <h4>Campagnes Publicitaires & Boost</h4>
-                    <p>Création de tunnels de vente performants et déploiement de campagnes publicitaires professionnelles ciblées pour maximiser vos leads.</p>
+                    <p>Ingénierie de croissance, paramétrage de pixels publicitaires et gestion de campagnes d'acquisition massives (Meta Ads & Google Ads).</p>
                 </div>
             </div>
 
             <div class="text-service-box">
                 <i class="fas fa-users-cog"></i>
                 <div>
-                    <h4>Administration Social Media</h4>
-                    <p>Création, sécurisation et gestion quotidienne de vos profils professionnels d'entreprise sur Facebook, WhatsApp, TikTok, Instagram, etc.</p>
+                    <h4>Création & Administration de Comptes</h4>
+                    <p>Déploiement stratégique et gestion de l'e-réputation de vos profils d'entreprise officiels sur Facebook, WhatsApp, TikTok, Instagram, etc.</p>
                 </div>
             </div>
 
             <div class="text-service-box">
                 <i class="fas fa-coins"></i>
                 <div>
-                    <h4>Monétisation de Comptes</h4>
-                    <p>Configuration technique, déblocage et optimisation des paramètres de monétisation pour vos réseaux sociaux et chaînes pros.</p>
+                    <h4>Monétisation de Comptes Professionnels</h4>
+                    <p>Configuration technique des passerelles de paiement, audits de conformité de pages et activation des leviers de monétisation de contenus.</p>
                 </div>
             </div>
 
@@ -478,7 +509,7 @@
                 <i class="fas fa-satellite-dish"></i>
                 <div>
                     <h4>Internet à Domicile</h4>
-                    <p>Configuration de routeurs, ponts réseaux et déploiement d'équipements pour une connexion internet domestique haut débit stable.</p>
+                    <p>Câblage structurel, ponts d'accès Wi-Fi longue portée et déploiement de routeurs pour un accès internet domestique haut débit stable.</p>
                 </div>
             </div>
 
@@ -486,7 +517,7 @@
                 <i class="fas fa-desktop"></i>
                 <div>
                     <h4>Espace Cybercafé Haut Débit</h4>
-                    <p>Accès public à un parc informatique rapide connecté pour vos sessions de navigation, recherches, impressions et scans.</p>
+                    <p>Mise à disposition de postes rapides connectés pour vos opérations d'impression de volumes, numérisation de documents et démarches web.</p>
                 </div>
             </div>
 
@@ -494,7 +525,7 @@
                 <i class="fas fa-user-tie"></i>
                 <div>
                     <h4>Placement du Personnel</h4>
-                    <p>Recrutement stratégique, présélection technique et mise à disposition de profils qualifiés et d'ingénieurs réseaux compétents.</p>
+                    <p>Évaluation technique poussée, sélection RH rigoureuse et placement de profils spécialisés en secrétariat, comptabilité et ingénierie.</p>
                 </div>
             </div>
 
@@ -502,7 +533,7 @@
                 <i class="fas fa-folder-open"></i>
                 <div>
                     <h4>Montage & Suivi de Projets</h4>
-                    <p>Élaboration de cahiers des charges, architecture de solutions de financement et suivi-évaluation rigoureux de tout type de projet d'ingénierie.</p>
+                    <p>Rédaction de cahiers des charges fonctionnels, architecture de plans d'action et suivi-évaluation d'infrastructures d'ingénierie.</p>
                 </div>
             </div>
 
@@ -510,11 +541,8 @@
 
     </section>
 
-    <div class="preview-modal" id="previewModal" onclick="closePreview()">
-        <div class="modal-wrap" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closePreview()"><i class="fas fa-times"></i></button>
-            <img src="" id="modalPreviewImg" alt="Aperçu HD">
-        </div>
+   <div style="display: none;">
+        <img id="modalPreviewImg" src="" alt="Aperçu HD">
     </div>
 
     <footer>
@@ -533,7 +561,7 @@
             </div>
             <div class="footer-info">
                 <h4>Notre Devise</h4>
-                <p style="color: var(--blue-light); font-weight: bold; font-style: italic;">"Vous servir est Notre Priorité !"</p>
+                <p style="color: var(--blue-light); font-weight: bold; font-style: italic;">"Ensemble, battisons un avenir meilleur!"</p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -543,18 +571,51 @@
     </footer>
 
     <script>
+        let galleryViewer = null;
+
         function openPreview(imageSrc) {
-            const modal = document.getElementById('previewModal');
-            const img = document.getElementById('modalPreviewImg');
-            img.src = imageSrc;
-            modal.classList.add('open');
-            document.body.style.overflow = 'hidden';
+            const imgElement = document.getElementById('modalPreviewImg');
+            imgElement.src = imageSrc;
+
+            // Destroy any old instances to prevent memory leaks
+            if (galleryViewer) {
+                galleryViewer.destroy();
+            }
+
+            // Launch the smart zoom/pan engine instantly
+            galleryViewer = new Viewer(imgElement, {
+                inline: false,
+                button: true,    // Displays a clean top-right close button
+                navbar: false,    // Hides redundant preview thumbnails
+                title: false,     // Hides file names
+                toolbar: {
+                    zoomIn: 4,
+                    zoomOut: 4,
+                    oneToOne: 4,
+                    reset: 4,
+                    prev: 0,      // Disables carousel controls
+                    play: 0,
+                    next: 0,
+                    rotateLeft: 4,
+                    rotateRight: 4,
+                    flipHorizontal: 4,
+                    flipVertical: 4,
+                },
+                viewed() {
+                    // Zoom in slightly automatically upon opening so the text is instantly readable
+                    galleryViewer.zoomTo(0.15);
+                }
+            });
+
+            // Trigger the display immediately
+            galleryViewer.show();
         }
 
+        // Keep this fallback function intact so your HTML click attributes don't break
         function closePreview() {
-            const modal = document.getElementById('previewModal');
-            modal.classList.remove('open');
-            document.body.style.overflow = '';
+            if (galleryViewer) {
+                galleryViewer.hide();
+            }
         }
     </script>
 </body>
