@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STT-Cameroun | Holding & Institut Professionnel d'Ingénierie</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <title>STT Engineering SARL | Vos Projets, Notre Expertise</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -14,6 +14,8 @@
             --orange: #f97316;
             --white: #ffffff;
             --gray: #8899bb;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border-glass: rgba(58, 123, 213, 0.15);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,53 +23,82 @@
             font-family: 'Montserrat', sans-serif;
             background-color: var(--dark);
             color: var(--white);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
             overflow-x: hidden;
-            position: relative;
+            line-height: 1.6;
         }
 
-        /* Arrière-plan Tech */
         .bg-glow {
-            position: absolute; inset: 0; z-index: 0; pointer-events: none;
-            background: radial-gradient(circle at 50% 30%, rgba(26,79,181,0.2) 0%, transparent 70%);
+            position: fixed; inset: 0; z-index: -1; pointer-events: none;
+            background: radial-gradient(circle at 50% 15%, rgba(26,79,181,0.25) 0%, transparent 60%);
         }
 
-        /* Header / Logo */
-        header {
-            padding: 2rem;
-            text-align: center;
-            z-index: 10;
+        .legal-top-bar {
+            background: rgba(10, 45, 110, 0.4);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 8px 2rem;
+            font-size: 0.7rem;
+            color: var(--gray);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .legal-top-bar span strong { color: var(--blue-light); }
+
+        nav {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
         }
         .logo-container {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             gap: 15px;
         }
         .logo-img {
-            width: 70px; height: 70px;
+            width: 65px; height: 65px;
             border-radius: 50%;
             border: 2px solid var(--blue-light);
-            box-shadow: 0 0 20px rgba(58,123,213,0.5);
+            box-shadow: 0 0 15px rgba(58,123,213,0.4);
             object-fit: cover;
+            background: #fff;
         }
         .logo-text h1 {
             font-family: 'Orbitron', monospace;
-            font-size: 1.6rem;
-            background: linear-gradient(135deg, var(--blue-light), #1db954);
+            font-size: 1.3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--white), var(--blue-light));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            letter-spacing: 1px;
+        }
+        .logo-text p { font-size: 0.6rem; color: var(--orange); font-weight: bold; letter-spacing: 2px; }
+
+        .btn-portal {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--orange), #d95e00);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            box-shadow: 0 5px 15px rgba(249,115,22,0.3);
+            transition: all 0.3s;
+        }
+        .btn-portal:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(249,115,22,0.5);
         }
 
-        /* Main Content */
-        main {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
+        header.hero {
+            max-width: 1000px;
+            margin: 3rem auto 4rem auto;
             text-align: center;
-            z-index: 10;
+            padding: 0 2rem;
         }
         .badge {
             display: inline-block;
@@ -77,80 +108,197 @@
             color: var(--blue-light);
             border-radius: 20px;
             font-size: 0.75rem;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 1.5rem;
         }
-        .hero-headline {
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
+        header.hero h2 {
+            font-size: clamp(1.8rem, 4.5vw, 3rem);
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 1.5rem;
         }
-        .hero-headline span { color: var(--orange); }
-        
-        .hero-sub {
-            color: var(--gray);
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            margin-left: auto; margin-right: auto;
-        }
+        header.hero h2 span { color: var(--orange); }
 
-        /* Bouton d'action principal */
-        .cta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 16px 35px;
-            background: linear-gradient(135deg, var(--orange), #d95e00);
-            color: var(--white);
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(249,115,22,0.4);
-            transition: all 0.3s;
-            font-size: 1.05rem;
+        .services-section {
+            max-width: 1400px;
+            margin: 0 auto 6rem auto;
+            padding: 0 2rem;
         }
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(249,115,22,0.6);
-        }
-
-        /* Mini Grille de Services */
-        .services-preview {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin-top: 4rem;
-        }
-        .service-box {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(58,123,213,0.1);
-            padding: 1.5rem;
-            border-radius: 16px;
-            text-align: left;
-            transition: border-color 0.3s;
-        }
-        .service-box:hover { border-color: var(--blue-light); }
-        .service-box i {
+        .section-headline {
+            font-family: 'Orbitron', monospace;
             font-size: 1.5rem;
-            color: var(--blue-light);
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--orange);
+            padding-left: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 5rem;
+        }
+        
+        .flyer-card {
+            background: var(--glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .flyer-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(58, 123, 213, 0.4);
+            box-shadow: 0 20px 40px rgba(6, 13, 31, 0.7);
+        }
+        .flyer-img-container {
+            width: 100%;
+            height: 420px;
+            overflow: hidden;
+            background: #fff;
+            border-bottom: 1px solid var(--border-glass);
+            cursor: pointer;
+        }
+        .flyer-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+        .flyer-card:hover .flyer-img-container img {
+            transform: scale(1.03);
+        }
+        .flyer-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .flyer-body h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+        .flyer-body p {
+            color: var(--gray);
+            font-size: 0.85rem;
             margin-bottom: 1rem;
         }
-        .service-box h3 { font-size: 0.95rem; margin-bottom: 0.5rem; }
-        .service-box p { color: var(--gray); font-size: 0.8rem; line-height: 1.4; }
-
-        /* Footer */
-        footer {
-            padding: 2rem;
-            text-align: center;
-            color: var(--gray);
+        
+        .btn-zoom {
+            background: rgba(58, 123, 213, 0.1);
+            border: 1px solid var(--blue-light);
+            color: var(--blue-light);
+            padding: 8px 16px;
+            border-radius: 8px;
             font-size: 0.8rem;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            z-index: 10;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            align-self: flex-start;
+            transition: all 0.2s;
+        }
+        .btn-zoom:hover {
+            background: var(--blue-light);
+            color: var(--white);
+        }
+
+        /* Text Services Sub-Grid Layout */
+        .text-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .text-service-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(58, 123, 213, 0.1);
+            padding: 1.8rem;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            display: flex;
+            gap: 15px;
+            align-items: start;
+        }
+        .text-service-box:hover {
+            border-color: var(--blue-light);
+            background: rgba(58, 123, 213, 0.05);
+            transform: translateY(-2px);
+        }
+        .text-service-box i {
+            font-size: 1.5rem;
+            color: var(--orange);
+            margin-top: 3px;
+        }
+        .text-service-box h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: var(--white);
+        }
+        .text-service-box p {
+            color: var(--gray);
+            font-size: 0.82rem;
+            line-height: 1.5;
+        }
+
+        /* Lightbox Window overlay */
+        .preview-modal {
+            position: fixed; inset: 0; z-index: 2000;
+            background: rgba(4, 9, 22, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex; align-items: center; justify-content: center;
+            padding: 2rem; opacity: 0; visibility: hidden; transition: all 0.3s ease;
+        }
+        .preview-modal.open { opacity: 1; visibility: visible; }
+        .modal-wrap { max-width: 650px; width: 100%; position: relative; }
+        .modal-wrap img { width: 100%; max-height: 85vh; object-fit: contain; border-radius: 12px; background: #fff; padding: 5px; }
+        .modal-close {
+            position: absolute; top: -40px; right: 0;
+            background: none; border: none; color: var(--white); font-size: 1.8rem; cursor: pointer;
+        }
+
+        footer {
+            background: rgba(4, 9, 22, 0.98);
+            border-top: 1px solid var(--border-glass);
+            padding: 4rem 2rem 2rem 2rem;
+        }
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .footer-info h4 { font-family: 'Orbitron', monospace; font-size: 1.1rem; margin-bottom: 1rem; }
+        .footer-info p { font-size: 0.85rem; color: var(--gray); margin-bottom: 0.5rem; }
+        .footer-info p i { color: var(--orange); margin-right: 8px; width: 14px; }
+        
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        @media(max-width: 768px) {
+            nav { flex-direction: column; gap: 1.5rem; text-align: center; }
+            .legal-top-bar { justify-content: center; text-align: center; font-size: 0.65rem; }
         }
     </style>
 </head>
@@ -158,49 +306,256 @@
 
     <div class="bg-glow"></div>
 
-    <header>
+    <div class="legal-top-bar">
+        <span><i class="fas fa-file-contract"></i> RCCM: <strong>RC/YAO/2024/B/522</strong></span>
+        <span><i class="fas fa-fingerprint"></i> NIU: <strong>M022416498543H</strong></span>
+        <span><i class="fas fa-building"></i> Groupe: <strong>STT ENGINEERING SARL</strong></span>
+    </div>
+
+    <nav>
         <div class="logo-container">
-            <img src="rentree/assets/images/school-logo.jpg.jpeg" alt="Logo STT" class="logo-img">
+            <img src="Logo.jpeg" alt="STT Engineering Logo" class="logo-img">
             <div class="logo-text">
-                <h1>STT - ENGINEERING | CAMEROUN</h1>
+                <h1>STT ENGINEERING</h1>
+                <p>SERVICES & PRESTATIONS TECHNIQUES</p>
             </div>
         </div>
+        <div class="nav-actions">
+            <a href="/rentree/" class="btn-portal">
+                <i class="fas fa-graduation-cap"></i> Portail Académique (Inscriptions)
+            </a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <span class="badge">Ingénierie, Numérique & Fiscalité</span>
+        <h2>Prestations Technologiques & Solutions d'Entreprises à la Carte</h2>
+        <p>Découvrez notre catalogue complet de services aux entreprises, professionnels et particuliers à Yaoundé.</p>
     </header>
 
-    <main>
-        <span class="badge">Innovation & Technologies</span>
-        <h2 class="hero-headline">Bâtissons les compétences de la <span>Nouvelle Génération</span></h2>
-        <p class="hero-sub">
-            STT-Cameroun est un écosystème d'ingénierie et de formation professionnelle. Nous transformons le potentiel des jeunes professionnels et des entrepreneurs pour les marchés de demain.
-        </p>
+    <section class="services-section">
+        
+        <h3 class="section-headline">📂 Catalogues Illustrés</h3>
+        <div class="services-grid">
 
-        <a href="/rentree/" class="cta-btn">
-            <i class="fas fa-graduation-cap"></i> Portail Académique (Inscriptions Ouvertes)
-        </a>
+            <div class="flyer-card">
+                <div class="flyer-img-container" onclick="openPreview('AllServices.jpeg')">
+                    <img src="AllServices.jpeg" alt="Nos Services & Prestations Totales">
+                </div>
+                <div class="flyer-body">
+                    <div>
+                        <h3>1. Panorama des Prestations</h3>
+                        <p>Vue d'ensemble de nos services d'ingénierie, de fiscalité, d'informatique, de secrétariat et de gestion de parcs.</p>
+                    </div>
+                    <button class="btn-zoom" onclick="openPreview('AllServices.jpeg')">
+                        <i class="fas fa-search-plus"></i> Agrandir l'image
+                    </button>
+                </div>
+            </div>
 
-        <div class="services-preview">
-            <div class="service-box">
-                <i class="fas fa-brain"></i>
-                <h3>Pôle Technologique</h3>
-                <p>Spécialisation avancée en Intelligence Artificielle, Data Science, et Cybersécurité.</p>
+            <div class="flyer-card">
+                <div class="flyer-img-container" onclick="openPreview('Services.jpeg')">
+                    <img src="Services.jpeg" alt="Impôts, CNPS & DSF">
+                </div>
+                <div class="flyer-body">
+                    <div>
+                        <h3>2. Pôle Impôts & Fiscalité</h3>
+                        <p>Attestations d'immatriculation (NIU), télédéclarations fiscales et CNPS, obtention d'ACF, et montage des DSF réglementaires.</p>
+                    </div>
+                    <button class="btn-zoom" onclick="openPreview('Services.jpeg')">
+                        <i class="fas fa-search-plus"></i> Agrandir l'image
+                    </button>
+                </div>
             </div>
-            <div class="service-box">
-                <i class="fas fa-rocket"></i>
-                <h3>Incubateur de Talents</h3>
-                <p>Accompagnement opérationnel pour transformer vos projets en startups viables.</p>
+
+            <div class="flyer-card">
+                <div class="flyer-img-container" onclick="openPreview('Services1.jpeg')">
+                    <img src="Services1.jpeg" alt="Secrétariat, Saisie & CV">
+                </div>
+                <div class="flyer-body">
+                    <div>
+                        <h3>3. Pôle Bureautique & Documents</h3>
+                        <p>Saisie de textes, numérisation, traductions certifiées, certificats médicaux officiels en ligne et conception de CV Canadiens/PRO.</p>
+                    </div>
+                    <button class="btn-zoom" onclick="openPreview('Services1.jpeg')">
+                        <i class="fas fa-search-plus"></i> Agrandir l'image
+                    </button>
+                </div>
             </div>
-            <div class="service-box">
-                <i class="fas fa-certificate"></i>
-                <h3>Certifications Officielles</h3>
-                <p>Diplômes d'État (DQP, CQP) agréés par le MINEFOP pour une insertion garantie.</p>
+
+            <div class="flyer-card">
+                <div class="flyer-img-container" onclick="openPreview('Services2.jpeg')">
+                    <img src="Services2.jpeg" alt="Enrôlements & Business Plans">
+                </div>
+                <div class="flyer-body">
+                    <div>
+                        <h3>4. Enrôlements & Business Plans</h3>
+                        <p>Pré-enrôlements rapides pour la CNI et le passeport biométrique, création légale de structures (SARL, ETS), et montage de business plans.</p>
+                    </div>
+                    <button class="btn-zoom" onclick="openPreview('Services2.jpeg')">
+                        <i class="fas fa-search-plus"></i> Agrandir l'image
+                    </button>
+                </div>
             </div>
+
+            <div class="flyer-card">
+                <div class="flyer-img-container" onclick="openPreview('Services3.jpeg')">
+                    <img src="Services3.jpeg" alt="Montage Dossier Agrément & Statuts">
+                </div>
+                <div class="flyer-body">
+                    <div>
+                        <h3>5. Ingénierie Juridique & Agréments</h3>
+                        <p>Rédaction de statuts aux normes OHADA, légalisation d'associations et montage complet de dossiers d'agrément ou renouvellement MINEFOP.</p>
+                    </div>
+                    <button class="btn-zoom" onclick="openPreview('Services3.jpeg')">
+                        <i class="fas fa-search-plus"></i> Agrandir l'image
+                    </button>
+                </div>
+            </div>
+
         </div>
-    </main>
+
+        <h3 class="section-headline">⚡ Prestations Spécialisées & Ingénierie High-Tech</h3>
+        <div class="text-services-grid">
+
+            <div class="text-service-box">
+                <i class="fas fa-network-wired"></i>
+                <div>
+                    <h4>Réseaux Informatiques</h4>
+                    <p>Installation avancée, maintenance préventive/corrective et administration complète de vos serveurs et infrastructures réseaux d'entreprise.</p>
+                </div>
+            </div>
+
+            <div class="text-service-box">
+                <i class="fas fa-brain"></i>
+                <div>
+                    <h4>Services d'Intelligence Artificielle</h4>
+                    <p>Étude, conseil et intégration d'outils d'IA et de modèles automatisés intelligents pour booster la productivité de vos services.</p>
+                </div>
+            </div>
+
+            <div class="text-service-box">
+                <i class="fas fa-code"></i>
+                <div>
+                    <h4>Développement Web & Plateformes</h4>
+                    <p>Conception sur mesure de sites internet vitrines modernes et de plateformes numériques cloud intelligentes pour votre activité.</p>
+                </div>
+            </div>
+
+            <div class="text-service-box">
+                <i class="fas fa-mobile-alt"></i>
+                <div>
+                    <h4>Développement d'Applications</h4>
+                    <p>Conception et programmation d'applications logicielles intelligentes et adaptatives pour environnements mobiles et de bureau.</p>
+                </div>
+            </div>
+
+            <div class="text-service-box">
+                <i class="fas fa-rocket"></i>
+                <div>
+                    <h4>Campagnes Publicitaires & Boost</h4>
+                    <p>Création de tunnels de vente performants et déploiement de campagnes publicitaires professionnelles ciblées pour maximiser vos leads.</p>
+                </div>
+            </div>
+
+            <div class="text-service-box">
+                <i class="fas fa-users-cog"></i>
+                <div>
+                    <h4>Administration Social Media</h4>
+                    <p>Création, sécurisation et gestion quotidienne de vos profils professionnels d'entreprise sur Facebook, WhatsApp, TikTok, Instagram, etc.</p>
+                </div>
+            </div>
+
+            <div class="text-service-box">
+                <i class="fas fa-coins"></i>
+                <div>
+                    <h4>Monétisation de Comptes</h4>
+                    <p>Configuration technique, déblocage et optimisation des paramètres de monétisation pour vos réseaux sociaux et chaînes pros.</p>
+                </div>
+            </div>
+
+            <div class="text-service-box">
+                <i class="fas fa-satellite-dish"></i>
+                <div>
+                    <h4>Internet à Domicile</h4>
+                    <p>Configuration de routeurs, ponts réseaux et déploiement d'équipements pour une connexion internet domestique haut débit stable.</p>
+                </div>
+            </div>
+
+            <div class="text-service-box">
+                <i class="fas fa-desktop"></i>
+                <div>
+                    <h4>Espace Cybercafé Haut Débit</h4>
+                    <p>Accès public à un parc informatique rapide connecté pour vos sessions de navigation, recherches, impressions et scans.</p>
+                </div>
+            </div>
+
+            <div class="text-service-box">
+                <i class="fas fa-user-tie"></i>
+                <div>
+                    <h4>Placement du Personnel</h4>
+                    <p>Recrutement stratégique, présélection technique et mise à disposition de profils qualifiés et d'ingénieurs réseaux compétents.</p>
+                </div>
+            </div>
+
+            <div class="text-service-box">
+                <i class="fas fa-folder-open"></i>
+                <div>
+                    <h4>Montage & Suivi de Projets</h4>
+                    <p>Élaboration de cahiers des charges, architecture de solutions de financement et suivi-évaluation rigoureux de tout type de projet d'ingénierie.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <div class="preview-modal" id="previewModal" onclick="closePreview()">
+        <div class="modal-wrap" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closePreview()"><i class="fas fa-times"></i></button>
+            <img src="" id="modalPreviewImg" alt="Aperçu HD">
+        </div>
+    </div>
 
     <footer>
-        <p>&copy; 2026 STT-Cameroun. Tous droits réservés.</p>
-        <p style="font-size: 0.7rem; margin-top: 5px; opacity: 0.5;">Agrément MINEFOP N°000508</p>
+        <div class="footer-inner">
+            <div class="footer-info">
+                <h4>STT Engineering SARL</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Yaoundé - Rond Point Damas (Face poste de police)</p>
+                <p><i class="fas fa-phone-alt"></i> (+237) 695 40 35 80</p>
+                <p><i class="fas fa-envelope"></i> direction@stt-cameroun.com</p>
+            </div>
+            <div class="footer-info">
+                <h4>Horaires d'Ouverture Officiels</h4>
+                <p><i class="fas fa-calendar-alt"></i> Lundi – Vendredi : <strong>07h30 – 19h00</strong></p>
+                <p><i class="fas fa-calendar-day"></i> Samedi : <strong>07h30 – 14h00</strong></p>
+                <p><i class="fas fa-door-closed"></i> Dimanche : Fermé</p>
+            </div>
+            <div class="footer-info">
+                <h4>Notre Devise</h4>
+                <p style="color: var(--blue-light); font-weight: bold; font-style: italic;">"Vous servir est Notre Priorité !"</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 STT Engineering SARL. Tous droits réservés.</p>
+            <p>Agrément Ministériel MINEFOP N°000508</p>
+        </div>
     </footer>
 
+    <script>
+        function openPreview(imageSrc) {
+            const modal = document.getElementById('previewModal');
+            const img = document.getElementById('modalPreviewImg');
+            img.src = imageSrc;
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePreview() {
+            const modal = document.getElementById('previewModal');
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    </script>
 </body>
 </html>
