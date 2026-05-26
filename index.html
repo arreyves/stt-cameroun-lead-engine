@@ -45,15 +45,18 @@
         }
         .legal-top-bar span strong { color: var(--blue-light); }
 
+        /* Ajustement de la Flexbox pour aligner parfaitement les deux blocs */
         nav {
             padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: stretch; /* Aligne les hauteurs des deux blocs */
             max-width: 1400px;
             margin: 0 auto;
             gap: 20px;
         }
+        
+        /* Bloc Gauche - Entreprise */
         .logo-container {
             display: flex;
             align-items: center;
@@ -67,62 +70,79 @@
             object-fit: cover;
             background: #fff;
         }
-        .logo-text h1 {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.3rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--white), var(--blue-light));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
-        .logo-text p { font-size: 0.6rem; color: var(--orange); font-weight: bold; letter-spacing: 2px; }
+        .logo-text h1 {
+            font-family: 'Montserrat', sans-serif; /* Harmonisé avec le côté droit */
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: 0.5px;
+        }
+        .logo-text p { 
+            font-size: 0.72rem; 
+            color: var(--gray); 
+            font-weight: 600; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
 
-        /* Structure du bloc de l'école (Demande de M. Tankeu) */
+        /* Bloc Droite - École Symétrique au Bloc Gauche */
         .school-portal-block {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            gap: 8px;
+            justify-content: space-between; /* Équilibre l'espace comme à gauche */
         }
         .portal-header-line {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px; /* Même écart qu'à gauche */
         }
         .portal-title-text {
-            font-size: 1rem;
+            font-size: 1.25rem; /* Même taille qu'à gauche */
             font-weight: 800;
             color: var(--white);
             letter-spacing: 0.5px;
         }
         .portal-school-logo {
-            width: 35px;
-            height: 35px;
+            width: 65px; height: 65px; /* Même taille qu'à gauche */
             border-radius: 50%;
             object-fit: cover;
             background: #fff;
-            border: 1.5px solid var(--blue-light);
+            border: 2px solid var(--blue-light);
+            box-shadow: 0 0 15px rgba(58,123,213,0.4);
         }
         .portal-sub-line {
-            font-size: 0.72rem;
+            font-size: 0.72rem; /* Même taille qu'à gauche */
             font-weight: 600;
             color: var(--gray);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            margin-top: 4px;
+            text-align: right;
         }
+        
+        /* Bouton d'action traduit en français placé en bas */
         .btn-school-link {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 8px 18px;
+            padding: 6px 16px;
             background: linear-gradient(135deg, var(--orange), #d95e00);
             color: var(--white);
             text-decoration: none;
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             font-weight: 700;
             border-radius: 50px;
             box-shadow: 0 4px 12px rgba(249,115,22,0.25);
             transition: all 0.3s ease;
+            margin-top: 8px;
         }
         .btn-school-link:hover {
             transform: translateY(-2px);
@@ -317,6 +337,7 @@
         @media(max-width: 768px) {
             nav { flex-direction: column; gap: 1.5rem; text-align: center; }
             .school-portal-block { align-items: center; }
+            .portal-sub-line { text-align: center; }
             .legal-top-bar { justify-content: center; text-align: center; font-size: 0.65rem; }
         }
     </style>
@@ -344,14 +365,14 @@
         
         <div class="school-portal-block">
             <div class="portal-header-line">
-                <span class="portal-title-text">STT-Cameroun</span>
+                <span class="portal-title-text">STT-CAMEROUN</span>
                 <img src="rentree/assets/images/school-logo.jpg.jpeg" alt="Logo École" class="portal-school-logo">
             </div>
             <div class="portal-sub-line">
                 Formation Professionnelle et Education
             </div>
             <a href="/rentree/" class="btn-school-link">
-                <i class="fas fa-external-link-alt"></i> Link to school
+                <i class="fas fa-external-link-alt"></i> Lien vers l'école
             </a>
         </div>
     </nav>
@@ -459,7 +480,7 @@
                 <i class="fas fa-brain"></i>
                 <div>
                     <h4>Services d'Intelligence Artificielle</h4>
-                    <p>Intégration opérationnelle de modèles intelligents d'IA et de systèmes d'automatisation pour optimiser vos workflows industriels.</p>
+                    <p>Intégration operational de modèles intelligents d'IA et de systèmes d'automatisation pour optimiser vos workflows industriels.</p>
                 </div>
             </div>
 
