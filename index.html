@@ -11,6 +11,7 @@
             --dark: #060d1f;
             --blue-light: #3a7bd5;
             --blue-deep: #0a2d6e;
+            --green: #1db954;
             --orange: #f97316;
             --white: #ffffff;
             --gray: #8899bb;
@@ -26,6 +27,8 @@
             overflow-x: hidden;
             line-height: 1.6;
         }
+
+        html { scroll-behavior: smooth; }
 
         .bg-glow {
             position: fixed; inset: 0; z-index: -1; pointer-events: none;
@@ -45,12 +48,11 @@
         }
         .legal-top-bar span strong { color: var(--blue-light); }
 
-        /* Ajustement de la Flexbox pour aligner parfaitement les deux blocs */
         nav {
             padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
-            align-items: stretch; /* Aligne les hauteurs des deux blocs */
+            align-items: center;
             max-width: 1400px;
             margin: 0 auto;
             gap: 20px;
@@ -76,11 +78,14 @@
             justify-content: center;
         }
         .logo-text h1 {
-            font-family: 'Montserrat', sans-serif; /* Harmonisé avec le côté droit */
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.25rem;
             font-weight: 800;
-            color: var(--white);
+            background: linear-gradient(135deg, var(--white), var(--blue-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             letter-spacing: 0.5px;
+            line-height: 1.2;
         }
         .logo-text p { 
             font-size: 0.72rem; 
@@ -88,61 +93,69 @@
             font-weight: 600; 
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-top: 4px;
+            margin-top: 2px;
+            white-space: nowrap;
         }
 
-        /* Bloc Droite - École Symétrique au Bloc Gauche */
+        /* Bloc Droite - École */
         .school-portal-block {
             display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            justify-content: space-between; /* Équilibre l'espace comme à gauche */
+            align-items: center; 
+            justify-content: flex-end;
         }
-        .portal-header-line {
+        .portal-header-group {
             display: flex;
             align-items: center;
-            gap: 15px; /* Même écart qu'à gauche */
-        }
-        .portal-title-text {
-            font-size: 1.25rem; /* Même taille qu'à gauche */
-            font-weight: 800;
-            color: var(--white);
-            letter-spacing: 0.5px;
+            gap: 15px;
         }
         .portal-school-logo {
-            width: 65px; height: 65px; /* Même taille qu'à gauche */
+            width: 65px; height: 65px;
             border-radius: 50%;
             object-fit: cover;
             background: #fff;
             border: 2px solid var(--blue-light);
             box-shadow: 0 0 15px rgba(58,123,213,0.4);
         }
+        .portal-text-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+            gap: 4px;
+        }
+        .portal-title-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--blue-light), var(--green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
         .portal-sub-line {
-            font-size: 0.72rem; /* Même taille qu'à gauche */
+            font-size: 0.72rem;
             font-weight: 600;
             color: var(--gray);
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-top: 4px;
-            text-align: right;
+            white-space: nowrap;
+            margin-bottom: 2px;
         }
         
-        /* Bouton d'action traduit en français placé en bas */
         .btn-school-link {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 6px 16px;
+            padding: 5px 14px;
             background: linear-gradient(135deg, var(--orange), #d95e00);
             color: var(--white);
             text-decoration: none;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 700;
             border-radius: 50px;
             box-shadow: 0 4px 12px rgba(249,115,22,0.25);
             transition: all 0.3s ease;
-            margin-top: 8px;
         }
         .btn-school-link:hover {
             transform: translateY(-2px);
@@ -304,27 +317,42 @@
             line-height: 1.5;
         }
 
+        /* ===== RICH FOOTER UPGRADE ===== */
         footer {
             background: rgba(4, 9, 22, 0.98);
             border-top: 1px solid var(--border-glass);
-            padding: 4rem 2rem 2rem 2rem;
+            padding: 4rem 2rem 1.5rem 2rem;
         }
         .footer-inner {
             max-width: 1400px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
         }
-        .footer-info h4 { font-family: 'Orbitron', monospace; font-size: 1.1rem; margin-bottom: 1rem; }
-        .footer-info p { font-size: 0.85rem; color: var(--gray); margin-bottom: 0.5rem; }
-        .footer-info p i { color: var(--orange); margin-right: 8px; width: 14px; }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        .footer-logo { display:flex; align-items:center; gap:12px; margin-bottom:1rem; }
+        .footer-title {
+            font-family:'Orbitron',monospace; font-size:0.85rem; color:var(--white);
+            margin-bottom:1rem; padding-bottom:0.5rem;
+            border-bottom:2px solid var(--blue-light);
+            text-transform: uppercase;
+        }
+        .footer-links { list-style:none; display:flex; flex-direction:column; gap:0.6rem; }
+        .footer-links a {
+            color:var(--gray); text-decoration:none; font-size:0.82rem; transition:all 0.2s;
+            display:flex; align-items:center; gap:8px;
+        }
+        .footer-links a:hover { color:var(--green); padding-left:5px; }
+        .footer-contact p { font-size:0.82rem; color:var(--gray); margin-bottom:0.6rem; display:flex; align-items:center; gap:8px; }
+        .footer-contact p i { color:var(--blue-light); width:16px; }
         
         .footer-bottom {
             max-width: 1400px;
             margin: 0 auto;
-            padding-top: 2rem;
+            padding-top: 1.5rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             justify-content: space-between;
@@ -334,10 +362,47 @@
             color: var(--gray);
         }
 
+        /* ===== ACTION BUTTONS ===== */
+        #chat-toggle {
+            position: fixed; bottom: 2rem; right: 2rem; z-index: 1500;
+            width: 60px; height: 60px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--green), #0f8c3a);
+            border: none; cursor: pointer; color: var(--white); font-size: 1.8rem;
+            box-shadow: 0 8px 30px rgba(29,185,84,0.5);
+            transition: all 0.3s; display: flex; align-items: center; justify-content: center;
+            animation: chatBounce 2s ease-in-out infinite;
+        }
+        @keyframes chatBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-6px) scale(1.05); }
+        }
+        #chat-toggle:hover { transform: scale(1.1) !important; animation: none; }
+
+        .scroll-top {
+            position: fixed; bottom: 6.5rem; right: 2.2rem; z-index: 900;
+            width: 42px; height: 42px; border-radius: 50%;
+            background: rgba(10,45,110,0.8); border: 1px solid rgba(58,123,213,0.4);
+            color: var(--white); cursor: pointer; font-size: 0.9rem;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: all 0.3s;
+        }
+        .scroll-top.visible { opacity: 1; }
+        .scroll-top:hover { background: var(--blue-light); transform: translateY(-3px); }
+
+        @media(max-width: 900px) {
+            .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+            .footer-logo { justify-content: center; }
+            .footer-contact p { justify-content: center; }
+            .footer-links a { justify-content: center; }
+            .footer-title { margin-left: auto; margin-right: auto; max-width: 200px; }
+            .footer-bottom { justify-content: center; text-align: center; }
+        }
+
         @media(max-width: 768px) {
             nav { flex-direction: column; gap: 1.5rem; text-align: center; }
-            .school-portal-block { align-items: center; }
-            .portal-sub-line { text-align: center; }
+            .school-portal-block { justify-content: center; }
+            .portal-header-group { flex-direction: column-reverse; text-align: center; }
+            .portal-text-group { align-items: center; text-align: center; }
             .legal-top-bar { justify-content: center; text-align: center; font-size: 0.65rem; }
         }
     </style>
@@ -359,21 +424,21 @@
             <img src="Logo.jpeg" alt="STT Engineering Logo" class="logo-img">
             <div class="logo-text">
                 <h1>STT ENGINEERING SARL</h1>
-                <p>SERVICES & PRESTATIONS TECHNIQUES</p>
+                <p>PRESTATION DIVERSE ET SERVICE</p>
             </div>
         </div>
         
         <div class="school-portal-block">
-            <div class="portal-header-line">
-                <span class="portal-title-text">STT-CAMEROUN</span>
+            <div class="portal-header-group">
+                <div class="portal-text-group">
+                    <span class="portal-title-text">STT-CAMEROUN</span>
+                    <span class="portal-sub-line">Institut Formation Professionnelle</span>
+                    <a href="/rentree/" class="btn-school-link">
+                        <i class="fas fa-external-link-alt"></i> Se connecter à l'école
+                    </a>
+                </div>
                 <img src="rentree/assets/images/school-logo.jpg.jpeg" alt="Logo École" class="portal-school-logo">
             </div>
-            <div class="portal-sub-line">
-                Formation Professionnelle et Education
-            </div>
-            <a href="/rentree/" class="btn-school-link">
-                <i class="fas fa-external-link-alt"></i> Lien vers l'école
-            </a>
         </div>
     </nav>
 
@@ -480,7 +545,7 @@
                 <i class="fas fa-brain"></i>
                 <div>
                     <h4>Services d'Intelligence Artificielle</h4>
-                    <p>Intégration operational de modèles intelligents d'IA et de systèmes d'automatisation pour optimiser vos workflows industriels.</p>
+                    <p>Intégration opérationnelle de modèles intelligents d'IA et de systèmes d'automatisation pour optimiser vos workflows industriels.</p>
                 </div>
             </div>
 
@@ -566,28 +631,70 @@
 
     <footer>
         <div class="footer-inner">
-            <div class="footer-info">
-                <h4>STT Engineering SARL</h4>
-                <p><i class="fas fa-map-marker-alt"></i> Yaoundé - Rond Point Damas (Face poste de police)</p>
-                <p><i class="fas fa-phone-alt"></i> (+237) 695 40 35 80</p>
-                <p><i class="fas fa-envelope"></i> direction@stt-cameroun.com</p>
-            </div>
-            <div class="footer-info">
-                <h4>Horaires d'Ouverture Officiels</h4>
-                <p><i class="fas fa-calendar-alt"></i> Lundi – Vendredi : <strong>07h30 – 19h00</strong></p>
-                <p><i class="fas fa-calendar-day"></i> Samedi : <strong>07h30 – 14h00</strong></p>
-                <p><i class="fas fa-door-closed"></i> Dimanche : Fermé</p>
-            </div>
-            <div class="footer-info">
-                <h4>Notre Devise</h4>
-                <p style="color: var(--blue-light); font-weight: bold; font-style: italic;">"Ensemble, bâtissons un avenir meilleur!"</p>
+            <div class="footer-grid">
+                
+                <div>
+                    <div class="footer-logo">
+                        <img src="Logo.jpeg" alt="Logo STT Engineering" style="width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 1px solid var(--blue-light); box-shadow: 0 0 10px rgba(58,123,213,0.5);">
+                        <div>
+                            <div style="font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:900;background:linear-gradient(135deg,var(--white),var(--blue-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent">STT ENGINEERING</div>
+                        </div>
+                    </div>
+                    <div style="margin-top:2rem;background:rgba(249,115,22,0.1);border:1px solid rgba(249,115,22,0.2);border-radius:10px;padding:1rem;font-size:0.8rem;color:var(--gray); max-width: 350px; line-height: 1.6;">
+                        🏛️ <strong>RCCM :</strong> RC/YAO/2024/B/522<br>
+                        📄 <strong>NIU :</strong> M022416498543H<br>
+                        🏅 <strong>Agrément MINEFOP :</strong> N°000508
+                    </div>
+                </div>
+
+                <div>
+                    <div class="footer-title">Nos Prestations</div>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="openPreview('AllServices.jpeg'); return false;"><i class="fas fa-chevron-right"></i> Panorama des Services</a></li>
+                        <li><a href="#" onclick="openPreview('Services.jpeg'); return false;"><i class="fas fa-chevron-right"></i> Impôts & Fiscalité</a></li>
+                        <li><a href="#" onclick="openPreview('Services1.jpeg'); return false;"><i class="fas fa-chevron-right"></i> Pôle Bureautique</a></li>
+                        <li><a href="#" onclick="openPreview('Services2.jpeg'); return false;"><i class="fas fa-chevron-right"></i> Enrôlements & Business Plan</a></li>
+                        <li><a href="#" onclick="openPreview('Services3.jpeg'); return false;"><i class="fas fa-chevron-right"></i> Ingénierie Juridique</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="footer-title">Navigation Rapide</div>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="window.scrollTo(0,0); return false;"><i class="fas fa-chevron-right"></i> Accueil Corporate</a></li>
+                        <li><a href="/rentree/"><i class="fas fa-chevron-right"></i> Portail Académique</a></li>
+                        <li><a href="https://wa.me/237695403580" target="_blank"><i class="fas fa-chevron-right"></i> Demander un Devis</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <div class="footer-title">Contact & Horaires</div>
+                    <p><i class="fas fa-map-marker-alt"></i> Rond-point Damas, Yaoundé</p>
+                    <p><i class="fas fa-phone-alt"></i> <a href="tel:+237695403580" style="color:var(--gray);text-decoration:none">695 40 35 80</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:direction@stt-cameroun.com" style="color:var(--gray);text-decoration:none">direction@stt-cameroun.com</a></p>
+                    <p style="margin-top: 15px; color: var(--blue-light); font-weight: bold; font-style: italic;">"Ensemble, bâtissons un avenir meilleur!"</p>
+                </div>
+
             </div>
         </div>
+        
         <div class="footer-bottom">
             <p>&copy; 2026 STT Engineering SARL. Tous droits réservés.</p>
-            <p>Agrément Ministériel MINEFOP N°000508</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <p><i class="fas fa-clock" style="color: var(--orange);"></i> Lundi - Vendredi: 07h30 - 19h00</p>
+                <p style="color: var(--gray);">|</p>
+                <p><i class="fas fa-calendar-day" style="color: var(--orange);"></i> Samedi: 07h30 - 14h00</p>
+            </div>
         </div>
     </footer>
+
+    <a href="https://wa.me/237695403580?text=Bonjour%20STT%20Engineering,%20j'aimerais%20avoir%20plus%20d'informations%20sur%20vos%20prestations." target="_blank" id="chat-toggle" title="Discuter sur WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <button class="scroll-top" id="scrollTop" title="Remonter" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
     <script>
         let galleryViewer = null;
@@ -631,6 +738,13 @@
                 galleryViewer.hide();
             }
         }
+
+        // Scroll to top button visibility logic
+        window.addEventListener('scroll', () => {
+            const st = document.getElementById('scrollTop');
+            if(window.scrollY > 500) st.classList.add('visible');
+            else st.classList.remove('visible');
+        });
     </script>
 </body>
 </html>
