@@ -12,6 +12,7 @@
             --blue-light: #3a7bd5;
             --blue-deep: #0a2d6e;
             --green: #1db954;
+            --green-light: #a3e635; /* New light green for legal text */
             --orange: #f97316;
             --white: #ffffff;
             --gray: #8899bb;
@@ -35,6 +36,7 @@
             background: radial-gradient(circle at 50% 15%, rgba(26,79,181,0.25) 0%, transparent 60%);
         }
 
+        /* Top Bar Updated with Light Green Headers */
         .legal-top-bar {
             background: rgba(10, 45, 110, 0.4);
             border-bottom: 1px solid var(--border-glass);
@@ -47,6 +49,7 @@
             gap: 10px;
         }
         .legal-top-bar span strong { color: var(--blue-light); }
+        .legal-label { color: var(--green-light); font-weight: 700; letter-spacing: 0.5px; }
 
         nav {
             padding: 1.5rem 2rem;
@@ -142,6 +145,12 @@
             margin-bottom: 2px;
         }
         
+        /* ===== VA-ET-VIENT ANIMATION ===== */
+        @keyframes vaEtVient {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-8px); }
+        }
+
         .btn-school-link {
             display: inline-flex;
             align-items: center;
@@ -156,8 +165,10 @@
             border-radius: 50px;
             box-shadow: 0 4px 12px rgba(249,115,22,0.25);
             transition: all 0.3s ease;
+            animation: vaEtVient 2s ease-in-out infinite; /* Animation active */
         }
         .btn-school-link:hover {
+            animation: none; /* Stops sliding when user hovers */
             transform: translateY(-2px);
             box-shadow: 0 6px 18px rgba(249,115,22,0.45);
         }
@@ -203,6 +214,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+        
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -280,41 +292,78 @@
             color: var(--white);
         }
 
-        .text-services-grid {
+        /* ===== NOUVELLE GRILLE DES PRESTATIONS HIGH-TECH (IMAGE CARDS) ===== */
+        .tech-services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
         }
-        .text-service-box {
+        .tech-card {
             background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(58, 123, 213, 0.1);
-            padding: 1.8rem;
+            border: 1px solid rgba(58, 123, 213, 0.15);
             border-radius: 16px;
             transition: all 0.3s ease;
+            overflow: hidden;
             display: flex;
-            gap: 15px;
-            align-items: start;
+            flex-direction: column;
         }
-        .text-service-box:hover {
+        .tech-card:hover {
             border-color: var(--blue-light);
             background: rgba(58, 123, 213, 0.05);
-            transform: translateY(-2px);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(58, 123, 213, 0.15);
         }
-        .text-service-box i {
-            font-size: 1.5rem;
-            color: var(--orange);
-            margin-top: 3px;
+        .tech-card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--orange);
         }
-        .text-service-box h4 {
-            font-size: 1rem;
+        .tech-card-fallback {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(10, 45, 110, 0.8), rgba(6, 13, 31, 0.9));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--blue-light);
+            border-bottom: 3px solid var(--orange);
+        }
+        .tech-card-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .tech-card-body h4 {
+            font-size: 1.1rem;
             font-weight: 700;
-            margin-bottom: 0.4rem;
+            margin-bottom: 1rem;
             color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .text-service-box p {
+        .tech-card-body h4 i {
+            color: var(--orange);
+            font-size: 1.2rem;
+        }
+        .tech-card-body p {
             color: var(--gray);
-            font-size: 0.82rem;
-            line-height: 1.5;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        .tech-card-body ul {
+            color: var(--gray);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            padding-left: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .tech-card-body ul li {
+            margin-bottom: 0.4rem;
         }
 
         /* ===== RICH FOOTER UPGRADE ===== */
@@ -414,14 +463,14 @@
     <div class="bg-glow"></div>
 
     <div class="legal-top-bar">
-        <span><i class="fas fa-file-contract"></i> RCCM: <strong>RC/YAO/2024/B/522</strong></span>
-        <span><i class="fas fa-fingerprint"></i> NIU: <strong>M022416498543H</strong></span>
-        <span><i class="fas fa-building"></i> Groupe: <strong>Groupe STT</strong></span>
+        <span><i class="fas fa-file-contract"></i> <span class="legal-label">RCCM:</span> <strong>RC/YAO/2024/B/522</strong></span>
+        <span><i class="fas fa-fingerprint"></i> <span class="legal-label">NIU:</span> <strong>M022416498543H</strong></span>
+        <span><i class="fas fa-building"></i> <span class="legal-label">Groupe:</span> <strong>Groupe STT</strong></span>
     </div>
 
     <nav>
         <div class="logo-container">
-            <img src="Logo.jpeg" alt="STT Engineering Logo" class="logo-img">
+            <img src="assets/Logo.jpeg" alt="STT Engineering Logo" class="logo-img">
             <div class="logo-text">
                 <h1>STT ENGINEERING SARL</h1>
                 <p>PRESTATIONS DIVERSES & SERVICES</p>
@@ -454,75 +503,75 @@
         <div class="services-grid">
 
             <div class="flyer-card">
-                <div class="flyer-img-container" onclick="openPreview('AllServices.jpeg')">
-                    <img src="AllServices.jpeg" alt="Nos Services & Prestations Totales">
+                <div class="flyer-img-container" onclick="openPreview('assets/AllServices.jpeg')">
+                    <img src="assets/AllServices.jpeg" alt="Nos Services & Prestations Totales">
                 </div>
                 <div class="flyer-body">
                     <div>
                         <h3>1. Panorama des Prestations</h3>
                         <p>Vue d'ensemble de nos services d'ingénierie, de fiscalité, d'informatique, de secrétariat et de gestion de parcs.</p>
                     </div>
-                    <button class="btn-zoom" onclick="openPreview('AllServices.jpeg')">
+                    <button class="btn-zoom" onclick="openPreview('assets/AllServices.jpeg')">
                         <i class="fas fa-search-plus"></i> Agrandir l'image
                     </button>
                 </div>
             </div>
 
             <div class="flyer-card">
-                <div class="flyer-img-container" onclick="openPreview('Services.jpeg')">
-                    <img src="Services.jpeg" alt="Impôts, CNPS & DSF">
+                <div class="flyer-img-container" onclick="openPreview('assets/Services.jpeg')">
+                    <img src="assets/Services.jpeg" alt="Impôts, CNPS & DSF">
                 </div>
                 <div class="flyer-body">
                     <div>
                         <h3>2. Pôle Impôts & Fiscalité</h3>
                         <p>Attestations d'immatriculation (NIU), télédéclarations fiscales et CNPS, obtention d'ACF, et montage des DSF réglementaires.</p>
                     </div>
-                    <button class="btn-zoom" onclick="openPreview('Services.jpeg')">
+                    <button class="btn-zoom" onclick="openPreview('assets/Services.jpeg')">
                         <i class="fas fa-search-plus"></i> Agrandir l'image
                     </button>
                 </div>
             </div>
 
             <div class="flyer-card">
-                <div class="flyer-img-container" onclick="openPreview('Services1.jpeg')">
-                    <img src="Services1.jpeg" alt="Secrétariat, Saisie & CV">
+                <div class="flyer-img-container" onclick="openPreview('assets/Services1.jpeg')">
+                    <img src="assets/Services1.jpeg" alt="Secrétariat, Saisie & CV">
                 </div>
                 <div class="flyer-body">
                     <div>
                         <h3>3. Pôle Bureautique & Documents</h3>
                         <p>Saisie de textes, numérisation, traductions certifiées, certificats médicaux officiels en ligne et conception de CV Canadiens/PRO.</p>
                     </div>
-                    <button class="btn-zoom" onclick="openPreview('Services1.jpeg')">
+                    <button class="btn-zoom" onclick="openPreview('assets/Services1.jpeg')">
                         <i class="fas fa-search-plus"></i> Agrandir l'image
                     </button>
                 </div>
             </div>
 
             <div class="flyer-card">
-                <div class="flyer-img-container" onclick="openPreview('Services2.jpeg')">
-                    <img src="Services2.jpeg" alt="Enrôlements & Business Plans">
+                <div class="flyer-img-container" onclick="openPreview('assets/Services2.jpeg')">
+                    <img src="assets/Services2.jpeg" alt="Enrôlements & Business Plans">
                 </div>
                 <div class="flyer-body">
                     <div>
                         <h3>4. Enrôlements & Business Plans</h3>
                         <p>Pré-enrôlements rapides pour la CNI et le passeport biométrique, création légale de structures (SARL, ETS), et montage de business plans.</p>
                     </div>
-                    <button class="btn-zoom" onclick="openPreview('Services2.jpeg')">
+                    <button class="btn-zoom" onclick="openPreview('assets/Services2.jpeg')">
                         <i class="fas fa-search-plus"></i> Agrandir l'image
                     </button>
                 </div>
             </div>
 
             <div class="flyer-card">
-                <div class="flyer-img-container" onclick="openPreview('Services3.jpeg')">
-                    <img src="Services3.jpeg" alt="Montage Dossier Agrément & Statuts">
+                <div class="flyer-img-container" onclick="openPreview('assets/Services3.jpeg')">
+                    <img src="assets/Services3.jpeg" alt="Montage Dossier Agrément & Statuts">
                 </div>
                 <div class="flyer-body">
                     <div>
                         <h3>5. Ingenierie Juridique & Agréments</h3>
                         <p>Rédaction de statuts aux normes OHADA, légalisation d'associations et montage complet de dossiers d'agrément ou renouvellement MINEFOP.</p>
                     </div>
-                    <button class="btn-zoom" onclick="openPreview('Services3.jpeg')">
+                    <button class="btn-zoom" onclick="openPreview('assets/Services3.jpeg')">
                         <i class="fas fa-search-plus"></i> Agrandir l'image
                     </button>
                 </div>
@@ -531,93 +580,125 @@
         </div>
 
         <h3 class="section-headline">⚡ Prestations Spécialisées & Ingénierie High-Tech</h3>
-        <div class="text-services-grid">
+        
+        <div class="tech-services-grid">
 
-            <div class="text-service-box">
-                <i class="fas fa-network-wired"></i>
-                <div>
-                    <h4>Installation, Maintenance & Administration Réseaux</h4>
-                    <p>Déploiement complet d'architectures d'entreprise, maintenance corrective d'urgence et gestion avancée de vos infrastructures serveurs.</p>
+            <div class="tech-card">
+                <img src="assets/BTP & GENIE CIVILE.jpeg" class="tech-card-img" alt="BTP & Génie Civil">
+                <div class="tech-card-body">
+                    <h4><i class="fas fa-hard-hat"></i> BTP & Génie Civil</h4>
+                    <ul>
+                        <li>Étude géotechnique et étude de projet</li>
+                        <li>Conception, réalisation et rénovation</li>
+                        <li>Architecture et dessin industriel</li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="text-service-box">
-                <i class="fas fa-brain"></i>
-                <div>
-                    <h4>Services d'Intelligence Artificielle</h4>
-                    <p>Intégration opérationnelle de modèles intelligents d'IA et de systèmes d'automatisation pour optimiser vos workflows industriels.</p>
+            <div class="tech-card">
+                <img src="assets/EVENNEMENTIEL-DECORATION-TRAITEUR-LOCATION.jpeg" class="tech-card-img" alt="Événementiel">
+                <div class="tech-card-body">
+                    <h4><i class="fas fa-glass-cheers"></i> Événementiel & Location</h4>
+                    <ul>
+                        <li>Mariage, anniversaire, promotion, baptême...</li>
+                        <li>Décoration, traiteur, impresario, wedding planner</li>
+                        <li>Location : Tables, chaises, tentes VIP, couverts...</li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="text-service-box">
-                <i class="fas fa-code"></i>
-                <div>
-                    <h4>Développement Web & Plateformes</h4>
+            <div class="tech-card">
+                <img src="assets/COMPTABILITE-GESTION-ADMINISTRATION.jpeg" class="tech-card-img" alt="Comptabilité">
+                <div class="tech-card-body">
+                    <h4><i class="fas fa-calculator"></i> Comptabilité & Gestion</h4>
+                    <ul>
+                        <li>Gestion financière et suivi automatisé</li>
+                        <li>Suivi de stock et Fiscalité</li>
+                        <li>Audit et Contrôle de gestion</li>
+                        <li>Déclaration des Statistiques Fiscales (DSF)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tech-card">
+                <img src="assets/COMMERCE GENERAL.jpeg" class="tech-card-img" alt="Commerce Général">
+                <div class="tech-card-body">
+                    <h4><i class="fas fa-shopping-cart"></i> Commerce Général</h4>
+                    <p>Achat et livraison de matériel : Informatique, Génie Civil, Topographie, Médical, Bureau, Engrais Agricole, Aliments d'élevage, Décoration, Traiteur, Automobile...</p>
+                </div>
+            </div>
+
+            <div class="tech-card">
+                <img src="assets/DEVELOPPEMENT WEB & PLATEFORME.jpeg" class="tech-card-img" alt="Développement Web">
+                <div class="tech-card-body">
+                    <h4><i class="fas fa-code"></i> Développement Web</h4>
                     <p>Conception sur mesure de vitrines d'entreprise modernes, d'écosystèmes applicatifs et de plateformes logicielles cloud intelligentes.</p>
                 </div>
             </div>
 
-            <div class="text-service-box">
-                <i class="fas fa-mobile-alt"></i>
-                <div>
-                    <h4>Développement d'Applications Intelligentes</h4>
+            <div class="tech-card">
+                <img src="assets/DEVELOPPEMENT D'APPLICATION IA.png" class="tech-card-img" alt="Développement Applications IA">
+                <div class="tech-card-body">
+                    <h4><i class="fas fa-mobile-alt"></i> Développement d'App IA</h4>
                     <p>Programmation d'applications natives et cross-platform performantes (iOS & Android) dotées de fonctionnalités prédictives adaptatives.</p>
                 </div>
             </div>
 
-            <div class="text-service-box">
-                <i class="fas fa-rocket"></i>
-                <div>
-                    <h4>Campagnes Publicitaires & Boost</h4>
+            <div class="tech-card">
+                <img src="assets/CAPAGNE PUBLICITAIRE & BOOST.jpeg" class="tech-card-img" alt="Campagnes Publicitaires">
+                <div class="tech-card-body">
+                    <h4><i class="fas fa-bullhorn"></i> Campagnes Pub & Boost</h4>
                     <p>Ingénierie de croissance, paramétrage de pixels publicitaires et gestion de campagnes d'acquisition massives (Meta Ads & Google Ads).</p>
                 </div>
             </div>
 
-            <div class="text-service-box">
-                <i class="fas fa-users-cog"></i>
-                <div>
-                    <h4>Création & Administration de Comptes</h4>
+            <div class="tech-card">
+                <img src="assets/GESTION & ADMINISTRATION DE COMPTE.jpeg" class="tech-card-img" alt="Gestion de Comptes">
+                <div class="tech-card-body">
+                    <h4><i class="fas fa-users-cog"></i> Administration de Comptes</h4>
                     <p>Déploiement stratégique et gestion de l'e-réputation de vos profils d'entreprise officiels sur Facebook, WhatsApp, TikTok, Instagram, etc.</p>
                 </div>
             </div>
 
-            <div class="text-service-box">
-                <i class="fas fa-coins"></i>
-                <div>
-                    <h4>Monétisation de Comptes Professionnels</h4>
-                    <p>Configuration technique des passerelles de paiement, audits de conformité de pages et activation des leviers de monétisation de contenus.</p>
+            <div class="tech-card">
+                <img src="assets/GESTION DES PROJETS.jpeg" class="tech-card-img" alt="Gestion de Projets">
+                <div class="tech-card-body">
+                    <h4><i class="fas fa-project-diagram"></i> Montage & Suivi de Projets</h4>
+                    <p>Rédaction de cahiers des charges fonctionnels, architecture de plans d'action et suivi-évaluation d'infrastructures d'ingénierie.</p>
                 </div>
             </div>
 
-            <div class="text-service-box">
-                <i class="fas fa-satellite-dish"></i>
-                <div>
-                    <h4>Internet à Domicile</h4>
-                    <p>Câblage structurel, ponts d'accès Wi-Fi longue portée et déploiement de routeurs pour un accès internet domestique haut débit stable.</p>
-                </div>
-            </div>
-
-            <div class="text-service-box">
-                <i class="fas fa-desktop"></i>
-                <div>
-                    <h4>Espace Cybercafé Haut Débit</h4>
+            <div class="tech-card">
+                <img src="assets/ESPACE CYBERCAFE HAUT DEBIT.png" class="tech-card-img" alt="Cybercafé">
+                <div class="tech-card-body">
+                    <h4><i class="fas fa-desktop"></i> Cybercafé Haut Débit</h4>
                     <p>Mise à disposition de postes rapides connectés pour vos opérations d'impression de volumes, numérisation de documents et démarches web.</p>
                 </div>
             </div>
 
-            <div class="text-service-box">
-                <i class="fas fa-user-tie"></i>
-                <div>
-                    <h4>Placement du Personnel</h4>
-                    <p>Évaluation technique poussée, sélection RH rigoureuse et placement de profils spécialisés en secrétariat, comptabilité et ingénierie.</p>
+            <div class="tech-card">
+                <img src="assets/INFORMATIQUE-RESEAU-TELECOMMUNICATION.jpeg" class="tech-card-img" alt="Info, Réseau & Télécom">
+                <div class="tech-card-body">
+                    <h4><i class="fas fa-wifi"></i> Info, Réseau & Télécom</h4>
+                    <ul>
+                        <li>Vidéosurveillance et récupération des données</li>
+                        <li>Contrôle d’accès, alarmes, GPS véhicules</li>
+                        <li>Cybersécurité et systèmes de sécurité incendie</li>
+                        <li>Mise en œuvre de réseaux informatiques</li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="text-service-box">
-                <i class="fas fa-folder-open"></i>
-                <div>
-                    <h4>Montage & Suivi de Projets</h4>
-                    <p>Rédaction de cahiers des charges fonctionnels, architecture de plans d'action et suivi-évaluation d'infrastructures d'ingénierie.</p>
+            <div class="tech-card">
+                <img src="assets/MAINTENANCE - DEPANNAGE.jpeg" class="tech-card-img" alt="Maintenance & Dépannage">
+                <div class="tech-card-body">
+                    <h4><i class="fas fa-wrench"></i> Maintenance & Dépannage</h4>
+                    <ul>
+                        <li>Ordinateurs : Laptop, Desktop, MacBook</li>
+                        <li>Smartphones & Tablettes : Android, iOS</li>
+                        <li>Consoles de jeux : PlayStation, Xbox</li>
+                        <li>Téléviseurs : Écrans plats, Plasma</li>
+                    </ul>
                 </div>
             </div>
 
@@ -635,7 +716,7 @@
                 
                 <div>
                     <div class="footer-logo">
-                        <img src="Logo.jpeg" alt="Logo STT Engineering" style="width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 1px solid var(--blue-light); box-shadow: 0 0 10px rgba(58,123,213,0.5);">
+                        <img src="assets/Logo.jpeg" alt="Logo STT Engineering" style="width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 1px solid var(--blue-light); box-shadow: 0 0 10px rgba(58,123,213,0.5);">
                         <div>
                             <div style="font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:900;background:linear-gradient(135deg,var(--white),var(--blue-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent">STT ENGINEERING</div>
                         </div>
@@ -650,11 +731,11 @@
                 <div>
                     <div class="footer-title">Nos Prestations</div>
                     <ul class="footer-links">
-                        <li><a href="#" onclick="openPreview('AllServices.jpeg'); return false;"><i class="fas fa-chevron-right"></i> Panorama des Services</a></li>
-                        <li><a href="#" onclick="openPreview('Services.jpeg'); return false;"><i class="fas fa-chevron-right"></i> Impôts & Fiscalité</a></li>
-                        <li><a href="#" onclick="openPreview('Services1.jpeg'); return false;"><i class="fas fa-chevron-right"></i> Pôle Bureautique</a></li>
-                        <li><a href="#" onclick="openPreview('Services2.jpeg'); return false;"><i class="fas fa-chevron-right"></i> Enrôlements & Business Plan</a></li>
-                        <li><a href="#" onclick="openPreview('Services3.jpeg'); return false;"><i class="fas fa-chevron-right"></i> Ingénierie Juridique</a></li>
+                        <li><a href="#" onclick="openPreview('assets/AllServices.jpeg'); return false;"><i class="fas fa-chevron-right"></i> Panorama des Services</a></li>
+                        <li><a href="#" onclick="openPreview('assets/Services.jpeg'); return false;"><i class="fas fa-chevron-right"></i> Impôts & Fiscalité</a></li>
+                        <li><a href="#" onclick="openPreview('assets/Services1.jpeg'); return false;"><i class="fas fa-chevron-right"></i> Pôle Bureautique</a></li>
+                        <li><a href="#" onclick="openPreview('assets/Services2.jpeg'); return false;"><i class="fas fa-chevron-right"></i> Enrôlements & Business Plan</a></li>
+                        <li><a href="#" onclick="openPreview('assets/Services3.jpeg'); return false;"><i class="fas fa-chevron-right"></i> Ingénierie Juridique</a></li>
                     </ul>
                 </div>
 
