@@ -2074,8 +2074,9 @@ function closeModal() {
 function openForm(courseName) {
   // 2. META PIXEL TRACKING: User clicked 'S'inscrire' inside the modal
   if (typeof fbq === 'function') {
-    fbq('trackCustom', 'Initiate_Inscription', {
-      course_name: courseName
+    fbq('track', 'InitiateCheckout', {
+      course_name: courseName,
+      content_category: 'Formation'
     });
   }
   
