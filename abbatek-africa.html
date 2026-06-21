@@ -14,6 +14,7 @@
             --text-muted: #94a3b8;   /* slate-400 */
             --accent-glow: #f59e0b;  /* amber-500 */
             --accent-hover: #d97706; /* amber-600 */
+            --terminal-bg: #000000;
             --font-sans: system-ui, -apple-system, sans-serif;
             --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         }
@@ -33,19 +34,19 @@
             min-height: 100vh;
         }
         .container {
-            max-width: 1152px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 0;
         }
 
-        /* === HEADER TELEMETRY === */
+        /* === HEADER & LOGOS === */
         .header {
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 2rem;
             margin-bottom: 3rem;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.5rem;
         }
         @media (min-width: 768px) {
             .header {
@@ -54,6 +55,27 @@
                 align-items: flex-end;
             }
         }
+        .brand-cluster {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            background: var(--bg-surface);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            width: fit-content;
+        }
+        .brand-logo {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+        .logo-divider {
+            color: var(--text-muted);
+            font-weight: bold;
+        }
+
         .status-badge {
             display: flex;
             align-items: center;
@@ -65,7 +87,6 @@
             letter-spacing: 0.1em;
             margin-bottom: 0.75rem;
         }
-        /* Active Ping Animation */
         .ping-dot {
             position: relative;
             width: 8px;
@@ -105,241 +126,211 @@
             font-size: 0.875rem;
             max-width: 600px;
         }
-        .telemetry-box {
-            background-color: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 0.75rem;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            flex-shrink: 0;
-        }
-        .telemetry-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.25rem;
-        }
-        .telemetry-item:last-child {
-            margin-bottom: 0;
-        }
-        .icon {
-            width: 14px;
-            height: 14px;
-            fill: none;
-            stroke: var(--accent-glow);
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
 
-        /* === MATRIX GRID (CARDS) === */
-        .section-title {
-            font-size: 0.875rem;
+        /* === SPLIT SCREEN TERMINAL === */
+        .split-terminal {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        @media (min-width: 1024px) {
+            .split-terminal {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .terminal-window {
+            background-color: var(--terminal-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1.5rem;
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+        .terminal-header {
+            border-bottom: 1px dashed var(--border-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
             font-weight: 700;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-        @media (min-width: 768px) {
-            .grid { grid-template-columns: repeat(3, 1fr); }
-        }
-        .card {
-            background-color: rgba(15, 23, 42, 0.5);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: border-color 0.3s ease;
-        }
-        .card:hover {
-            border-color: rgba(245, 158, 11, 0.5); /* Amber hover */
-        }
-        .card .icon {
-            width: 24px;
-            height: 24px;
-            margin-bottom: 1rem;
-        }
-        .card-title {
-            font-size: 0.875rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-        }
-        .card-text {
-            font-size: 0.75rem;
-            color: var(--text-muted);
+        .terminal-icon {
+            width: 16px;
+            height: 16px;
+            stroke: var(--accent-glow);
+            fill: none;
+            stroke-width: 2;
         }
 
-        /* === DUE DILIGENCE CTA === */
-        .cta-section {
-            margin-top: 3rem;
-            padding-top: 3rem;
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-        }
-        .cta-box {
-            display: inline-block;
-            background-color: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 2rem;
-            max-width: 600px;
-            width: 100%;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-        }
-        .cta-box .icon {
-            width: 32px;
-            height: 32px;
-            stroke: var(--text-muted);
-            margin: 0 auto 1rem auto;
-            display: block;
-        }
-        .cta-title {
-            font-family: var(--font-sans);
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-        .cta-text {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-        .btn-group {
+        /* Product Content Styles */
+        .product-list {
+            list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            justify-content: center;
+            gap: 1.5rem;
         }
-        @media (min-width: 640px) {
-            .btn-group { flex-direction: row; }
+        .product-item {
+            border-left: 2px solid var(--border-color);
+            padding-left: 1rem;
+            transition: border-color 0.3s;
         }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            font-weight: 700;
-            padding: 0.75rem 1.5rem;
-            border-radius: 4px;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            cursor: pointer;
+        .product-item:hover {
+            border-color: var(--accent-glow);
         }
-        .btn-primary {
-            background-color: var(--accent-glow);
-            color: var(--bg-base);
-            border: none;
-        }
-        .btn-primary:hover { background-color: var(--accent-hover); }
-        .btn-secondary {
-            background-color: transparent;
+        .product-title {
             color: var(--text-main);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .product-desc {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* AcoustiPure Data Grid Styles */
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        .data-cell {
+            background: var(--bg-surface);
+            padding: 1rem;
+            border-radius: 4px;
             border: 1px solid var(--border-color);
         }
-        .btn-secondary:hover {
-            background-color: var(--border-color);
+        .data-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+        .data-value {
+            font-size: 1.5rem;
+            color: var(--accent-glow);
+            font-weight: bold;
+        }
+        .data-unit {
+            font-size: 0.75rem;
+            color: var(--text-main);
+            margin-left: 2px;
+        }
+
+        /* Blinking Cursor Animation */
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1em;
+            background-color: var(--accent-glow);
+            vertical-align: middle;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- HEADER & TELEMETRY -->
+        <!-- HEADER & BRANDING -->
         <header class="header">
             <div>
+                <!-- Brand Logo Cluster -->
+                <div class="brand-cluster">
+                    <!-- Update the src attributes with your actual image paths -->
+                    <img src="/assets/stt-logo.png" alt="STT Cameroun" class="brand-logo" onerror="this.style.display='none'">
+                    <span class="logo-divider">||</span>
+                    <img src="/assets/abbatek-logo.png" alt="AbbaTek" class="brand-logo" onerror="this.style.display='none'">
+                </div>
+
                 <div class="status-badge">
                     <div class="ping-dot"></div>
                     Réseau Actif // Hub d'Ingénierie
                 </div>
                 <h1 class="title">Nœud Opérationnel: STT-Cameroun</h1>
                 <p class="subtitle">
-                    Connecter l'ingénierie camerounaise au capital-risque international. En partenariat avec AbbaTek, l'Institut STT déploie une infrastructure Deep-Tech pour valider les systèmes optofluidiques environnementaux (TRL 6/7) sur le terrain.
+                    Connecter l'ingénierie camerounaise au capital-risque international. En partenariat avec AbbaTek, l'Institut STT déploie une infrastructure Deep-Tech pour valider les systèmes optofluidiques environnementaux sur le terrain.
                 </p>
-            </div>
-            
-            <div class="telemetry-box">
-                <div class="telemetry-item">
-                    <svg class="icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                    LAT: 3.8480° N, LON: 11.5021° E
-                </div>
-                <div class="telemetry-item">
-                    <svg class="icon"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-                    STATUT: DÉPLOIEMENT PILOTE
-                </div>
             </div>
         </header>
 
-        <!-- THE OPERATIONAL MATRIX (3 CARDS) -->
-        <section>
-            <h2 class="section-title">
-                <svg class="icon" style="stroke: var(--text-muted);"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
-                Ancrage Régional & Matrice de Talents
-            </h2>
+        <!-- SPLIT SCREEN TERMINAL -->
+        <section class="split-terminal">
             
-            <div class="grid">
-                <!-- Card 1 -->
-                <div class="card">
-                    <svg class="icon"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
-                    <h3 class="card-title">Infrastructure Matérielle (R&D)</h3>
-                    <p class="card-text">
-                        AbbaTek Africa centralise ses opérations régionales au sein du campus STT. Cette base sert de terrain de validation physique pour les futurs pilotes environnementaux, gérant les tests d'endurance de 500+ heures.
-                    </p>
+            <!-- Terminal 1: Product Specs -->
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <svg class="terminal-icon"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>
+                    Spécifications Techniques
                 </div>
-
-                <!-- Card 2 -->
-                <div class="card">
-                    <svg class="icon"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
-                    <h3 class="card-title">Réseau Distribué (Thinkubate)</h3>
-                    <p class="card-text">
-                        Un système LMS intégré de classe mondiale. Nos ingénieurs de terrain au Cameroun et nos architectes de données collaborent en temps réel via une plateforme unifiée pour synchroniser la télémétrie.
-                    </p>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="card">
-                    <svg class="icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                    <h3 class="card-title">Pipeline de Talents Deep-Tech</h3>
-                    <p class="card-text">
-                        Un réservoir direct et sécurisé d'ingénieurs qualifiés. Nous formons et intégrons des profils hautement compétents en Apprentissage Automatique et Génie Logiciel pour le traitement en périphérie.
-                    </p>
+                <ul class="product-list">
+                    <li class="product-item">
+                        <div class="product-title">Système AcoustiPure</div>
+                        <div class="product-desc">Filtration par ondes sonores et séparation optofluidique. Élimination des micro-polluants sans filtres physiques, réduisant la maintenance de 80%.</div>
+                    </li>
+                    <li class="product-item">
+                        <div class="product-title">Module Sense-Tech (Edge AI)</div>
+                        <div class="product-desc">Réseau de capteurs en périphérie traitant les données de qualité de l'eau localement, assurant une transmission chiffrée à faible latence vers le cloud.</div>
+                    </li>
+                    <li class="product-item">
+                        <div class="product-title">Hydro-Node V2</div>
+                        <div class="product-desc">Unité de pompage alimentée par énergie solaire, optimisée pour le bassin de drainage du Wouri, avec télémétrie intégrée.</div>
+                    </li>
+                </ul>
+                <div style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--accent-glow);">
+                    > EN ATTENTE D'INSTRUCTIONS<span class="cursor"></span>
                 </div>
             </div>
-        </section>
 
-        <!-- DUE DILIGENCE CTA -->
-        <section class="cta-section">
-            <div class="cta-box">
-                <svg class="icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                <h2 class="cta-title">Portail d'Audit & Due Diligence</h2>
-                <p class="cta-text">
-                    Accès strictement réservé aux analystes SAVANT BUILD, partenaires institutionnels et auditeurs techniques.
-                </p>
+            <!-- Terminal 2: AcoustiPure Data Grid -->
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <svg class="terminal-icon"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                    AcoustiPure: Télémétrie en Direct
+                </div>
                 
-                <div class="btn-group">
-                    <!-- Update this href to your actual parent site URL once deployed -->
-                    <a href="https://your-abbatek-parent-domain.vercel.app/portal" class="btn btn-primary">
-                        Évaluer l'Infrastructure (CA) 
-                        <svg class="icon" style="stroke: currentColor; width: 16px; height: 16px; margin: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                    </a>
-                    <a href="mailto:technical@abbatek.com" class="btn btn-secondary">
-                        Contacter la Direction
-                    </a>
+                <div class="data-grid">
+                    <div class="data-cell">
+                        <div class="data-label">Fréquence Acoustique</div>
+                        <div class="data-value">42.5<span class="data-unit">kHz</span></div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="data-label">Débit Optofluidique</div>
+                        <div class="data-value">1,240<span class="data-unit">L/h</span></div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="data-label">Efficacité de Séparation</div>
+                        <div class="data-value">98.7<span class="data-unit">%</span></div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="data-label">Niveau TRL</div>
+                        <div class="data-value" style="color: #10b981;">TRL 6</div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="data-label">Pression Interne</div>
+                        <div class="data-value">2.4<span class="data-unit">bar</span></div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="data-label">État du Système</div>
+                        <div class="data-value" style="color: #10b981; font-size: 1rem; line-height: 2.25rem;">NOMINAL</div>
+                    </div>
                 </div>
             </div>
-        </section>
 
+        </section>
     </div>
+
+    <!-- CLOUDFLARE WEB ANALYTICS SNIPPET -->
+    <!-- Paste your unique Cloudflare JS snippet below this line, right before the closing body tag -->
+    <!-- Cloudflare Web Analytics -->
+     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "984754792fec46f3a64e897df894ede2"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
