@@ -3,62 +3,343 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AbbaTek Africa | Partenariat STT-Cameroun</title>
+    <title>AbbaTek Africa | Nœud Opérationnel</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; color: #333; background-color: #f8f9fa; }
-        .hero { background: white; text-align: center; padding: 40px 20px; border-bottom: 3px solid #0056b3; }
-        .hero h1 { color: #0b3c5d; font-size: 24px; margin-bottom: 10px; }
-        .hero p { font-size: 16px; color: #555; max-width: 600px; margin: 0 auto 20px auto; }
-        .logos { display: flex; justify-content: center; align-items: center; gap: 30px; margin-top: 20px; }
-        .logos img { height: 60px; width: auto; }
-        .pipeline { background-color: #0b3c5d; color: white; padding: 40px 20px; text-align: left; }
-        .pipeline h2 { font-size: 22px; color: #f5a623; }
-        .pillar { margin-bottom: 20px; }
-        .pillar h3 { margin: 5px 0; font-size: 18px; }
-        .portal { text-align: center; padding: 40px 20px; background: white; }
-        .portal h3 { color: #333; font-size: 20px; }
-        .btn { display: block; width: 100%; max-width: 340px; margin: 15px auto; padding: 15px; background-color: #0056b3; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-size: 14px; }
-        .btn:hover { background-color: #004085; }
-        @media (max-width: 600px) { .logos { flex-direction: column; gap: 20px; } }
+        /* === DEEP-TECH THEME VARIABLES === */
+        :root {
+            --bg-base: #020617;      /* slate-950 */
+            --bg-surface: #0f172a;   /* slate-900 */
+            --border-color: #1e293b; /* slate-800 */
+            --text-main: #f8fafc;    /* slate-50 */
+            --text-muted: #94a3b8;   /* slate-400 */
+            --accent-glow: #f59e0b;  /* amber-500 */
+            --accent-hover: #d97706; /* amber-600 */
+            --font-sans: system-ui, -apple-system, sans-serif;
+            --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        /* === RESET & BASE STYLES === */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: var(--font-mono);
+            line-height: 1.6;
+            padding: 1.5rem;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1152px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        /* === HEADER TELEMETRY === */
+        .header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
+            margin-bottom: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        @media (min-width: 768px) {
+            .header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-end;
+            }
+        }
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-glow);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+        }
+        /* Active Ping Animation */
+        .ping-dot {
+            position: relative;
+            width: 8px;
+            height: 8px;
+        }
+        .ping-dot::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--accent-glow);
+            border-radius: 50%;
+            animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+            opacity: 0.75;
+        }
+        .ping-dot::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--accent-glow);
+            border-radius: 50%;
+        }
+        @keyframes ping {
+            75%, 100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        .title {
+            font-family: var(--font-sans);
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            max-width: 600px;
+        }
+        .telemetry-box {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 0.75rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+        .telemetry-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+        .telemetry-item:last-child {
+            margin-bottom: 0;
+        }
+        .icon {
+            width: 14px;
+            height: 14px;
+            fill: none;
+            stroke: var(--accent-glow);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* === MATRIX GRID (CARDS) === */
+        .section-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        .card {
+            background-color: rgba(15, 23, 42, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: border-color 0.3s ease;
+        }
+        .card:hover {
+            border-color: rgba(245, 158, 11, 0.5); /* Amber hover */
+        }
+        .card .icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 1rem;
+        }
+        .card-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        .card-text {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* === DUE DILIGENCE CTA === */
+        .cta-section {
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+        .cta-box {
+            display: inline-block;
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+        .cta-box .icon {
+            width: 32px;
+            height: 32px;
+            stroke: var(--text-muted);
+            margin: 0 auto 1rem auto;
+            display: block;
+        }
+        .cta-title {
+            font-family: var(--font-sans);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .cta-text {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+        }
+        @media (min-width: 640px) {
+            .btn-group { flex-direction: row; }
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background-color: var(--accent-glow);
+            color: var(--bg-base);
+            border: none;
+        }
+        .btn-primary:hover { background-color: var(--accent-hover); }
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+        .btn-secondary:hover {
+            background-color: var(--border-color);
+        }
     </style>
 </head>
 <body>
 
-    <div class="hero">
-        <h1>L'Ingénierie Camerounaise Connectée au Capital-Risque International</h1>
-        <p>En partenariat avec AbbaTek, l’Institut STT transforme les génies locaux en fondateurs de startups "Deep-Tech" prêts pour l'investissement global.</p>
-        <div class="logos">
-            <img src="assets/Logo.jpeg" alt="STT Cameroun">
-            <img src="assets/AbbaTek_Africa.jpg" alt="AbbaTek Africa">
-        </div>
-    </div>
+    <div class="container">
+        <!-- HEADER & TELEMETRY -->
+        <header class="header">
+            <div>
+                <div class="status-badge">
+                    <div class="ping-dot"></div>
+                    Réseau Actif // Hub d'Ingénierie
+                </div>
+                <h1 class="title">Nœud Opérationnel: STT-Cameroun</h1>
+                <p class="subtitle">
+                    Connecter l'ingénierie camerounaise au capital-risque international. En partenariat avec AbbaTek, l'Institut STT déploie une infrastructure Deep-Tech pour valider les systèmes optofluidiques environnementaux (TRL 6/7) sur le terrain.
+                </p>
+            </div>
+            
+            <div class="telemetry-box">
+                <div class="telemetry-item">
+                    <svg class="icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    LAT: 3.8480° N, LON: 11.5021° E
+                </div>
+                <div class="telemetry-item">
+                    <svg class="icon"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                    STATUT: DÉPLOIEMENT PILOTE
+                </div>
+            </div>
+        </header>
 
-    <div class="pipeline">
-        <h2>Notre Ancrage Régional & Pipeline de Talents</h2>
-        
-        <div class="pillar">
-            <h3>🏢 Infrastructure R&D Physique à Yaoundé</h3>
-            <p>AbbaTek Africa centralise ses opérations régionales au sein du campus STT pour gérer ses futurs pilotes environnementaux.</p>
-        </div>
-        
-        <div class="pillar">
-            <h3>💻 Système LMS Intégré (Thinkubate)</h3>
-            <p>Nos ingénieurs et apprenants collaborent via une plateforme d'apprentissage de niveau mondial.</p>
-        </div>
-        
-        <div class="pillar">
-            <h3>🧠 Réservoir de Talents Qualifiés</h3>
-            <p>Un pipeline direct sécurisant des profils hautement compétents en Apprentissage Automatique (Machine Learning) et Génie Logiciel.</p>
-        </div>
-    </div>
+        <!-- THE OPERATIONAL MATRIX (3 CARDS) -->
+        <section>
+            <h2 class="section-title">
+                <svg class="icon" style="stroke: var(--text-muted);"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                Ancrage Régional & Matrice de Talents
+            </h2>
+            
+            <div class="grid">
+                <!-- Card 1 -->
+                <div class="card">
+                    <svg class="icon"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+                    <h3 class="card-title">Infrastructure Matérielle (R&D)</h3>
+                    <p class="card-text">
+                        AbbaTek Africa centralise ses opérations régionales au sein du campus STT. Cette base sert de terrain de validation physique pour les futurs pilotes environnementaux, gérant les tests d'endurance de 500+ heures.
+                    </p>
+                </div>
 
-    <div class="portal">
-        <h3>Portail d'Audit & Due Diligence</h3>
-        <p style="color:#666; font-size:14px;">Réservé aux Analystes et Auditeurs.</p>
-        
-        <a class="btn" href="https://www.abbatekgroup.com" target="_blank">🌐 Évaluer l'Infrastructure AbbaTek Group (CA) ↗</a>
-        <a class="btn" href="mailto:arrey@abbatekgroup.com" target="_blank">📊 Contacter l'Équipe de Direction Technique ↗</a>
-    </div>
+                <!-- Card 2 -->
+                <div class="card">
+                    <svg class="icon"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                    <h3 class="card-title">Réseau Distribué (Thinkubate)</h3>
+                    <p class="card-text">
+                        Un système LMS intégré de classe mondiale. Nos ingénieurs de terrain au Cameroun et nos architectes de données collaborent en temps réel via une plateforme unifiée pour synchroniser la télémétrie.
+                    </p>
+                </div>
 
+                <!-- Card 3 -->
+                <div class="card">
+                    <svg class="icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <h3 class="card-title">Pipeline de Talents Deep-Tech</h3>
+                    <p class="card-text">
+                        Un réservoir direct et sécurisé d'ingénieurs qualifiés. Nous formons et intégrons des profils hautement compétents en Apprentissage Automatique et Génie Logiciel pour le traitement en périphérie.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DUE DILIGENCE CTA -->
+        <section class="cta-section">
+            <div class="cta-box">
+                <svg class="icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <h2 class="cta-title">Portail d'Audit & Due Diligence</h2>
+                <p class="cta-text">
+                    Accès strictement réservé aux analystes SAVANT BUILD, partenaires institutionnels et auditeurs techniques.
+                </p>
+                
+                <div class="btn-group">
+                    <!-- Update this href to your actual parent site URL once deployed -->
+                    <a href="https://your-abbatek-parent-domain.vercel.app/portal" class="btn btn-primary">
+                        Évaluer l'Infrastructure (CA) 
+                        <svg class="icon" style="stroke: currentColor; width: 16px; height: 16px; margin: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                    <a href="mailto:technical@abbatek.com" class="btn btn-secondary">
+                        Contacter la Direction
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </div>
 </body>
 </html>
