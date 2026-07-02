@@ -64,9 +64,38 @@
             .header {
                 flex-direction: row;
                 justify-content: space-between;
-                align-items: flex-end;
+                align-items: center; /* Changed to center for better balance with the image */
             }
         }
+        
+        /* === HEADER HERO IMAGE === */
+        .header-image-container {
+            width: 100%;
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+        @media (min-width: 768px) {
+            .header-image-container {
+                max-width: 45%; /* Prevents the image from taking over the text */
+                margin-top: 0;
+                justify-content: flex-end;
+            }
+        }
+        .header-hero-image {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            border-bottom: 2px solid var(--accent-glow); /* Adds a cool hardware glow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .header-hero-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.15); /* Amber glow on hover */
+        }
+        
         .brand-cluster {
             display: flex;
             align-items: center;
@@ -472,10 +501,8 @@
     <div class="container">
         <!-- HEADER & BRANDING -->
         <header class="header">
-            <div>
-                <!-- Brand Logo Cluster -->
+            <div style="flex: 1;">
                 <div class="brand-cluster">
-                    <!-- Update the src attributes with your actual image paths -->
                     <img src="/assets/Logo.jpeg" alt="STT Cameroun" class="brand-logo" onerror="this.style.display='none'">
                     <span class="logo-divider">||</span>
                     <img src="/assets/abbaTek_logo_small.png" alt="AbbaTek" class="brand-logo" onerror="this.style.display='none'">
@@ -489,6 +516,10 @@
                 <p class="subtitle">
                     Connecter l'ingénierie camerounaise au capital-risque international. En partenariat avec AbbaTek, l'Institut STT déploie une infrastructure Deep-Tech pour valider les systèmes optofluidiques environnementaux sur le terrain.
                 </p>
+            </div>
+            
+            <div class="header-image-container">
+                <img src="/assets/AcoustiPure-MPDetect1.png" alt="AcoustiPure and MPDetect Field Deployment" class="header-hero-image">
             </div>
         </header>
 
