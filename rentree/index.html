@@ -1129,23 +1129,34 @@ src="https://www.facebook.com/tr?id=981275201257875&ev=PageView&noscript=1"
         </div>
       </div>
     </div>
-    <div class="hero-right">
+    <div class="hero-right" style="display: flex; flex-direction: column;">
       
-      <div class="vacances-banner" onclick="openVacancesModal()">
-        <div style="font-size: 0.8rem; color: var(--gray); text-transform: uppercase; letter-spacing: 2px;">
-          <i class="fas fa-sun" style="color: #ffcc00;"></i> Spécial Vacances Utiles <i class="fas fa-sun" style="color: #ffcc00;"></i>
+      <div style="position: relative; border-radius: 16px; overflow: hidden; border: 2px solid var(--blue-light); margin-bottom: 1.5rem; box-shadow: 0 0 20px rgba(58,123,213,0.3); background: var(--dark); height: 350px; flex-shrink: 0; transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+        
+        <div class="mini-slider" style="height: 100%;">
+          <img src="assets/images/image_1c5cf3de.png" alt="Soutenance 1" style="object-fit: cover; object-position: center 15%;">
+          <img src="assets/images/image_6c14ca12.png" alt="Soutenance 2" style="object-fit: cover; object-position: center 15%;">
+          <img src="assets/images/image_6e38be13.png" alt="Soutenance 3" style="object-fit: cover; object-position: center 15%;">
+          <img src="assets/images/image_23a44473 (1).png" alt="Soutenance 4" style="object-fit: cover; object-position: center 15%;">
+          <img src="assets/images/image_a45b384d.png" alt="Soutenance 5" style="object-fit: cover; object-position: center 15%;">
         </div>
-        <div class="highlight-blue">INFORMATIQUE & ANGLAIS</div>
-        <div style="font-size: 0.75rem; color: var(--white); font-family: 'Raleway', sans-serif; font-weight: 700;">
-          Du 08 Juin au 31 Août 2026  <span style="color: var(--orange);"></span>
+        
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(6,13,31,0.98) 30%, rgba(6,13,31,0)); padding: 40px 10px 15px 10px; text-align: center;">
+          <div style="font-size: 0.75rem; color: var(--green); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; margin-bottom: 4px; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">
+            <i class="fas fa-graduation-cap"></i> Soutenances DQP 2026
+          </div>
+          <div style="font-size: 1.1rem; color: var(--white); font-family: 'Orbitron', monospace; font-weight: 900; letter-spacing: 0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">
+            Félicitations à nos Lauréats !
+          </div>
         </div>
       </div>
-      <div class="ai-showcase">
-        <div class="ai-icon"><i class="fas fa-brain"></i></div>
+      <div class="ai-showcase" style="height: auto; flex: 1; padding: 1.5rem; justify-content: center;">
+        <div class="ai-icon" style="font-size: 2.2rem; margin-bottom: 0.5rem;"><i class="fas fa-brain"></i></div>
      
-        <h3>Intelligence Artificielle & Data</h3>
-        <p>La filière du futur ! Maîtrisez l'IA, le Machine Learning et la Data Science.</p>
-        <div class="ai-modules">
+        <h3 style="font-size: 1.1rem;">Intelligence Artificielle & Data</h3>
+        <p style="margin-bottom: 1rem;">La filière du futur ! Maîtrisez l'IA, le Machine Learning et la Data Science.</p>
+        
+        <div class="ai-modules" style="gap: 6px;">
           <div class="ai-mod"><i class="fas fa-robot"></i> Machine Learning</div>
           <div class="ai-mod"><i class="fas fa-database"></i> Big Data</div>
           <div class="ai-mod"><i class="fas fa-chart-line"></i> Data Analyse</div>
@@ -1153,13 +1164,14 @@ src="https://www.facebook.com/tr?id=981275201257875&ev=PageView&noscript=1"
           <div class="ai-mod"><i class="fas fa-eye"></i> Computer Vision</div>
           <div class="ai-mod"><i class="fas fa-comments"></i> NLP / ChatBot</div>
         </div>
-        <div style="margin-top:1.2rem">
-          <a href="#ia-data" class="btn btn-primary" style="width:100%;justify-content:center">
+        
+        <div style="margin-top:1rem">
+          <a href="#ia-data" class="btn btn-primary" style="width:100%; justify-content:center; padding: 12px;">
             <i class="fas fa-arrow-right"></i> Découvrir cette filière
           </a>
         </div>
       </div>
-    </div>
+      </div>
   </div>
 </section>
 
