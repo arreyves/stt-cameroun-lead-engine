@@ -1919,14 +1919,137 @@ const SPECS = {
       modules:["Lecture de plans","Tuyauterie & raccords","Sanitaires & robinetterie","Chauffage & climatisation","Traitement des eaux","Normes de sécurité","Soudure & assemblage","Dépannage & maintenance","Devis & chiffrage","Stage en chantier"] }
   ],
  langues: [
-    { name:"Anglais", image:"assets/images/USA.png", price:"70 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" },
-    { name:"Français", image:"assets/images/FRANCE.jpeg", price:"70 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" },
-    { name:"Allemand", image:"assets/images/ALLEMAND.jpeg", price:"105 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" },
-    { name:"Espagnol", image:"assets/images/ESPAGNOLE.png", price:"105 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" },
-    { name:"Chinois (Mandarin)", image:"assets/images/CHINOIS.png", price:"100 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" },
-    { name:"Italien", image:"assets/images/ITALIEN.jpeg", price:"100 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" },
-    { name:"Arabe", image:"assets/images/ARABE.png", price:"100 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" },
-    { name:"Russe", image:"assets/images/RUSSE.png", price:"100 000 frs/niveau", niveaux:"A1 à C2", duree:"1 niveau = 2 mois" }
+    { 
+      name: "Anglais", 
+      image: "assets/images/USA.png", 
+      details: `
+        <p style="margin-bottom: 1rem;">L’anglais est la langue internationale par excellence. Il est indispensable pour les affaires, les études à l’étranger, la recherche et la communication mondiale.</p>
+        <p style="margin-bottom: 0.5rem;"><strong style="color:var(--orange);">Méthodologie :</strong> Immersion totale, simulations de conversations, exercices multimédias. Nos cours sont structurés pour développer la compréhension et l'expression orale et écrite.</p>
+        <p style="margin-bottom: 0.5rem;"><strong style="color:var(--orange);">Préparation examens :</strong> IELTS, TOEFL avec documentation complète.</p>
+        <p style="margin-bottom: 1.5rem;"><strong style="color:var(--orange);">Durée :</strong> 2 mois par niveau (Durée moyenne : 06 mois).</p>
+        
+        <h5 style="color:var(--green); border-bottom: 1px solid var(--green); padding-bottom: 5px; margin-bottom: 10px;">TARIFS & FRAIS</h5>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.8rem;">
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+            <strong style="color:var(--blue-light);">COURS DU JOUR</strong><br>
+            • Inscription & test : 10 000 XAF<br>
+            • A1 à B2 : 55 000 XAF / niveau<br>
+            • Accéléré : 75 000 XAF / niveau<br>
+            • Prépa IELTS/TOEFL : 100 000 XAF / mois
+          </div>
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+            <strong style="color:var(--blue-light);">COURS DU SOIR</strong><br>
+            • Inscription & test : 10 000 XAF<br>
+            • Accéléré : 80 000 XAF / niveau<br>
+            • Prépa IELTS/TOEFL : 100 000 XAF / mois
+          </div>
+        </div>
+      ` 
+    },
+    { 
+      name: "Français", 
+      image: "assets/images/FRANCE.jpeg", 
+      details: `
+        <p style="margin-bottom: 1rem;">Le français est une langue officielle dans plus de 29 pays. Nos cours visent autant les étudiants locaux que les expatriés (communication quotidienne, concours et examens).</p>
+        <p style="margin-bottom: 0.5rem;"><strong style="color:var(--orange);">Public cible :</strong> Étudiants, expatriés, professionnels.</p>
+        <p style="margin-bottom: 0.5rem;"><strong style="color:var(--orange);">Examens préparés :</strong> DELF, DALF, TCF, TEF.</p>
+        <p style="margin-bottom: 1.5rem;"><strong style="color:var(--orange);">Durée :</strong> 2 mois par niveau (Durée moyenne : 06 mois).</p>
+        
+        <h5 style="color:var(--green); border-bottom: 1px solid var(--green); padding-bottom: 5px; margin-bottom: 10px;">TARIFS & FRAIS</h5>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.8rem;">
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+            <strong style="color:var(--blue-light);">COURS DU JOUR</strong><br>
+            • Inscription & test : 10 000 XAF<br>
+            • A1 à C2 : 75 000 XAF / niveau<br>
+            • Prépa examens : 100 000 XAF / mois
+          </div>
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+            <strong style="color:var(--blue-light);">COURS DU SOIR</strong><br>
+            • Inscription & test : 10 000 XAF<br>
+            • Accéléré : 100 000 XAF / niveau<br>
+            • Prépa examens : 100 000 XAF / mois
+          </div>
+        </div>
+      ` 
+    },
+    { 
+      name: "Allemand", 
+      image: "assets/images/ALLEMAND.jpeg", 
+      details: `
+        <p style="margin-bottom: 1rem;">L’allemand est la langue la plus parlée de l'espace Schengen. Idéal pour les études en Allemagne, un emploi avec des entreprises germanophones ou le voyage.</p>
+        <p style="margin-bottom: 0.5rem;"><strong style="color:var(--orange);">Méthodologie :</strong> Approche communicative, jeux de rôle, dialogues interactifs. Grammaire, vocabulaire, et prononciation.</p>
+        <p style="margin-bottom: 0.5rem;"><strong style="color:var(--orange);">Avantages :</strong> Préparation StartDeutsch et TestDaF, immersion culturelle.</p>
+        <p style="margin-bottom: 1.5rem;"><strong style="color:var(--orange);">Durée :</strong> 2 mois par niveau (Durée moyenne : 10 mois).</p>
+        
+        <h5 style="color:var(--green); border-bottom: 1px solid var(--green); padding-bottom: 5px; margin-bottom: 10px;">TARIFS & FRAIS</h5>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.8rem;">
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+            <strong style="color:var(--blue-light);">COURS DU JOUR</strong><br>
+            • Inscription & test : 10 000 XAF<br>
+            • A1: 80k | A2: 100k | B1: 110k | B2: 120k | C1: 130k<br>
+            • Option prépa seule : 35 000 XAF / mois
+          </div>
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+            <strong style="color:var(--blue-light);">COURS DU SOIR</strong><br>
+            • Inscription & test : 10 000 XAF<br>
+            • A1 & A2 : 115 000 XAF<br>
+            • B1, B2 & C1 : 140 000 XAF / niveau<br>
+            • Option prépa seule : 35 000 XAF / mois
+          </div>
+        </div>
+      ` 
+    },
+    { 
+      name: "Chinois (Mandarin)", 
+      image: "assets/images/CHINOIS.png", 
+      details: `
+        <p style="margin-bottom: 1rem;">Le chinois mandarin est aujourd’hui une langue incontournable dans les affaires et les échanges internationaux.</p>
+        <p style="margin-bottom: 0.5rem;"><strong style="color:var(--orange);">Méthodologie :</strong> Apprentissage progressif de la prononciation, écriture des caractères, communication orale et écrite, initiation à la culture chinoise.</p>
+        <p style="margin-bottom: 0.5rem;"><strong style="color:var(--orange);">Examens préparés :</strong> HSK (Hanyu Shuiping Kaoshi).</p>
+        <p style="margin-bottom: 1.5rem;"><strong style="color:var(--orange);">Durée :</strong> 2 mois par niveau (Durée moyenne : 09 mois).</p>
+        
+        <h5 style="color:var(--green); border-bottom: 1px solid var(--green); padding-bottom: 5px; margin-bottom: 10px;">TARIFS & FRAIS</h5>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.8rem;">
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+            <strong style="color:var(--blue-light);">COURS (Jour/Soir)</strong><br>
+            • Inscription & test : 10 000 XAF<br>
+            • Pack complet HSK 1 à 6 : 90 000 XAF / niveau<br>
+            • Prépa examens HSK : 100 000 XAF / mois
+          </div>
+        </div>
+      ` 
+    },
+    { 
+      name: "Italien", 
+      image: "assets/images/ITALIEN.jpeg", 
+      details: `
+        <p style="margin-bottom: 1rem;">L’italien est une langue de culture et d’art, mais aussi un atout dans les domaines de la mode, du design, de la gastronomie et du commerce international.</p>
+        <p style="margin-bottom: 0.5rem;"><strong style="color:var(--orange);">Méthodologie :</strong> Cours interactifs, mises en situation réelles, culture et civilisation italiennes.</p>
+        <p style="margin-bottom: 0.5rem;"><strong style="color:var(--orange);">Examens préparés :</strong> CILS, PLIDA, CERT.IT.</p>
+        <p style="margin-bottom: 1.5rem;"><strong style="color:var(--orange);">Durée :</strong> 6 mois (pack complet).</p>
+        
+        <h5 style="color:var(--green); border-bottom: 1px solid var(--green); padding-bottom: 5px; margin-bottom: 10px;">TARIFS & FRAIS</h5>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.8rem;">
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+            <strong style="color:var(--blue-light);">COURS DU JOUR</strong><br>
+            • Inscription : 10 000 XAF<br>
+            • Pack complet : 300 000 XAF<br>
+            • Tranches : 150k / 100k / 50k<br>
+            • Prépa examens : 35 000 XAF / mois
+          </div>
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+            <strong style="color:var(--blue-light);">COURS DU SOIR</strong><br>
+            • Inscription : 10 000 XAF<br>
+            • Pack complet : 375 000 XAF<br>
+            • Tranches : 150k / 100k / 125k<br>
+            • Prépa examens : 35 000 XAF / mois
+          </div>
+        </div>
+      ` 
+    },
+    { name:"Espagnol", image:"assets/images/ESPAGNOLE.png", details:"<p>Programme détaillé en cours de mise à jour.</p>" },
+    { name:"Arabe", image:"assets/images/ARABE.png", details:"<p>Programme détaillé en cours de mise à jour.</p>" },
+    { name:"Russe", image:"assets/images/RUSSE.png", details:"<p>Programme détaillé en cours de mise à jour.</p>" }
   ]
 };
 // ===== RENDER GRIDS =====
@@ -1949,12 +2072,10 @@ function renderGrids() {
   const gL = document.getElementById('grid-langues');
   SPECS.langues.forEach(l => {
     gL.innerHTML += `
-      <div class="lang-card">
-        <img src="${l.image}" alt="${l.name}" style="width: 50px; height: 35px; object-fit: cover; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.4); flex-shrink: 0;">
+      <div class="lang-card" style="cursor: pointer;" onclick="openLangModal('${escapeQ(l.name)}')">
+        <img src="${l.image}" alt="${l.name}" style="width: 55px; height: 40px; object-fit: cover; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.4); flex-shrink: 0;">
         <div class="lang-info">
-          <h4>${l.name}</h4>
-          <p>${l.niveaux} • ${l.duree}</p>
-          <div class="lang-price">${l.price}</div>
+          <h4 style="margin: 0; font-size: 1.1rem; color: var(--white);">${l.name}</h4>
         </div>
       </div>
     `;
@@ -2001,6 +2122,41 @@ function showSector(sector) {
 }
 
 // ===== MODAL =====
+function openLangModal(name) {
+  // 1. META PIXEL TRACKING
+  if (typeof fbq === 'function') {
+    fbq('track', 'ViewContent', { content_name: name, content_category: 'Langues' });
+  }
+
+  const found = SPECS.langues.find(l => l.name === name);
+  if(!found) return;
+
+  document.getElementById('modalTitle').textContent = "🗣️ Centre de Langues : " + found.name;
+  
+  let html = `
+    <div style="text-align:center; margin-bottom:1.5rem;">
+       <img src="${found.image}" style="width:120px; border-radius:8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); border: 2px solid var(--blue-light);">
+    </div>
+    
+    <div style="background:rgba(58,123,213,0.08); border:1px solid rgba(58,123,213,0.2); border-radius:12px; padding:1.5rem; margin-bottom:1.5rem; color: var(--white); line-height: 1.7; font-size: 0.9rem;">
+      ${found.details}
+    </div>
+
+    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+      <a href="#inscription" onclick="openForm('${escapeQ(found.name)}')" class="btn btn-orange" style="flex:1; justify-content:center; text-align:center; min-width:200px;">
+        <i class="fas fa-pen"></i> S'inscrire à ce cours
+      </a>
+      <button onclick="closeModal()" class="btn btn-outline" style="flex:1; justify-content:center; text-align:center; min-width:200px;">
+        Fermer
+      </button>
+    </div>
+  `;
+  
+  document.getElementById('modalContent').innerHTML = html;
+  document.getElementById('specModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
 function openModal(name) {
   // 1. META PIXEL TRACKING: User viewed a course
   if (typeof fbq === 'function') {
@@ -2066,12 +2222,10 @@ function openModal(name) {
   document.getElementById('specModal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-
 function closeModal() {
   document.getElementById('specModal').classList.remove('open');
   document.body.style.overflow = '';
 }
-
 // ===== NEW FUNCTION: Routing & Trigger 2 =====
 function openForm(courseName) {
   // 2. META PIXEL TRACKING: User clicked 'S'inscrire' inside the modal
@@ -2485,3 +2639,4 @@ setTimeout(() => { showSlides(1); autoSlide(); }, 1000);
 </script>
 </body>
 </html>
+c
