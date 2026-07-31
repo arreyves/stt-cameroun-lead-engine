@@ -1121,23 +1121,16 @@ src="https://www.facebook.com/tr?id=981275201257875&ev=PageView&noscript=1"
     </div>
         <div class="hero-right" style="display: flex; flex-direction: column;">
       
-      <div style="position: relative; border-radius: 16px; overflow: hidden; border: 2px solid var(--blue-light); margin-bottom: 1.5rem; box-shadow: 0 0 20px rgba(58,123,213,0.3); background: var(--dark); height: 350px; flex-shrink: 0; transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+      <div id="heroCarousel" onclick="openCarouselModal()" style="position: relative; border-radius: 16px; overflow: hidden; border: 2px solid var(--blue-light); margin-bottom: 1.5rem; box-shadow: 0 0 20px rgba(58,123,213,0.3); background: var(--dark); height: 350px; flex-shrink: 0; transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         
-        <div class="mini-slider" style="height: 100%;">
-          <img src="assets/images/image_1c5cf3de.png" alt="Soutenance 1" style="object-fit: cover; object-position: center 15%;">
-          <img src="assets/images/image_6c14ca12.png" alt="Soutenance 2" style="object-fit: cover; object-position: center 15%;">
-          <img src="assets/images/image_6e38be13.png" alt="Soutenance 3" style="object-fit: cover; object-position: center 15%;">
-          <img src="assets/images/image_23a44473 (1).png" alt="Soutenance 4" style="object-fit: cover; object-position: center 15%;">
-          <img src="assets/images/image_a45b384d.png" alt="Soutenance 5" style="object-fit: cover; object-position: center 15%;">
-        </div>
+        <div id="carouselImages" style="height: 100%; position: relative;">
+          </div>
         
         <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(6,13,31,0.98) 30%, rgba(6,13,31,0)); padding: 40px 10px 15px 10px; text-align: center;">
-          <div style="font-size: 0.75rem; color: var(--green); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; margin-bottom: 4px; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">
-            <i class="fas fa-graduation-cap"></i> Soutenances DQP 2026
-          </div>
-          <div style="font-size: 1.1rem; color: var(--white); font-family: 'Orbitron', monospace; font-weight: 900; letter-spacing: 0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">
-            Félicitations à nos Lauréats !
-          </div>
+          <div id="carouselSubTitle" style="font-size: 0.75rem; color: var(--green); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; margin-bottom: 4px; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">
+            </div>
+          <div id="carouselMainTitle" style="font-size: 1.1rem; color: var(--white); font-family: 'Orbitron', monospace; font-weight: 900; letter-spacing: 0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">
+             </div>
         </div>
       </div>
       <div class="ai-showcase" style="height: auto; flex: 1; padding: 1.5rem; justify-content: center;">
@@ -2636,7 +2629,81 @@ function autoSlide() {
 
 // Démarrer le carousel au chargement
 setTimeout(() => { showSlides(1); autoSlide(); }, 1000);
+
+// ===== DUAL-GROUP HERO CAROUSEL =====
+const heroCarouselData = [
+  // GROUP 1: Admissions (The New Flyers)
+  { src: "assets/images/1.jpeg", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !" },
+  { src: "assets/images/2.png", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !" },
+  { src: "assets/images/3.jpeg", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !" },
+  { src: "assets/images/4.png", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !" },
+  { src: "assets/images/5.png", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !" },
+  { src: "assets/images/6.png", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !" },
+  { src: "assets/images/7.png", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !" },
+  { src: "assets/images/8.jpeg", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !" },
+  { src: "assets/images/9.jpeg", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !" },
+  
+  // GROUP 2: Graduations (The Existing Defense Photos)
+  { src: "assets/images/image_1c5cf3de.jpg", sub: "<i class='fas fa-graduation-cap'></i> Soutenances DQP 2026", main: "Félicitations à nos Lauréats !" },
+  { src: "assets/images/image_6c14ca12.jpg", sub: "<i class='fas fa-graduation-cap'></i> Soutenances DQP 2026", main: "Félicitations à nos Lauréats !" },
+  { src: "assets/images/image_6e38be13.jpg", sub: "<i class='fas fa-graduation-cap'></i> Soutenances DQP 2026", main: "Félicitations à nos Lauréats !" },
+  { src: "assets/images/image_23a44473 (1).jpg", sub: "<i class='fas fa-graduation-cap'></i> Soutenances DQP 2026", main: "Félicitations à nos Lauréats !" },
+  { src: "assets/images/image_a45b384d.jpg", sub: "<i class='fas fa-graduation-cap'></i> Soutenances DQP 2026", main: "Félicitations à nos Lauréats !" }
+];
+
+let currentHeroIndex = 0;
+const carouselImagesDiv = document.getElementById('carouselImages');
+const carouselSubTitle = document.getElementById('carouselSubTitle');
+const carouselMainTitle = document.getElementById('carouselMainTitle');
+
+// 1. Pre-load and inject all images into the container
+heroCarouselData.forEach((data, index) => {
+  const img = document.createElement('img');
+  img.src = data.src;
+  img.style.cssText = `
+    position: absolute; inset: 0; width: 100%; height: 100%; 
+    object-fit: contain; object-position: center; 
+    opacity: ${index === 0 ? 1 : 0}; 
+    transition: opacity 1s ease-in-out;
+    background: var(--dark);
+  `;
+  // Ensure the graduation photos use 'cover' so they don't look tiny
+  if(data.src.includes('image_')) {
+     img.style.objectFit = 'cover';
+     img.style.objectPosition = 'center 15%';
+  }
+  carouselImagesDiv.appendChild(img);
+});
+
+// 2. The Rotation Logic
+function rotateHeroCarousel() {
+  const images = carouselImagesDiv.getElementsByTagName('img');
+  
+  // Fade out current
+  images[currentHeroIndex].style.opacity = 0;
+  
+  // Move to next index
+  currentHeroIndex = (currentHeroIndex + 1) % heroCarouselData.length;
+  
+  // Fade in next and update text
+  images[currentHeroIndex].style.opacity = 1;
+  carouselSubTitle.innerHTML = heroCarouselData[currentHeroIndex].sub;
+  carouselMainTitle.innerHTML = heroCarouselData[currentHeroIndex].main;
+  
+  // Change text color slightly based on the group to make it dynamic
+  if(heroCarouselData[currentHeroIndex].src.includes('image_')) {
+    carouselSubTitle.style.color = 'var(--green)'; // Green for Graduation
+  } else {
+    carouselSubTitle.style.color = 'var(--orange)'; // Orange for Admissions
+  }
+}
+
+// 3. Initialize first text and start loop (changes every 4 seconds)
+carouselSubTitle.innerHTML = heroCarouselData[0].sub;
+carouselMainTitle.innerHTML = heroCarouselData[0].main;
+carouselSubTitle.style.color = 'var(--orange)';
+setInterval(rotateHeroCarousel, 4000);
 </script>
+
 </body>
 </html>
-c
