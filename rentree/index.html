@@ -2630,25 +2630,28 @@ function autoSlide() {
 // Démarrer le carousel au chargement
 setTimeout(() => { showSlides(1); autoSlide(); }, 1000);
 
-// ===== DUAL-GROUP HERO CAROUSEL =====
+// ===== DUAL-GROUP HERO CAROUSEL & MODAL =====
 const heroCarouselData = [
-  // GROUP 1: Admissions (The New Flyers)
-  { src: "assets/images/1.jpeg", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !" },
-  { src: "assets/images/2.png", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !" },
-  { src: "assets/images/3.jpeg", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !" },
-  { src: "assets/images/4.png", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !" },
-  { src: "assets/images/5.png", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !" },
-  { src: "assets/images/6.png", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !" },
-  { src: "assets/images/7.png", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !" },
-  { src: "assets/images/8.jpeg", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !" },
-  { src: "assets/images/9.jpeg", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !" },
+  // GROUP 1: Admissions (The Main Flyers)
+  { src: "assets/images/1.jpeg", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !", color: "var(--orange)" },
+  { src: "assets/images/2.png", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !", color: "var(--orange)" },
+  { src: "assets/images/3.jpeg", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !", color: "var(--orange)" },
+  { src: "assets/images/4.png", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !", color: "var(--orange)" },
+  { src: "assets/images/5.png", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !", color: "var(--orange)" },
+  { src: "assets/images/6.png", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !", color: "var(--orange)" },
+  { src: "assets/images/7.png", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !", color: "var(--orange)" },
+  { src: "assets/images/8.jpeg", sub: "<i class='fas fa-bullhorn'></i> Rentrée 2026", main: "Inscriptions en cours, réservez votre place dès maintenant !", color: "var(--orange)" },
   
-  // GROUP 2: Graduations (The Existing Defense Photos)
-  { src: "assets/images/image_1c5cf3de.png", sub: "<i class='fas fa-graduation-cap'></i> Soutenances DQP 2026", main: "Félicitations à nos Lauréats !" },
-  { src: "assets/images/image_6c14ca12.png", sub: "<i class='fas fa-graduation-cap'></i> Soutenances DQP 2026", main: "Félicitations à nos Lauréats !" },
-  { src: "assets/images/image_6e38be13.png", sub: "<i class='fas fa-graduation-cap'></i> Soutenances DQP 2026", main: "Félicitations à nos Lauréats !" },
-  { src: "assets/images/image_23a44473 (1).png", sub: "<i class='fas fa-graduation-cap'></i> Soutenances DQP 2026", main: "Félicitations à nos Lauréats !" },
-  { src: "assets/images/image_a45b384d.png", sub: "<i class='fas fa-graduation-cap'></i> Soutenances DQP 2026", main: "Félicitations à nos Lauréats !" }
+  // GROUP 2: Languages (The New Promo Images)
+  { src: "assets/images/image_a0f11768 (1).jpg", sub: "<i class='fas fa-language'></i> Centre de Langues", main: "Formation professionnelle en langues, inscrivez-vous !", color: "var(--blue-light)" },
+  { src: "assets/images/image_e290dda8.jpg", sub: "<i class='fas fa-language'></i> Centre de Langues", main: "Votre avenir commence ici, places limitées !", color: "var(--blue-light)" },
+
+  // GROUP 3: Graduations (The Defense Photos)
+  { src: "assets/images/image_1c5cf3de.png", sub: "<i class='fas fa-graduation-cap'></i> Soutenances DQP 2026", main: "Félicitations à nos Lauréats !", color: "var(--green)" },
+  { src: "assets/images/image_6c14ca12.png", sub: "<i class='fas fa-graduation-cap'></i> Soutenances DQP 2026", main: "Félicitations à nos Lauréats !", color: "var(--green)" },
+  { src: "assets/images/image_6e38be13.png", sub: "<i class='fas fa-graduation-cap'></i> Soutenances DQP 2026", main: "Félicitations à nos Lauréats !", color: "var(--green)" },
+  { src: "assets/images/image_23a44473 (1).png", sub: "<i class='fas fa-graduation-cap'></i> Soutenances DQP 2026", main: "Félicitations à nos Lauréats !", color: "var(--green)" },
+  { src: "assets/images/image_a45b384d.png", sub: "<i class='fas fa-graduation-cap'></i> Soutenances DQP 2026", main: "Félicitations à nos Lauréats !", color: "var(--green)" }
 ];
 
 let currentHeroIndex = 0;
@@ -2667,11 +2670,13 @@ heroCarouselData.forEach((data, index) => {
     transition: opacity 1s ease-in-out;
     background: var(--dark);
   `;
-  // Ensure the graduation photos use 'cover' so they don't look tiny
-  if(data.src.includes('image_')) {
+  
+  // Ensure the graduation photos use 'cover' so they don't look tiny, but keep the flyers as 'contain'
+  if(data.src.includes('image_1c') || data.src.includes('image_6') || data.src.includes('image_23') || data.src.includes('image_a4')) {
      img.style.objectFit = 'cover';
      img.style.objectPosition = 'center 15%';
   }
+  
   carouselImagesDiv.appendChild(img);
 });
 
@@ -2685,24 +2690,48 @@ function rotateHeroCarousel() {
   // Move to next index
   currentHeroIndex = (currentHeroIndex + 1) % heroCarouselData.length;
   
-  // Fade in next and update text
+  // Fade in next and update text/colors dynamically
   images[currentHeroIndex].style.opacity = 1;
   carouselSubTitle.innerHTML = heroCarouselData[currentHeroIndex].sub;
   carouselMainTitle.innerHTML = heroCarouselData[currentHeroIndex].main;
-  
-  // Change text color slightly based on the group to make it dynamic
-  if(heroCarouselData[currentHeroIndex].src.includes('image_')) {
-    carouselSubTitle.style.color = 'var(--green)'; // Green for Graduation
-  } else {
-    carouselSubTitle.style.color = 'var(--orange)'; // Orange for Admissions
-  }
+  carouselSubTitle.style.color = heroCarouselData[currentHeroIndex].color;
 }
 
-// 3. Initialize first text and start loop (changes every 4 seconds)
+// 3. Initialize first text and start loop
 carouselSubTitle.innerHTML = heroCarouselData[0].sub;
 carouselMainTitle.innerHTML = heroCarouselData[0].main;
-carouselSubTitle.style.color = 'var(--orange)';
+carouselSubTitle.style.color = heroCarouselData[0].color;
 setInterval(rotateHeroCarousel, 4000);
+
+// ===== FULL SCREEN CAROUSEL MODAL =====
+function openCarouselModal() {
+  const currentData = heroCarouselData[currentHeroIndex];
+  
+  // Strip out the font-awesome HTML to make a clean title
+  const cleanTitle = currentData.sub.replace(/<[^>]*>?/gm, '');
+  document.getElementById('modalTitle').textContent = "🖼️ " + cleanTitle;
+  
+  let html = `
+    <div style="text-align:center; margin-bottom: 1rem;">
+      <img src="${currentData.src}" style="width:100%; max-height:65vh; object-fit:contain; border-radius:12px; border: 2px solid var(--blue-light); background:#fff; padding: 5px;">
+    </div>
+    <div style="text-align:center; margin-bottom: 1.5rem;">
+        <p style="color: var(--white); font-family: 'Orbitron', monospace; font-size: 1.1rem; font-weight: 700;">${currentData.main}</p>
+    </div>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+      <a href="#inscription" onclick="closeModal()" class="btn btn-orange" style="flex:1; justify-content:center; text-align:center; min-width:200px;">
+        <i class="fas fa-pen"></i> S'inscrire maintenant
+      </a>
+      <button onclick="closeModal()" class="btn btn-outline" style="flex:1; justify-content:center; text-align:center; min-width:200px;">
+        Fermer
+      </button>
+    </div>
+  `;
+  
+  document.getElementById('modalContent').innerHTML = html;
+  document.getElementById('specModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
 </script>
 
 </body>
