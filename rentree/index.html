@@ -2680,15 +2680,14 @@ heroCarouselData.forEach((data, index) => {
     background: var(--dark);
   `;
   
-  // Ensure the graduation photos use 'cover' so they don't look tiny, but keep the flyers as 'contain'
-  if(data.src.includes('image_1c') || data.src.includes('image_6') || data.src.includes('image_23') || data.src.includes('image_a4')) {
+  // Future-Proofing: Any image in the "Graduation" group (Green theme) automatically gets the 'cover' styling!
+  if(data.color === 'var(--green)') {
      img.style.objectFit = 'cover';
      img.style.objectPosition = 'center 15%';
   }
   
   carouselImagesDiv.appendChild(img);
 });
-
 // 2. The Rotation Logic
 function rotateHeroCarousel() {
   const images = carouselImagesDiv.getElementsByTagName('img');
