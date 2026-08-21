@@ -1230,28 +1230,31 @@ src="https://www.facebook.com/tr?id=981275201257875&ev=PageView&noscript=1"
         <div style="background:linear-gradient(135deg,rgba(29,185,84,0.1),rgba(6,13,31,0.8));border:1px solid var(--green);border-radius:20px;padding:2rem">
           <div style="font-size:4rem;text-align:center;margin-bottom:1rem">🤖</div>
           <h3 style="font-family:'Orbitron',monospace;color:var(--green);margin-bottom:1rem;text-align:center">IA & DATA</h3>
+          
           <div style="display:flex;flex-direction:column;gap:0.8rem">
+            
             <div style="display:flex;justify-content:space-between;align-items:center">
               <span style="font-size:0.82rem;color:var(--gray)">Niveau requis</span>
               <span style="background:rgba(58,123,213,0.2);color:var(--blue-light);padding:3px 10px;border-radius:8px;font-size:0.75rem;font-weight:700">BAC</span>
             </div>
+            
             <div class="divider"></div>
+            
             <div style="display:flex;justify-content:space-between;align-items:center">
               <span style="font-size:0.82rem;color:var(--gray)">Scolarité totale</span>
               <span style="font-family:'Orbitron',monospace;color:var(--orange);font-size:1rem;font-weight:900">450 000 frs</span>
             </div>
+            
             <div class="divider"></div>
-            <div style="font-size:0.8rem;color:var(--gray)">
-              <div style="margin-bottom:4px">📅 1ère tranche (inscription) : <strong style="color:var(--white)">200 000 frs</strong></div>
-              <div style="margin-bottom:4px">📅 2ème tranche (09/11/26) : <strong style="color:var(--white)">150 000 frs</strong></div>
-              <div>📅 3ème tranche (07/01/27) : <strong style="color:var(--white)">100 000 frs</strong></div>
+            
+            <!-- DURÉE ON THE SAME LINE -->
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:15px;">
+              <span style="font-size:0.82rem;color:var(--gray);flex-shrink:0;">Durée</span>
+              <span style="color:var(--green);font-weight:700;font-size:0.78rem;line-height:1.4;text-align:right;">1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>
             </div>
-            <div class="divider"></div>
-            <div style="display:flex;justify-content:space-between">
-              <span style="font-size:0.82rem;color:var(--gray)">Durée</span>
-              <span style="color:var(--green);font-weight:700;font-size:0.82rem">12 mois</span>
-            </div>
+            
           </div>
+          
           <a href="#inscription" class="btn btn-orange" style="width:100%;justify-content:center;margin-top:1.5rem">
             <i class="fas fa-pen"></i> S'inscrire maintenant
           </a>
@@ -1752,61 +1755,61 @@ src="https://www.facebook.com/tr?id=981275201257875&ev=PageView&noscript=1"
 const SPECS = {
   tic: [
     { name:"Intelligence Artificielle & Data", level:"BAC", price:"450 000 frs", icon:"🤖", image:"assets/images/intelligence-artificielle.png", featured:true,
-      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Payable en 4 tranches maximum</span>",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
       debouches:"Data Scientist, Data Analyst, Chef de projet IA, ML Engineer",
       pdf:"assets/pdf/INTELLIGENCE ARTIFICIELLE & DATA SCIENCE.pdf",
       modules:["Python pour l'IA","Machine Learning & Algorithmes","Deep Learning & Réseaux de neurones","Big Data & Gestion des données","Data Visualisation (Power BI, Tableau)","Computer Vision","NLP & Chatbots","Cloud Computing","Éthique de l'IA","Projet de fin d'études"] },
     { name:"Cybersécurité & Hacking", level:"BAC", price:"450 000 frs", icon:"🔐", image:"assets/images/cybersecurite.jpg.jpeg", featured:false,
-      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Payable en 4 tranches maximum</span>",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
       debouches:"Pentester (hacker éthique), analyste SOC, architecte sécurité, RSSI",
       pdf:"assets/pdf/CYBERSECURITE & DATA.pdf",
       modules:["Fondamentaux de la sécurité informatique","Ethical Hacking & Pentest","Cryptographie","Sécurité des réseaux","Forensique numérique","Gestion des vulnérabilités","Sécurité Web","SOC & Monitoring","RGPD & Conformité","CTF & Exercices pratiques"] },
     { name:"Télécommunications et Réseaux", level:"BAC", price:"400 000 frs", icon:"📡", image:"assets/images/telecommunication.jpg.jpeg",
-      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Payable en 4 tranches maximum</span>",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
       debouches:"Technicien réseau, administrateur systèmes et réseaux, chef de projet",
       pdf:"assets/pdf/TELECOMMUNICATIONS ET RESEAUX.pdf",
       modules:["Réseaux TCP/IP","Administration Cisco","Fibre optique","Réseaux mobiles 4G/5G","VOIP & Téléphonie IP","Administration Linux/Windows Server","Wi-Fi & réseaux sans fil","Supervision réseau","Projet d'infrastructure","Stage professionnel"] },
     { name:"Développeur Web & Mobile", level:"BAC", price:"350 000 frs", icon:"📱", image:"assets/images/developpeur-web-mobile.jpg.jpeg",
-      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Payable en 4 tranches maximum</span>",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
       debouches:"Développeur frontend, backend, full stack, ou concepteur d'applications mobiles",
       pdf:"assets/pdf/DEVELOPPEUR WEB ET MOBILE.pdf",
       modules:["HTML5, CSS3, JavaScript","React.js / Vue.js","Node.js & API REST","Flutter / React Native","Bases de données SQL/NoSQL","Git & contrôle de version","Déploiement cloud","UX/UI Design","Gestion de projet Agile","Projet de fin d'études"] },
     { name:"Maintenance Informatique et Réseau", level:"Terminale", price:"350 000 frs", icon:"🔧", image:"assets/images/maintenance-informatique.jpg.jpeg",
-      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Payable en 4 tranches maximum</span>",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
       debouches:"Technicien de maintenance et support informatique, Administrateur systèmes et réseaux, Gestionnaire de parc",
       pdf:"assets/pdf/MAINTENANCE DES RESEAUX INFORMATIQUES.pdf",
       modules:["Assemblage & Réparation PC","Systèmes d'exploitation Windows/Linux","Réseaux locaux","Maintenance imprimantes","Récupération de données","Virtualisation VMware","Help Desk & Support","Sauvegarde & sécurité","Diagnostic hardware","Stage en entreprise"] },
     { name:"Maintenance Informatique", level:"Probatoire", price:"300 000 frs", icon:"🖥️", image:"assets/images/maintenance-informatique.jpeg",
-      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Payable en 4 tranches maximum</span>",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
       debouches:"Technicien support, gestionnaire de parc, administrateur système, Technicien de maintenance",
       modules:["Architecture et Montage Matériel (Hardware)", "Systèmes d'Exploitation (Software)", "Maintenance Préventive et Corrective", "Réseaux Informatiques", "Sécurité et Protection", "Maintenance des Connexions Internet", "Gestion de Parc et Support"] },
     { name:"Community Management", level:"BAC", price:"350 000 frs", icon:"📣", image:"assets/images/community-manager.jpg.jpeg",
-      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Payable en 4 tranches maximum</span>",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
       debouches:"Community Manager, Social Media Manager, Content Manager, Chef de projet digital",
       pdf:"assets/pdf/COMMUNITY MANAGEMENT.pdf",
       modules:["Stratégie des réseaux sociaux","Création de contenu","Facebook & Instagram Ads","YouTube & TikTok","Analytics & Reporting","E-réputation","Outils de planification","Marketing d'influence","SEO & SEA","Projet de marque"] },
     { name:"Marketing Digital", level:"BAC", price:"350 000 frs", icon:"📈", image:"assets/images/marketing-digital.jpg.jpeg",
-      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Payable en 4 tranches maximum</span>",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
       debouches:"Chef de projet digital, Digital Marketing Manager, Expert SEO, Traffic Manager",
       pdf:"assets/pdf/MARKETING DIGITAL.pdf",
       modules:["Fondamentaux du marketing","Google Ads & Meta Ads","SEO & Content Marketing","Email Marketing","Entonnoir de conversion","CRM & Automation","Analytics Web","E-commerce","Growth Hacking","Stratégie digitale"] },
     { name:"Développeur d'Application", level:"BAC", price:"350 000 frs", icon:"💻", image:"assets/images/developpeur-application.jpg.jpeg",
-      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Payable en 4 tranches maximum</span>",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
       debouches:"Développeur Front-end / Back-end / Full Stack, Développeur d'applications mobiles",
       pdf:"assets/pdf/DEVELOPPEUR D'APPLICATION.pdf",
       modules:["Algorithmique et programmation","Java / Python / C#","POO & Design Patterns","Bases de données","API & Web Services","Tests unitaires","Architecture logicielle","Frameworks modernes","Versioning Git","Projet applicatif"] },
     { name:"Webmaster", level:"BAC", price:"350 000 frs", icon:"🌐", image:"assets/images/WEBMASTER.jpg.jpeg",
-      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Payable en 4 tranches maximum</span>",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
       debouches:"Webmaster / Administrateur de site, Intégrateur web, Chef de projet web",
       pdf:"assets/pdf/WEBMASTER.pdf",
       modules:["Création de sites web","WordPress & CMS","HTML/CSS avancé","Optimisation SEO","Gestion hébergement","Sécurité web","Maintenance de sites","E-commerce (WooCommerce)","Analytics Google","Projet web professionnel"] },
     { name:"Montage Audio Visuel", level:"BEPC-CAP", price:"350 000 frs", icon:"🎬", image:"assets/images/montage-audiovisuel.jpg.jpeg",
-      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Payable en 4 tranches maximum</span>",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
       debouches:"Monteur/Monteuse vidéo, Chef(fe) monteur, Motion Designer, Monteur son",
       pdf:"assets/pdf/MONTAGE AUDIO VISUEL.pdf",
       modules:["Techniques de prise de vue","Montage vidéo (Premiere Pro)","After Effects & Motion Design","Prise de son & mixage","Color Grading","Streaming & YouTube","Production de podcasts","Réalisation documentaire","Drone & captation aérienne","Projet audiovisuel"] },
     { name:"Infographie 2D & 3D / Graphisme", level:"Terminale", price:"350 000 frs", icon:"🎨", image:"assets/images/INFOGRAPHIE.jpg.jpeg",
-      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Payable en 4 tranches maximum</span>",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
       debouches:"Infographe exécutant / Maquettiste, Designer graphique junior, Directeur artistique, UI/UX Designer",
       pdf:"assets/pdf/INFOGRAPHIE.pdf",
       modules:["Photoshop & Illustrator","InDesign & mise en page","Blender 3D","Motion Design","Design d'identité visuelle","UX/UI Design","Impression & pré-presse","Photographie professionnelle","Portfolio créatif","Projet de fin de formation"] }
@@ -2085,7 +2088,6 @@ function renderGrids() {
 }
 
 function specCard(s) {
-  // Check if an image exists, otherwise fall back to the emoji icon
   const imgHtml = s.image 
     ? `<img src="${s.image}" alt="${s.name}" style="width:100%;height:100%;object-fit:cover;z-index:1;position:relative;opacity:0.85;">`
     : `<span style="font-size:4rem;z-index:1;position:relative">${s.icon}</span>`;
@@ -2182,9 +2184,17 @@ function openModal(name) {
       <span class="spec-level">${found.level}</span>
       <span style="font-family:'Orbitron',monospace;color:var(--orange);font-size:1.1rem;font-weight:900">${found.price}</span>
     </div>
-    <div style="background:rgba(58,123,213,0.08);border:1px solid rgba(58,123,213,0.2);border-radius:10px;padding:0.8rem;margin-bottom:1rem;font-size:0.78rem;color:var(--gray)">
-      <strong style="color:var(--white)"><i class="fas fa-graduation-cap" style="color:var(--green)"></i> Déroulement :</strong> ${found.tranches}
+    
+    <!-- DURATION AND PAYMENT TERMS IN ONE BOX -->
+    <div style="background:rgba(58,123,213,0.08);border:1px solid rgba(58,123,213,0.2);border-radius:10px;padding:0.8rem;margin-bottom:1rem;font-size:0.78rem;color:var(--gray);line-height:1.6;">
+      <div style="margin-bottom: 4px;">
+        <strong style="color:var(--white)"><i class="fas fa-money-bill-wave" style="color:var(--orange)"></i> Modalités :</strong> Payable en 4 tranches maximum
+      </div>
+      <div>
+        <strong style="color:var(--white)"><i class="fas fa-graduation-cap" style="color:var(--green)"></i> Déroulement :</strong> ${found.tranches}
+      </div>
     </div>
+    
     <h4 style="font-family:'Orbitron',monospace;font-size:0.85rem;color:var(--green);margin-bottom:0.8rem">MODULES DE FORMATION</h4>
     <ul class="module-list">
   `;
