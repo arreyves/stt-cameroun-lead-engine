@@ -1,1 +1,19 @@
+# ====================================================================
+# GIT IGNORE CONFIGURATION FOR PYTHON & PYINSTALLER BUILD ARTIFACTS
+# ====================================================================
 
+#Ignore STT RepairManager for the shop
+STT_RepairManager_V2/
+
+# Ignore PyInstaller executable build directories
+dist/
+build/
+
+# Ignore PyInstaller configuration spec files
+*.spec
+
+# Ignore Python bytecode and virtual environment cache folders
+__pycache__/
+*.pyc
+.venv/
+venv/
