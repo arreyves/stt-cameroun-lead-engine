@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - System Reboot | Groupe STT</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: #0a0d14;
+      color: #00ffcc;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .terminal-card {
+      background: #111625;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 30px;
+      max-width: 550px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .terminal-header {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .red { background: #ff5f56; }
+    .yellow { background: #ffbd2e; }
+    .green { background: #27c93f; }
+    h1 { color: #ff4d4d; font-size: 1.5rem; margin-bottom: 15px; }
+    p { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; }
+    .log { color: #00ffcc; font-size: 0.85rem; margin-bottom: 25px; }
+    .btn {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      background: #00ffcc;
+      color: #0a0d14;
+      font-weight: bold;
+      padding: 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .btn:hover { background: #00cca3; transform: translateY(-2px); }
+  </style>
+  <script>
+    let seconds = 5;
+    setInterval(() => {
+      seconds--;
+      if (seconds >= 0) {
+        document.getElementById('timer').innerText = seconds;
+      }
+      if (seconds === 0) {
+        window.location.href = '/';
+      }
+    }, 1000);
+  </script>
+</head>
+<body>
+  <div class="terminal-card">
+    <div class="terminal-header">
+      <div class="dot red"></div>
+      <div class="dot yellow"></div>
+      <div class="dot green"></div>
+    </div>
+    <h1>[ERROR 404] NODE_NOT_FOUND</h1>
+    <p>The requested route does not exist on the Central Command Hub server.</p>
+    <div class="log">
+      &gt; Initializing diagnostic scan... Done.<br>
+      &gt; Target: stt-cameroun.com<br>
+      &gt; Executing auto-reroute in <span id="timer">5</span>s...
+    </div>
+    <a href="/" class="btn">RETURN TO CENTRAL COMMAND HUB</a>
+  </div>
+</body>
+</html>
