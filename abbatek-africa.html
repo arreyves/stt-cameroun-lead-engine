@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AbbaTek Africa | Nœud Opérationnel</title>
+    <style>
+        /* === DEEP-TECH THEME VARIABLES === */
+        :root {
+            --bg-base: #020617;      /* slate-950 */
+            --bg-surface: #0f172a;   /* slate-900 */
+            --border-color: #1e293b; /* slate-800 */
+            --text-main: #f8fafc;    /* slate-50 */
+            --text-muted: #94a3b8;   /* slate-400 */
+            --accent-glow: #f59e0b;  /* amber-500 */
+            --accent-hover: #d97706; /* amber-600 */
+            --terminal-bg: #000000;
+            --font-sans: system-ui, -apple-system, sans-serif;
+            --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+        /* === GLOBAL TEAM GRID === */
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        @media (min-width: 1024px) {
+            .team-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* === RESET & BASE STYLES === */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: var(--font-mono);
+            line-height: 1.6;
+            padding: 1.5rem;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        /* === HEADER & LOGOS === */
+        .header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
+            margin-bottom: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center; /* Changed to center for better balance with the image */
+            }
+        }
+        
+        /* === HEADER HERO IMAGE === */
+        .header-image-container {
+            width: 100%;
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+        @media (min-width: 768px) {
+            .header-image-container {
+                max-width: 45%; /* Prevents the image from taking over the text */
+                margin-top: 0;
+                justify-content: flex-end;
+            }
+        }
+        .header-hero-image {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            border-bottom: 2px solid var(--accent-glow); /* Adds a cool hardware glow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .header-hero-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.15); /* Amber glow on hover */
+        }
+        
+        .brand-cluster {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            background: var(--bg-surface);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            width: fit-content;
+        }
+        .brand-logo {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+        .logo-divider {
+            color: var(--text-muted);
+            font-weight: bold;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-glow);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+        }
+        .ping-dot {
+            position: relative;
+            width: 8px;
+            height: 8px;
+        }
+        .ping-dot::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--accent-glow);
+            border-radius: 50%;
+            animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+            opacity: 0.75;
+        }
+        .ping-dot::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--accent-glow);
+            border-radius: 50%;
+        }
+        @keyframes ping {
+            75%, 100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        .title {
+            font-family: var(--font-sans);
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            max-width: 600px;
+        }
+/* === INTERACTIVE HARDWARE HOTSPOTS === */
+        .interactive-image-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .hotspot {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: var(--accent-glow);
+            border-radius: 50%;
+            cursor: help;
+            z-index: 10;
+            box-shadow: 0 0 0 rgba(245, 158, 11, 0.4);
+            animation: pulse-hotspot 2s infinite;
+        }
+        
+        .hotspot::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 2px solid var(--accent-glow);
+            border-radius: 50%;
+            opacity: 0;
+            animation: ripple-hotspot 2s infinite;
+        }
+
+        @keyframes pulse-hotspot {
+            0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+        }
+        
+        @keyframes ripple-hotspot {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        /* The Tooltip Window */
+        .hotspot-tooltip {
+            position: absolute;
+            bottom: 150%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            width: 220px;
+            background-color: rgba(2, 6, 23, 0.95); /* Extremely dark slate */
+            border: 1px solid var(--border-color);
+            border-left: 3px solid var(--accent-glow);
+            padding: 1rem;
+            border-radius: 4px;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+            z-index: 20;
+            backdrop-filter: blur(4px);
+        }
+        
+        /* The Tooltip Arrow */
+        .hotspot-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: var(--border-color) transparent transparent transparent;
+        }
+
+        .hotspot:hover .hotspot-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .tooltip-title {
+            color: var(--text-main);
+            font-weight: 700;
+            font-family: var(--font-sans);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+        
+        /* === SPLIT SCREEN TERMINAL === */
+        .split-terminal {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        @media (min-width: 1024px) {
+            .split-terminal {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .terminal-window {
+            background-color: var(--terminal-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1.5rem;
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+        .terminal-header {
+            border-bottom: 1px dashed var(--border-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .terminal-icon {
+            width: 16px;
+            height: 16px;
+            stroke: var(--accent-glow);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* Product Content Styles */
+        .product-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .product-item {
+            border-left: 2px solid var(--border-color);
+            padding-left: 1rem;
+            transition: border-color 0.3s;
+        }
+        .product-item:hover {
+            border-color: var(--accent-glow);
+        }
+        .product-title {
+            color: var(--text-main);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .product-desc {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* AcoustiPure Data Grid Styles */
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        .data-cell {
+            background: var(--bg-surface);
+            padding: 1rem;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+        .data-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+        .data-value {
+            font-size: 1.5rem;
+            color: var(--accent-glow);
+            font-weight: bold;
+        }
+        .data-unit {
+            font-size: 0.75rem;
+            color: var(--text-main);
+            margin-left: 2px;
+        }
+
+        /* Blinking Cursor Animation */
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1em;
+            background-color: var(--accent-glow);
+            vertical-align: middle;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        /* === TRL ROADMAP & ARCHITECTURE === */
+        .system-architecture {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px dashed var(--border-color);
+        }
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        @media (min-width: 768px) {
+            .architecture-grid {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+        
+        /* TRL Timeline Steps */
+        .trl-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            border-left: 2px solid var(--border-color);
+            padding-left: 1.5rem;
+            margin-top: 1rem;
+        }
+        .trl-step {
+            position: relative;
+        }
+        .trl-step::before {
+            content: '';
+            position: absolute;
+            left: -1.85rem; /* Aligns with the border */
+            top: 0.25rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+            border: 2px solid var(--bg-base);
+        }
+        .trl-step.active::before {
+            background-color: var(--accent-glow);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+        .trl-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 0.1rem 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 0.25rem;
+            background: var(--bg-surface);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+        }
+        .trl-step.active .trl-badge {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--accent-glow);
+            border-color: var(--accent-glow);
+        }
+        .trl-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* Pipeline Flow */
+        .pipeline-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .pipeline-node {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 6px;
+            position: relative;
+        }
+        .pipeline-node::after {
+            content: '↓';
+            position: absolute;
+            bottom: -1.2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--accent-glow);
+            font-weight: bold;
+        }
+        .pipeline-node:last-child::after {
+            display: none;
+        }
+        .node-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        .node-title {
+            font-weight: 700;
+            color: var(--accent-glow);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .node-tech {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            background: var(--bg-base);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+        /* === CTO SPOTLIGHT === */
+        .leadership-section {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px dashed var(--border-color);
+        }
+        .cto-card {
+            background-color: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-glow);
+            border-radius: 6px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        @media (min-width: 768px) {
+            .cto-card {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+        }
+        .cto-image-wrapper {
+            flex-shrink: 0;
+            width: 100px;
+            height: 100px;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cto-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.2);
+            transition: filter 0.3s ease;
+        }
+        .cto-card:hover .cto-image-wrapper img {
+            filter: grayscale(0%) contrast(1);
+        }
+        .cto-info {
+            flex-grow: 1;
+        }
+        .cto-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            margin-bottom: 0.25rem;
+        }
+        .cto-title {
+            font-size: 0.75rem;
+            color: var(--accent-glow);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .cto-bio {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        /* === TOP NAVIGATION === */
+        .top-nav {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 50;
+        }
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-glow);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid var(--border-color);
+            background: var(--bg-surface);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            border-color: var(--accent-glow);
+            background: rgba(245, 158, 11, 0.1);
+        }
+    </style>
+</head>
+<body>
+<!-- TOP RIGHT NAVIGATION -->
+    <div class="top-nav">
+        <a href="https://abbatekgroup.com" class="nav-link">
+            <svg style="width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2;" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            AbbaTek Group
+        </a>
+    </div>
+    <div class="container">
+        <!-- HEADER & BRANDING -->
+        <header class="header">
+            <div style="flex: 1;">
+                <div class="brand-cluster">
+                    <img src="/assets/Logo.jpeg" alt="STT Cameroun" class="brand-logo" onerror="this.style.display='none'">
+                    <span class="logo-divider">||</span>
+                    <img src="/assets/abbaTek_logo_small.png" alt="AbbaTek" class="brand-logo" onerror="this.style.display='none'">
+                </div>
+
+                <div class="status-badge">
+                    <div class="ping-dot"></div>
+                    Réseau Actif // Hub d'Ingénierie
+                </div>
+                <h1 class="title">Nœud Opérationnel: STT-Cameroun</h1>
+                <p class="subtitle">
+                    Connecter l'ingénierie camerounaise au capital-risque international. En partenariat avec AbbaTek, l'Institut STT déploie une infrastructure Deep-Tech pour valider les systèmes optofluidiques environnementaux sur le terrain.
+                </p>
+            </div>
+            
+            <div class="header-image-container">
+                <div class="interactive-image-wrapper">
+                    <img src="/assets/AcoustiPure-MPDetect2.png" alt="AcoustiPure and MPDetect Field Deployment" class="header-hero-image">
+                    
+                    <div class="hotspot" style="top: 50%; left: 36%;">
+                        <div class="hotspot-tooltip">
+                            <span class="tooltip-title">Isolation Acoustique</span>
+                            Séparation optofluidique en temps réel. Les ondes sonores isolent les micro-polluants sans nécessiter de filtres physiques à forte maintenance.
+                        </div>
+                    </div>
+
+                    <div class="hotspot" style="top: 53%; left: 69%;">
+                        <div class="hotspot-tooltip">
+                            <span class="tooltip-title">Matrice MPDetect</span>
+                            Réseau de capteurs quantiques analysant la composition des polymères (PET, PE, PP) avec une précision immédiate au niveau des flux.
+                        </div>
+                    </div>
+
+                    <div class="hotspot" style="top: 53%; left: 88%;">
+                        <div class="hotspot-tooltip">
+                            <span class="tooltip-title">Edge AI Télémétrie</span>
+                            Synchronisation directe. Les données sont traitées localement et envoyées vers notre Command Center cloud pour un audit sécurisé.
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- SPLIT SCREEN TERMINAL -->
+        <section class="split-terminal">
+            
+            <!-- Terminal 1: Product Specs -->
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <svg class="terminal-icon"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>
+                    Spécifications Techniques
+                </div>
+                <ul class="product-list">
+                    <li class="product-item">
+                        <div class="product-title">Système AcoustiPure</div>
+                        <div class="product-desc">Filtration par ondes sonores et séparation optofluidique. Élimination des micro-polluants sans filtres physiques, réduisant la maintenance de 80%.</div>
+                    </li>
+                    <li class="product-item">
+                        <div class="product-title">Module Sense-Tech (Edge AI)</div>
+                        <div class="product-desc">Réseau de capteurs en périphérie traitant les données de qualité de l'eau localement, assurant une transmission chiffrée à faible latence vers le cloud.</div>
+                    </li>
+                    <li class="product-item">
+                        <div class="product-title">Hydro-Node V2</div>
+                        <div class="product-desc">Unité de pompage alimentée par énergie solaire, optimisée pour le bassin de drainage du Wouri, avec télémétrie intégrée.</div>
+                    </li>
+                </ul>
+                <div style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--accent-glow);">
+                    > EN ATTENTE D'INSTRUCTIONS<span class="cursor"></span>
+                </div>
+            </div>
+
+            <!-- Terminal 2: AcoustiPure Data Grid -->
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <svg class="terminal-icon"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                    AcoustiPure: Télémétrie en Direct
+                </div>
+                
+                <div class="data-grid">
+                    <div class="data-cell">
+                        <div class="data-label">Fréquence Acoustique</div>
+                        <div class="data-value">42.5<span class="data-unit">kHz</span></div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="data-label">Débit Optofluidique</div>
+                        <div class="data-value">1,240<span class="data-unit">L/h</span></div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="data-label">Efficacité de Séparation</div>
+                        <div class="data-value">98.7<span class="data-unit">%</span></div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="data-label">Niveau TRL</div>
+                        <div class="data-value" style="color: #10b981;">TRL 4</div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="data-label">Pression Interne</div>
+                        <div class="data-value">2.4<span class="data-unit">bar</span></div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="data-label">État du Système</div>
+                        <div class="data-value" style="color: #10b981; font-size: 1rem; line-height: 2.25rem;">NOMINAL</div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+    <!-- TRL & ARCHITECTURE SECTION -->
+        <section class="system-architecture" style="margin-top: 0; padding-top: 2rem; border-top: none; max-width: 1200px; margin-left: auto; margin-right: auto; padding-left: 1.5rem; padding-right: 1.5rem;">
+            <h2 class="section-title" style="font-family: var(--font-sans); font-size: 2rem; font-weight: 700; margin-bottom: 2rem;">
+                <svg class="icon" style="stroke: var(--text-muted); width: 28px; height: 28px; vertical-align: middle; margin-right: 0.5rem;" viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                Matrice de Déploiement & Architecture Cloud
+            </h2>
+
+            <div class="architecture-grid">
+                
+                <!-- Left Column: TRL Progression -->
+                <div>
+                    <h3 style="font-size: 1rem; margin-bottom: 1rem; font-family: var(--font-sans);">Échelle TRL AbbaTek</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Validation technologique de la séparation optofluidique.</p>
+                    
+                    <div class="trl-timeline">
+                        <div class="trl-step active">
+                            <span class="trl-badge">TRL 4 (Actuel)</span>
+                            <div class="trl-title">Validation en Laboratoire</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">Preuve de concept technologique validée en environnement contrôlé. Les paramètres acoustiques de base sont établis.</div>
+                        </div>
+                        <div class="trl-step">
+                            <span class="trl-badge">TRL 6/7 (Objectif Pilote)</span>
+                            <div class="trl-title">Déploiement Opérationnel</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">Intégration en conditions réelles, déploiement de la télémétrie Edge AI et tests d'endurance continus.</div>
+                        </div>
+                        <div class="trl-step">
+                            <span class="trl-badge">TRL 9</span>
+                            <div class="trl-title">Commercialisation Globale</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">Prêt pour l'adoption institutionnelle et le déploiement à l'échelle municipale.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Edge to Cloud Pipeline -->
+                <div>
+                    <h3 style="font-size: 1rem; margin-bottom: 1rem; font-family: var(--font-sans);">Pipeline de Télémétrie Cyber-Physique</h3>
+                    
+                    <div class="pipeline-flow">
+                        <div class="pipeline-node">
+                            <div class="node-header">
+                                <span class="node-title">1. Capture Périphérique (Edge)</span>
+                                <span class="node-tech">IoT / Sense-Tech</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: var(--text-muted);">Les futurs capteurs intégrés au système AcoustiPure collecteront les données de qualité de l'eau. Le traitement primaire sera effectué localement.</p>
+                        </div>
+
+                        <div class="pipeline-node">
+                            <div class="node-header">
+                                <span class="node-title">2. Synchronisation Régionale</span>
+                                <span class="node-tech">STT-Cameroun Node</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: var(--text-muted);">Les données seront chiffrées et acheminées via l'infrastructure de Yaoundé sous la supervision de notre direction technique.</p>
+                        </div>
+
+                        <div class="pipeline-node" style="border-color: var(--accent-glow);">
+                            <div class="node-header">
+                                <span class="node-title">3. Portail Command Center</span>
+                                <span class="node-tech">Next.js / Vercel Cloud</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: var(--text-muted);">Visualisation globale accessible aux partenaires institutionnels et investisseurs via un portail d'audit cloud sécurisé.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <hr style="border: 0; height: 1px; background: var(--border-color); margin: 3rem auto; max-width: 1200px;">
+<!-- GLOBAL LEADERSHIP SECTION -->
+        <section class="leadership-section">
+            <h2 class="section-title">
+                <svg class="icon" style="stroke: var(--text-muted);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                Équipe Fondatrice & Déploiement Global
+            </h2>
+            
+            <div class="team-grid">
+                <!-- Ivo: Cameroon Node -->
+                <div class="cto-card" style="margin-top: 0;">
+                    <div class="cto-image-wrapper">
+                        <img src="/assets/Ivo-brussels.jpg" alt="Ivo" onerror="this.style.display='none'">
+                    </div>
+                    <div class="cto-info">
+                        <div class="cto-name">Ivo Arrey</div>
+                        <div class="cto-title">Fondateur & CTO <br><span style="color: var(--text-muted); font-size: 0.65rem;">📍 Yaoundé, Cameroun</span></div>
+                        <p class="cto-bio" style="font-size: 0.75rem;">Dirige le développement du système AcoustiPure et l'intégration de la télémétrie Edge AI directement depuis le campus STT-Cameroun.</p>
+                    </div>
+                </div>
+
+                <!-- Jackie: Canada Node -->
+                <div class="cto-card" style="margin-top: 0;">
+                    <div class="cto-image-wrapper">
+                        <img src="/assets/JackieHeadShot.jpg" alt="Jackie" onerror="this.style.display='none'">
+                    </div>
+                    <div class="cto-info">
+                        <div class="cto-name">Jackie Bauman</div>
+                        <div class="cto-title">Co-Fondatrice & CEO <br><span style="color: var(--text-muted); font-size: 0.65rem;">📍 Canada</span></div>
+                        <p class="cto-bio" style="font-size: 0.75rem;">Pilote la stratégie de croissance nord-américaine et l'alignement des technologies environnementales avec les standards internationaux.</p>
+                    </div>
+                </div>
+
+                <!-- Abdul: Canada Node -->
+                <div class="cto-card" style="margin-top: 0;">
+                    <div class="cto-image-wrapper">
+                        <img src="/assets/Abdul.jpeg" alt="Abdul" onerror="this.style.display='none'">
+                    </div>
+                    <div class="cto-info">
+                        <div class="cto-name">Abdul-Latif Alhassan</div>
+                        <div class="cto-title">Co-Fondateur & CFO <br><span style="color: var(--text-muted); font-size: 0.65rem;">📍 Canada</span></div>
+                        <p class="cto-bio" style="font-size: 0.75rem;">Supervise l'architecture opérationnelle globale et les partenariats stratégiques pour l'expansion du réseau AbbaTek.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ACCELERATION & PORTFOLIO -->
+        <section class="leadership-section" style="border-top: none; padding-top: 0;">
+            <h2 class="section-title">
+                <svg class="icon" style="stroke: var(--text-muted);"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                Validation & Écosystème d'Innovation
+            </h2>
+            
+            <div style="background: var(--bg-surface); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 6px; margin-top: 2rem;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h3 style="color: var(--text-main); font-size: 1.1rem; font-family: var(--font-sans);">Aqua Entrepreneur Québec</h3>
+                        <p style="color: var(--accent-glow); font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em;">Propulsé par Aqua Action</p>
+                    </div>
+                    <!-- Optional: You can put the Aqua Action logo here if you have it isolated -->
+                </div>
+                
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem;">
+                    AbbaTek est fier de participer à l'initiative Aqua Entrepreneur Québec. Cet écosystème d'accélération propulsé par Aqua Action valide notre technologie de séparation optofluidique et nous connecte aux principaux acteurs du secteur de l'eau en Amérique du Nord.
+                </p>
+
+                <!-- Event Photo Grid -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <!-- Update these with the actual file names of the event photos you uploaded -->
+                    <img src="/assets/aqua-event-1.jpg" alt="Aqua Action Event" style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border-color); filter: grayscale(100%) contrast(1.1); transition: filter 0.3s ease;" onmouseover="this.style.filter='none'" onmouseout="this.style.filter='grayscale(100%) contrast(1.1)'">
+                    
+                    <img src="/assets/aqua-event-2.png" alt="Aqua Action Networking" style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border-color); filter: grayscale(100%) contrast(1.1); transition: filter 0.3s ease;" onmouseover="this.style.filter='none'" onmouseout="this.style.filter='grayscale(100%) contrast(1.1)'">
+                    
+                    <div style="background: var(--bg-base); border: 1px solid var(--border-color); border-radius: 4px; display: flex; align-items: center; justify-content: center; height: 150px; padding: 1rem; text-align: center;">
+                        <span style="color: var(--text-muted); font-size: 0.75rem; font-weight: bold; text-transform: uppercase;">[ Télémétrie d'Événement Enregistrée ]</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <!-- CLOUDFLARE WEB ANALYTICS SNIPPET -->
+    <!-- Paste your unique Cloudflare JS snippet below this line, right before the closing body tag -->
+    <!-- Cloudflare Web Analytics -->
+     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "984754792fec46f3a64e897df894ede2"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html> 

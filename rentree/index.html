@@ -1,0 +1,2763 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STT-Cameroun | Institut de Formation Professionnelle et d'Ingénierie</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Orbitron:wght@700;900&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root {
+  --blue: #0a2d6e;
+  --blue-mid: #1a4fb5;
+  --blue-light: #3a7bd5;
+  --green: #1db954;
+  --green-dark: #0f8c3a;
+  --orange: #f97316;
+  --orange-dark: #d95e00;
+  --white: #ffffff;
+  --gray-light: #f0f4ff;
+  --gray: #8899bb;
+  --dark: #060d1f;
+  --glass: rgba(255,255,255,0.07);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior:smooth; }
+
+body {
+  font-family: 'Raleway', sans-serif;
+  background: var(--dark);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: var(--blue-light); border-radius:3px; }
+
+/* ===== ANIMATED BG ===== */
+.bg-anim {
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background: radial-gradient(ellipse at 20% 50%, rgba(26,79,181,0.15) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba(29,185,84,0.08) 0%, transparent 50%),
+              radial-gradient(ellipse at 60% 80%, rgba(249,115,22,0.08) 0%, transparent 50%),
+              var(--dark);
+}
+.bg-anim::before {
+  content:'';
+  position:absolute; inset:0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridMove 20s linear infinite;
+}
+@keyframes gridMove { 0%{transform:translate(0,0)} 100%{transform:translate(40px,40px)} }
+
+/* ===== NAVBAR ===== */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:1000;
+  background: rgba(6,13,31,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(58,123,213,0.3);
+  padding: 0 2rem;
+  transition: all 0.3s;
+}
+.nav-inner {
+  max-width:1400px; margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between;
+  height:70px;
+}
+.logo-area {
+  display:flex; align-items:center; gap:12px; text-decoration:none;
+}
+.logo-svg {
+  width:50px; height:50px; flex-shrink:0;
+}
+.logo-text { line-height:1.1; }
+.logo-text .school-name {
+  font-family:'Orbitron',monospace; font-size:1.2rem; font-weight:900;
+  background: linear-gradient(135deg, var(--blue-light), var(--green));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+.logo-text .school-sub {
+  font-size:0.55rem; color:var(--gray); letter-spacing:1px; text-transform:uppercase;
+}
+
+.nav-menu { display:flex; align-items:center; gap:0.2rem; list-style:none; }
+
+.nav-item { position:relative; }
+
+.nav-link {
+  display:flex; align-items:center; gap:6px; padding:8px 14px;
+  color: var(--gray); text-decoration:none; font-size:0.82rem; font-weight:600;
+  text-transform:uppercase; letter-spacing:0.5px;
+  border-radius:8px; transition:all 0.3s; white-space:nowrap;
+}
+.nav-link:hover { color:var(--white); background:var(--glass); }
+.nav-link .chevron { font-size:0.6rem; transition:transform 0.3s; }
+.nav-item:hover .chevron { transform:rotate(180deg); }
+
+.dropdown {
+  position:absolute; top:100%; left:0; min-width:260px;
+  background: rgba(6,13,31,0.98);
+  border: 1px solid rgba(58,123,213,0.3);
+  border-radius:12px; padding:8px;
+  opacity:0; visibility:hidden; transform:translateY(-10px);
+  transition:all 0.3s; z-index:100;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.nav-item:hover .dropdown { opacity:1; visibility:visible; transform:translateY(0); }
+.dropdown a {
+  display:flex; align-items:center; gap:10px; padding:10px 14px;
+  color:var(--gray); text-decoration:none; font-size:0.8rem;
+  border-radius:8px; transition:all 0.2s;
+}
+.dropdown a:hover { color:var(--white); background:var(--glass); padding-left:20px; }
+.dropdown a .dot {
+  width:6px; height:6px; border-radius:50%; background:var(--blue-light); flex-shrink:0;
+}
+
+.nav-cta {
+  background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+  color:var(--white) !important; padding:10px 20px !important;
+  border-radius:25px !important; font-weight:700 !important;
+  box-shadow: 0 4px 20px rgba(249,115,22,0.4);
+  animation: ctaPulse 2s ease-in-out infinite;
+}
+@keyframes ctaPulse {
+  0%,100%{box-shadow:0 4px 20px rgba(249,115,22,0.4)}
+  50%{box-shadow:0 4px 35px rgba(249,115,22,0.7)}
+}
+.nav-cta:hover { transform:scale(1.05) !important; }
+
+/* VISITOR COUNTER in nav */
+.visitor-badge {
+  display:flex; align-items:center; gap:6px;
+  background: rgba(29,185,84,0.1); border:1px solid rgba(29,185,84,0.3);
+  border-radius:20px; padding:5px 12px; font-size:0.72rem; color:var(--green);
+}
+.visitor-dot { width:6px; height:6px; background:var(--green); border-radius:50%; animation:blink 1s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+/* ===== HERO ===== */
+#hero {
+  position:relative; z-index:1;
+  min-height:100vh; display:flex; align-items:center;
+  padding: 90px 2rem 2rem;
+  overflow:hidden;
+}
+.hero-particles { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+.particle {
+  position:absolute; border-radius:50%;
+  animation: floatUp linear infinite;
+}
+@keyframes floatUp {
+  0%{transform:translateY(100vh) scale(0); opacity:0}
+  10%{opacity:1}
+  90%{opacity:0.5}
+  100%{transform:translateY(-100px) scale(1); opacity:0}
+}
+
+.hero-inner {
+  max-width:1400px; margin:0 auto; width:100%;
+  display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:stretch;
+}
+.hero-badge {
+  display:inline-flex; align-items:center; gap:8px;
+  background: rgba(29,185,84,0.15); border:1px solid var(--green);
+  border-radius:20px; padding:6px 16px; font-size:0.75rem; color:var(--green);
+  font-weight:700; text-transform:uppercase; letter-spacing:2px;
+  margin-bottom:1.5rem; animation:slideInLeft 0.8s ease both;
+}
+/* ===== RENTRÉE ANIMATION (Va-et-Vient) ===== */
+@keyframes vaEtVient {
+  0%, 100% { 
+    transform: translateX(0) scale(1); 
+    box-shadow: 0 0 15px rgba(249,115,22,0.4); 
+    border-color: rgba(249,115,22,0.5);
+  }
+  50% { 
+    transform: translateX(20px) scale(1.05); 
+    box-shadow: 0 0 30px rgba(249,115,22,0.9); 
+    border-color: var(--orange);
+  }
+}
+
+.rentree-banner {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(6,13,31,0.8));
+  border: 2px solid var(--orange);
+  padding: 15px 30px;
+  border-radius: 16px;
+  font-family: 'Orbitron', monospace;
+  margin-bottom: 2rem;
+  animation: vaEtVient 2.5s ease-in-out infinite;
+  backdrop-filter: blur(10px);
+}
+
+.rentree-banner .highlight {
+  color: var(--orange);
+  font-weight: 900;
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  text-shadow: 0 0 15px rgba(249,115,22,0.6);
+  letter-spacing: 1px;
+}
+.hero-title {
+  font-family:'Orbitron',monospace; font-size:clamp(1.8rem, 3.5vw, 2.6rem); font-weight:900;
+  line-height:1.2; margin-bottom:1rem;
+  animation:slideInLeft 0.8s 0.2s ease both;
+}
+.hero-title .hl-blue { color:var(--blue-light); }
+.hero-title .hl-green { color:var(--green); }
+.hero-title .hl-orange { color:var(--orange); }
+
+.hero-sub {
+  font-size:1rem; color:var(--gray); line-height:1.7; margin-bottom:2rem;
+  max-width:520px; animation:slideInLeft 0.8s 0.4s ease both;
+}
+.hero-btns {
+  display:flex; gap:1rem; flex-wrap:wrap;
+  animation:slideInLeft 0.8s 0.6s ease both;
+}
+.btn {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:14px 28px; border-radius:50px; font-weight:700;
+  font-size:0.9rem; cursor:pointer; text-decoration:none;
+  transition:all 0.3s; border:none; font-family:'Raleway',sans-serif;
+  position:relative; overflow:hidden;
+}
+.btn::before {
+  content:''; position:absolute; inset:0;
+  background:rgba(255,255,255,0.1);
+  transform:translateX(-100%); transition:transform 0.4s;
+}
+.btn:hover::before { transform:translateX(0); }
+.btn-primary {
+  background:linear-gradient(135deg, var(--blue-light), var(--blue));
+  color:var(--white); box-shadow:0 8px 30px rgba(58,123,213,0.4);
+}
+.btn-primary:hover { transform:translateY(-3px); box-shadow:0 12px 40px rgba(58,123,213,0.6); }
+.btn-orange {
+  background:linear-gradient(135deg, var(--orange), var(--orange-dark));
+  color:var(--white); box-shadow:0 8px 30px rgba(249,115,22,0.4);
+  animation:btnPop 0.5s 1s ease both;
+}
+.btn-orange:hover { transform:translateY(-3px); box-shadow:0 12px 40px rgba(249,115,22,0.6); }
+.btn-outline {
+  background:transparent; color:var(--white);
+  border:2px solid rgba(255,255,255,0.3);
+}
+.btn-outline:hover { border-color:var(--green); color:var(--green); transform:translateY(-3px); }
+
+@keyframes slideInLeft { from{transform:translateX(-40px);opacity:0} to{transform:translateX(0);opacity:1} }
+@keyframes btnPop { from{transform:scale(0.8);opacity:0} to{transform:scale(1);opacity:1} }
+
+/* Hero right - AI showcase */
+.hero-right { animation:slideInRight 0.8s 0.3s ease both; height: 100%; }
+@keyframes slideInRight { from{transform:translateX(40px);opacity:0} to{transform:translateX(0);opacity:1} }
+
+.ai-showcase {
+  position:relative; border-radius:24px; overflow:hidden;
+  border:1px solid rgba(58,123,213,0.3);
+  background: linear-gradient(135deg, rgba(26,79,181,0.2), rgba(29,185,84,0.1));
+  padding:2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.ai-showcase::before {
+  content:''; position:absolute; inset:-1px;
+  background:linear-gradient(135deg,var(--blue-light),var(--green),var(--orange));
+  border-radius:24px; z-index:-1; opacity:0.5;
+  animation:borderGlow 3s linear infinite;
+}
+@keyframes borderGlow { 0%{opacity:0.3} 50%{opacity:0.7} 100%{opacity:0.3} }
+
+.ai-icon {
+  font-size:3rem; margin-bottom:1rem;
+  background:linear-gradient(135deg,var(--blue-light),var(--green));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+.ai-showcase h3 {
+  font-family:'Orbitron',monospace; font-size:1.3rem; color:var(--green);
+  margin-bottom:0.5rem;
+}
+.ai-showcase p { color:var(--gray); font-size:0.85rem; margin-bottom:1.5rem; }
+
+.ai-modules { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.ai-mod {
+  background:var(--glass); border:1px solid rgba(58,123,213,0.2);
+  border-radius:10px; padding:10px; font-size:0.75rem; color:var(--white);
+  display:flex; align-items:center; gap:8px;
+  transition:all 0.3s; cursor:pointer;
+}
+.ai-mod:hover { background:rgba(29,185,84,0.1); border-color:var(--green); transform:scale(1.02); }
+.ai-mod i { color:var(--green); font-size:1rem; }
+
+.hero-stats {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;
+  margin-top:2rem;
+}
+.stat-card {
+  background:var(--glass); border:1px solid rgba(58,123,213,0.2);
+  border-radius:12px; padding:1rem; text-align:center;
+  transition:all 0.3s;
+}
+.stat-card:hover { border-color:var(--orange); transform:translateY(-3px); }
+.stat-num {
+  font-family:'Orbitron',monospace; font-size:1.4rem; font-weight:900;
+  color:var(--orange);
+}
+.stat-lbl { font-size:0.7rem; color:var(--gray); text-transform:uppercase; letter-spacing:1px; }
+/* ===== VACANCES ANIMATION (Bleu) ===== */
+@keyframes vaEtVientRight {
+  0%, 100% { 
+    transform: translateX(0) scale(1); 
+    box-shadow: 0 0 15px rgba(58,123,213,0.4); 
+    border-color: rgba(58,123,213,0.5);
+  }
+  50% { 
+    transform: translateX(-15px) scale(1.05); /* Moves left for symmetry */
+    box-shadow: 0 0 30px rgba(58,123,213,0.9); 
+    border-color: var(--blue-light);
+  }
+}
+
+.vacances-banner {
+  display: block;
+  background: linear-gradient(135deg, rgba(58,123,213,0.15), rgba(6,13,31,0.8));
+  border: 2px solid var(--blue-light);
+  padding: 15px 20px;
+  border-radius: 16px;
+  font-family: 'Orbitron', monospace;
+  margin-bottom: 1.5rem;
+  animation: vaEtVientRight 2.5s ease-in-out infinite;
+  backdrop-filter: blur(10px);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.vacances-banner:hover {
+  background: linear-gradient(135deg, rgba(58,123,213,0.3), rgba(6,13,31,0.9));
+}
+
+.vacances-banner .highlight-blue {
+  color: var(--blue-light);
+  font-weight: 900;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  text-shadow: 0 0 15px rgba(58,123,213,0.6);
+  letter-spacing: 1px;
+  margin: 8px 0;
+}
+/* ===== VISITOR COUNTER SECTION ===== */
+#visitors {
+  position:relative; z-index:1;
+  background: linear-gradient(135deg, rgba(26,79,181,0.2), rgba(6,13,31,0.8));
+  border-top:1px solid rgba(58,123,213,0.2);
+  border-bottom:1px solid rgba(58,123,213,0.2);
+  padding:2rem;
+}
+.visitors-inner {
+  max-width:1400px; margin:0 auto;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.5rem;
+  align-items:center;
+}
+.visit-stat {
+  display:flex; align-items:center; gap:1rem;
+  padding:1rem; border-radius:16px;
+  background:var(--glass); border:1px solid rgba(58,123,213,0.2);
+  transition:all 0.3s;
+}
+.visit-stat:hover { border-color:var(--blue-light); transform:translateY(-2px); }
+.visit-icon {
+  width:50px; height:50px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.3rem; flex-shrink:0;
+}
+.vi-day { background:rgba(249,115,22,0.2); color:var(--orange); }
+.vi-month { background:rgba(29,185,84,0.2); color:var(--green); }
+.vi-year { background:rgba(58,123,213,0.2); color:var(--blue-light); }
+.vi-online { background:rgba(29,185,84,0.2); color:var(--green); }
+.visit-info { flex:1; }
+.visit-num {
+  font-family:'Orbitron',monospace; font-size:1.5rem; font-weight:900;
+}
+.visit-lbl { font-size:0.72rem; color:var(--gray); text-transform:uppercase; letter-spacing:1px; }
+
+/* ===== SECTIONS ===== */
+section { position:relative; z-index:1; padding:5rem 2rem; }
+.section-inner { max-width:1400px; margin:0 auto; }
+.section-tag {
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(249,115,22,0.1); border:1px solid var(--orange);
+  border-radius:20px; padding:5px 14px; font-size:0.72rem; color:var(--orange);
+  font-weight:700; text-transform:uppercase; letter-spacing:2px; margin-bottom:1rem;
+}
+.section-title {
+  font-family:'Orbitron',monospace; font-size:clamp(1.6rem,3vw,2.5rem); font-weight:900;
+  margin-bottom:0.5rem; line-height:1.2;
+}
+.section-title .blue { color:var(--blue-light); }
+.section-title .green { color:var(--green); }
+.section-title .orange { color:var(--orange); }
+.section-sub { color:var(--gray); max-width:600px; margin-bottom:3rem; line-height:1.7; }
+
+/* ===== SECTOR TABS ===== */
+.sector-tabs {
+  display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:2.5rem;
+}
+.sector-tab {
+  padding:10px 20px; border-radius:25px; font-size:0.82rem; font-weight:700;
+  cursor:pointer; transition:all 0.3s; border:1px solid rgba(58,123,213,0.3);
+  background:var(--glass); color:var(--gray);
+  display:flex; align-items:center; gap:8px;
+}
+.sector-tab.active, .sector-tab:hover {
+  background:linear-gradient(135deg,var(--blue-light),var(--blue));
+  color:var(--white); border-color:transparent;
+  box-shadow:0 4px 20px rgba(58,123,213,0.4);
+}
+.sector-tab.active-green {
+  background:linear-gradient(135deg,var(--green),var(--green-dark));
+  box-shadow:0 4px 20px rgba(29,185,84,0.4);
+}
+.sector-tab.active-orange {
+  background:linear-gradient(135deg,var(--orange),var(--orange-dark));
+  box-shadow:0 4px 20px rgba(249,115,22,0.4);
+}
+
+/* ===== SPECIALTY CARDS ===== */
+.specs-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:1.5rem;
+}
+.spec-card {
+  background: linear-gradient(135deg, rgba(10,45,110,0.4), rgba(6,13,31,0.8));
+  border:1px solid rgba(58,123,213,0.2); border-radius:20px; overflow:hidden;
+  transition:all 0.4s; cursor:pointer; position:relative;
+}
+.spec-card:hover { transform:translateY(-8px); border-color:var(--blue-light); box-shadow:0 20px 60px rgba(26,79,181,0.3); }
+.spec-card.featured { border-color:var(--green); }
+.spec-card.featured::before {
+  content:'⭐ À LA UNE'; position:absolute; top:10px; right:10px;
+  background:var(--green); color:var(--dark); font-size:0.65rem; font-weight:900;
+  padding:3px 10px; border-radius:10px; letter-spacing:1px; z-index:2;
+}
+
+.spec-img {
+  width:100%; height:160px; object-fit:cover;
+  background:linear-gradient(135deg,var(--blue),var(--dark));
+  display:flex; align-items:center; justify-content:center;
+  font-size:3.5rem; transition:transform 0.4s;
+  position:relative; overflow:hidden;
+}
+.spec-card:hover .spec-img { transform:scale(1.05); }
+.spec-img-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to bottom,transparent 50%,rgba(6,13,31,0.8));
+}
+
+.spec-body { padding:1.2rem; }
+.spec-name {
+  font-weight:800; font-size:0.9rem; margin-bottom:0.4rem;
+  color:var(--white); font-family:'Montserrat',sans-serif;
+}
+.spec-level {
+  display:inline-block; padding:2px 10px; border-radius:10px;
+  background:rgba(58,123,213,0.2); color:var(--blue-light);
+  font-size:0.7rem; font-weight:700; margin-bottom:0.8rem;
+}
+.spec-price {
+  font-family:'Orbitron',monospace; font-size:1.1rem; font-weight:900;
+  color:var(--orange); margin-bottom:0.8rem;
+}
+.spec-tranches { font-size:0.72rem; color:var(--gray); line-height:1.6; }
+.spec-btn {
+  width:100%; margin-top:1rem; padding:10px; border-radius:12px;
+  background:linear-gradient(135deg,var(--blue-light),var(--blue));
+  color:var(--white); font-weight:700; font-size:0.8rem; border:none;
+  cursor:pointer; transition:all 0.3s; font-family:'Raleway',sans-serif;
+}
+.spec-btn:hover { background:linear-gradient(135deg,var(--green),var(--green-dark)); }
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  position:fixed; inset:0; z-index:2000;
+  background:rgba(0,0,0,0.85); backdrop-filter:blur(10px);
+  display:flex; align-items:center; justify-content:center; padding:1rem;
+  opacity:0; visibility:hidden; transition:all 0.3s;
+}
+.modal-overlay.open { opacity:1; visibility:visible; }
+.modal {
+  background: linear-gradient(135deg,rgba(10,45,110,0.9),rgba(6,13,31,0.95));
+  border:1px solid rgba(58,123,213,0.4); border-radius:24px; padding:2rem;
+  max-width:700px; width:100%; max-height:85vh; overflow-y:auto;
+  transform:scale(0.9); transition:transform 0.3s;
+}
+.modal-overlay.open .modal { transform:scale(1); }
+.modal-header {
+  display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem;
+}
+.modal-title {
+  font-family:'Orbitron',monospace; font-size:1.2rem; font-weight:900;
+  color:var(--green);
+}
+.modal-close {
+  width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.1);
+  border:none; color:var(--white); font-size:1rem; cursor:pointer; transition:all 0.2s;
+}
+.modal-close:hover { background:rgba(249,115,22,0.3); }
+.module-list { list-style:none; display:grid; gap:0.7rem; }
+.module-item {
+  display:flex; align-items:center; gap:12px; padding:12px 16px;
+  background:var(--glass); border:1px solid rgba(58,123,213,0.2); border-radius:12px;
+  font-size:0.85rem; transition:all 0.2s;
+}
+.module-item:hover { border-color:var(--green); background:rgba(29,185,84,0.05); }
+.module-item i { color:var(--green); font-size:1rem; }
+
+/* ===== LANGUAGES ===== */
+.lang-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:1rem;
+}
+.lang-card {
+  background:var(--glass); border:1px solid rgba(58,123,213,0.2);
+  border-radius:16px; padding:1.2rem; display:flex; align-items:center; gap:1rem;
+  transition:all 0.3s;
+}
+.lang-card:hover { border-color:var(--orange); transform:translateY(-3px); }
+.lang-flag { font-size:2rem; }
+.lang-info h4 { font-weight:700; margin-bottom:0.2rem; font-size:0.9rem; }
+.lang-info p { font-size:0.75rem; color:var(--gray); }
+.lang-price { font-family:'Orbitron',monospace; font-size:0.85rem; color:var(--orange); font-weight:700; }
+
+/* ===== INSCRIPTION FORM ===== */
+#inscription {
+  background:linear-gradient(135deg,rgba(26,79,181,0.1),rgba(6,13,31,0.9));
+}
+.form-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:1.2rem;
+}
+.form-group { display:flex; flex-direction:column; gap:6px; }
+.form-group.full { grid-column:1/-1; }
+.form-label { font-size:0.8rem; color:var(--gray); font-weight:600; text-transform:uppercase; letter-spacing:1px; }
+.form-input, .form-select, .form-textarea {
+  background:rgba(255,255,255,0.05); border:1px solid rgba(58,123,213,0.3);
+  border-radius:12px; padding:12px 16px; color:var(--white);
+  font-family:'Raleway',sans-serif; font-size:0.9rem; transition:all 0.3s;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline:none; border-color:var(--blue-light);
+  background:rgba(58,123,213,0.1); box-shadow:0 0 0 3px rgba(58,123,213,0.15);
+}
+.form-select option { background:var(--dark); }
+.form-textarea { resize:vertical; min-height:120px; }
+.form-wrap {
+  background:var(--glass); border:1px solid rgba(58,123,213,0.2);
+  border-radius:24px; padding:2.5rem;
+  max-width:800px; margin:0 auto;
+}
+.form-success {
+  text-align:center; padding:2rem; display:none;
+}
+.form-success i { font-size:3rem; color:var(--green); margin-bottom:1rem; }
+.form-success h3 { font-family:'Orbitron',monospace; color:var(--green); margin-bottom:0.5rem; }
+
+/* ===== GALLERY ===== */
+.gallery-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem;
+}
+.gallery-item {
+  border-radius:16px; overflow:hidden; cursor:pointer;
+  position:relative; border:1px solid rgba(58,123,213,0.2);
+  transition:all 0.3s;
+}
+.gallery-item:hover { transform:scale(1.03); border-color:var(--blue-light); }
+.gallery-img {
+  width:100%; height:200px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:3rem; transition:transform 0.4s;
+}
+.gallery-item:hover .gallery-img { transform:scale(1.1); }
+.gallery-caption {
+  padding:0.8rem; font-size:0.8rem; color:var(--gray);
+  background:rgba(6,13,31,0.9);
+}
+/* ===== MINI-SLIDER GALERIE (5 Images) ===== */
+.mini-slider {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background: #fff;
+  overflow: hidden;
+}
+.mini-slider img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  opacity: 0;
+  animation: miniFade5 20s infinite; /* 20 secondes au total pour 5 images */
+}
+
+/* Les délais pour chaque image (4s d'écart) */
+.mini-slider img:nth-child(1) { animation-delay: 0s; }
+.mini-slider img:nth-child(2) { animation-delay: 4s; }
+.mini-slider img:nth-child(3) { animation-delay: 8s; }
+.mini-slider img:nth-child(4) { animation-delay: 12s; }
+.mini-slider img:nth-child(5) { animation-delay: 16s; }
+
+/* L'animation d'apparition/disparition pour 5 images */
+@keyframes miniFade5 {
+  0%, 15% { opacity: 1; }
+  20%, 95% { opacity: 0; }
+  100% { opacity: 1; }
+}
+/* ===== PROJETS ===== */
+.projet-card {
+  background:var(--glass); border:1px solid rgba(58,123,213,0.2);
+  border-radius:20px; padding:2rem; position:relative; overflow:hidden;
+  transition:all 0.3s;
+}
+.projet-card:hover { border-color:var(--orange); transform:translateY(-5px); }
+.projet-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg,var(--blue-light),var(--green),var(--orange));
+}
+.projet-tag {
+  display:inline-block; padding:3px 10px; border-radius:8px; font-size:0.7rem;
+  font-weight:700; margin-bottom:0.7rem;
+}
+.tag-soon { background:rgba(249,115,22,0.2); color:var(--orange); }
+.tag-plan { background:rgba(29,185,84,0.2); color:var(--green); }
+.tag-dev { background:rgba(58,123,213,0.2); color:var(--blue-light); }
+.projet-title { font-weight:800; font-size:1rem; margin-bottom:0.5rem; font-family:'Montserrat',sans-serif; }
+.projet-desc { font-size:0.82rem; color:var(--gray); line-height:1.6; }
+
+/* ===== FORMATION EN LIGNE ===== */
+.online-card {
+  background: linear-gradient(135deg,rgba(26,79,181,0.2),rgba(6,13,31,0.7));
+  border:1px solid rgba(58,123,213,0.3); border-radius:20px; padding:1.5rem;
+  transition:all 0.3s; position:relative; overflow:hidden;
+}
+.online-card::after {
+  content:''; position:absolute; top:-50%; right:-50%; width:100%; height:100%;
+  background:radial-gradient(circle,rgba(29,185,84,0.1),transparent);
+  transition:all 0.5s;
+}
+.online-card:hover { border-color:var(--green); transform:translateY(-5px); }
+.online-card:hover::after { top:0; right:0; }
+.online-icon { font-size:2.5rem; margin-bottom:1rem; }
+.online-title { font-weight:800; font-size:1rem; margin-bottom:0.5rem; font-family:'Montserrat',sans-serif; }
+.online-desc { font-size:0.82rem; color:var(--gray); line-height:1.6; margin-bottom:1rem; }
+.online-badge {
+  display:inline-block; padding:3px 10px; border-radius:8px; font-size:0.7rem;
+  font-weight:700; background:rgba(249,115,22,0.2); color:var(--orange);
+}
+
+/* ===== ATOUTS ===== */
+.atout-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:1.2rem;
+}
+.atout-card {
+  background:var(--glass); border:1px solid rgba(58,123,213,0.2);
+  border-radius:16px; padding:1.5rem; text-align:center; transition:all 0.3s;
+}
+.atout-card:hover { border-color:var(--green); transform:translateY(-5px); box-shadow:0 10px 40px rgba(29,185,84,0.15); }
+.atout-icon { font-size:2.5rem; margin-bottom:0.8rem; }
+.atout-title { font-weight:800; margin-bottom:0.4rem; font-size:0.9rem; }
+.atout-desc { font-size:0.78rem; color:var(--gray); }
+
+/* ===== CAROUSEL GALERIE ===== */
+.carousel-container {
+  position: relative; max-width: 600px; margin: 0 auto 4rem auto; /* Added bottom margin to space it from the grid */
+  border-radius: 20px; overflow: hidden;
+  border: 2px solid var(--green); box-shadow: 0 10px 40px rgba(29,185,84,0.2);
+  background: var(--dark);
+}
+.carousel-slide img { width: 100%; height: 400px; object-fit: contain; display: block; background: transparent; padding: 10px; }
+.carousel-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(6,13,31,0.85); color: var(--white);
+  padding: 15px; text-align: center; font-weight: 700;
+  backdrop-filter: blur(5px); border-top: 1px solid var(--green);
+}
+.carousel-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(6,13,31,0.6); color: var(--white);
+  border: 1px solid var(--blue-light); padding: 15px 20px;
+  cursor: pointer; border-radius: 50%; font-size: 1.5rem; transition: 0.3s;
+  z-index: 10;
+}
+.carousel-btn:hover { background: var(--orange); border-color: var(--orange); }
+.prev-btn { left: 15px; }
+.next-btn { right: 15px; }
+.fade-anim { animation: fade 1.5s; }
+@keyframes fade { from {opacity: 0.4} to {opacity: 1} }
+
+.carousel-dots { text-align: center; margin-top: 1.5rem; }
+.dot {
+  height: 12px; width: 12px; margin: 0 5px; background-color: rgba(255,255,255,0.2);
+  border-radius: 50%; display: inline-block; cursor: pointer; transition: 0.3s;
+}
+.dot.active, .dot:hover { background-color: var(--orange); box-shadow: 0 0 10px var(--orange); }
+/* ===== FOOTER ===== */
+footer {
+  position:relative; z-index:1;
+  background:rgba(6,13,31,0.98); border-top:1px solid rgba(58,123,213,0.2);
+  padding:3rem 2rem 1.5rem;
+}
+.footer-inner { max-width:1400px; margin:0 auto; }
+.footer-grid {
+  display:grid; grid-template-columns:2fr 1fr 1fr 1.5fr; gap:3rem; margin-bottom:2rem;
+}
+.footer-logo { display:flex; align-items:center; gap:12px; margin-bottom:1rem; }
+.footer-desc { font-size:0.82rem; color:var(--gray); line-height:1.7; }
+.footer-title {
+  font-family:'Orbitron',monospace; font-size:0.85rem; color:var(--white);
+  margin-bottom:1rem; padding-bottom:0.5rem;
+  border-bottom:2px solid var(--blue-light);
+}
+.footer-links { list-style:none; display:flex; flex-direction:column; gap:0.5rem; }
+.footer-links a {
+  color:var(--gray); text-decoration:none; font-size:0.82rem; transition:all 0.2s;
+  display:flex; align-items:center; gap:8px;
+}
+.footer-links a:hover { color:var(--green); padding-left:5px; }
+.footer-contact p { font-size:0.82rem; color:var(--gray); margin-bottom:0.6rem; display:flex; align-items:center; gap:8px; }
+.footer-contact p i { color:var(--blue-light); width:16px; }
+.footer-bottom {
+  border-top:1px solid rgba(58,123,213,0.2); padding-top:1.5rem;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+}
+.footer-bottom p { font-size:0.78rem; color:var(--gray); }
+.social-links { display:flex; gap:0.7rem; }
+.social-link {
+  width:36px; height:36px; border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--glass); border:1px solid rgba(58,123,213,0.2);
+  color:var(--gray); text-decoration:none; transition:all 0.3s;
+}
+.social-link:hover { background:var(--blue-light); color:var(--white); transform:translateY(-3px); }
+
+/* ===== CHAT ===== */
+#chat-toggle {
+  position:fixed; bottom:2rem; right:2rem; z-index:1500;
+  width:60px; height:60px; border-radius:50%;
+  background:linear-gradient(135deg,var(--green),var(--green-dark));
+  border:none; cursor:pointer; color:var(--white); font-size:1.4rem;
+  box-shadow:0 8px 30px rgba(29,185,84,0.5);
+  transition:all 0.3s; display:flex; align-items:center; justify-content:center;
+  animation:chatBounce 2s ease-in-out infinite;
+}
+@keyframes chatBounce {
+  0%,100%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-6px) scale(1.05)}
+}
+#chat-toggle:hover { transform:scale(1.1) !important; animation:none; }
+.chat-notif {
+  position:absolute; top:-3px; right:-3px; width:16px; height:16px;
+  background:var(--orange); border-radius:50%; font-size:0.6rem;
+  display:flex; align-items:center; justify-content:center; font-weight:900;
+  border:2px solid var(--dark);
+}
+
+#chat-window {
+  position:fixed; bottom:7rem; right:2rem; z-index:1499;
+  width:360px; background:rgba(6,13,31,0.98);
+  border:1px solid rgba(58,123,213,0.3); border-radius:20px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
+  transform:scale(0.8) translateY(20px); opacity:0; visibility:hidden;
+  transition:all 0.3s; display:flex; flex-direction:column;
+  max-height:500px;
+}
+#chat-window.open { transform:scale(1) translateY(0); opacity:1; visibility:visible; }
+
+.chat-header {
+  padding:1rem 1.2rem; background:linear-gradient(135deg,var(--blue),var(--blue-mid));
+  border-radius:20px 20px 0 0;
+  display:flex; align-items:center; gap:10px;
+}
+.chat-avatar {
+  width:38px; height:38px; border-radius:50%;
+  background:linear-gradient(135deg,var(--green),var(--blue-light));
+  display:flex; align-items:center; justify-content:center; font-size:1rem;
+}
+.chat-hinfo h4 { font-size:0.9rem; font-weight:700; }
+.chat-hinfo p { font-size:0.72rem; color:rgba(255,255,255,0.7); }
+.chat-online { width:8px; height:8px; background:var(--green); border-radius:50%; animation:blink 1.5s infinite; margin-left:auto; }
+
+.chat-messages {
+  flex:1; overflow-y:auto; padding:1rem;
+  display:flex; flex-direction:column; gap:0.8rem;
+  max-height:300px;
+}
+.chat-msg { max-width:80%; }
+.chat-msg.bot { align-self:flex-start; }
+.chat-msg.user { align-self:flex-end; }
+.chat-bubble {
+  padding:10px 14px; border-radius:16px; font-size:0.82rem; line-height:1.5;
+}
+.bot .chat-bubble { background:rgba(58,123,213,0.2); border:1px solid rgba(58,123,213,0.3); color:var(--white); border-radius:4px 16px 16px 16px; }
+.user .chat-bubble { background:linear-gradient(135deg,var(--green),var(--green-dark)); color:var(--white); border-radius:16px 4px 16px 16px; }
+.chat-time { font-size:0.65rem; color:var(--gray); margin-top:3px; padding:0 4px; }
+
+.chat-input-area {
+  padding:0.8rem; border-top:1px solid rgba(58,123,213,0.2);
+  display:flex; gap:0.5rem;
+}
+.chat-input {
+  flex:1; background:rgba(255,255,255,0.05); border:1px solid rgba(58,123,213,0.3);
+  border-radius:25px; padding:8px 16px; color:var(--white);
+  font-family:'Raleway',sans-serif; font-size:0.82rem;
+}
+.chat-input:focus { outline:none; border-color:var(--green); }
+.chat-send {
+  width:36px; height:36px; border-radius:50%;
+  background:linear-gradient(135deg,var(--green),var(--green-dark));
+  border:none; color:var(--white); cursor:pointer; transition:all 0.2s;
+  display:flex; align-items:center; justify-content:center;
+}
+.chat-send:hover { transform:scale(1.1); }
+
+.chat-quick { padding:0 1rem 0.8rem; display:flex; gap:0.4rem; flex-wrap:wrap; }
+.quick-btn {
+  padding:5px 12px; border-radius:15px; font-size:0.72rem;
+  background:rgba(58,123,213,0.15); border:1px solid rgba(58,123,213,0.3);
+  color:var(--gray); cursor:pointer; transition:all 0.2s; font-family:'Raleway',sans-serif;
+}
+.quick-btn:hover { background:rgba(29,185,84,0.2); color:var(--green); border-color:var(--green); }
+
+/* ===== TYPING INDICATOR ===== */
+.typing { display:flex; gap:4px; align-items:center; padding:10px 14px; }
+.typing-dot {
+  width:6px; height:6px; background:var(--gray); border-radius:50%;
+  animation:typingAnim 1.2s infinite;
+}
+.typing-dot:nth-child(2) { animation-delay:0.2s; }
+.typing-dot:nth-child(3) { animation-delay:0.4s; }
+@keyframes typingAnim { 0%,80%,100%{transform:scale(1);opacity:0.5} 40%{transform:scale(1.3);opacity:1} }
+
+/* ===== TABS CONTENT ===== */
+.tab-content { display:none; }
+.tab-content.active { display:block; animation:fadeIn 0.4s ease; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+/* ===== MISC ===== */
+.divider {
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(58,123,213,0.3),transparent);
+  margin:1rem 0;
+}
+
+.scroll-top {
+  position:fixed; bottom:6.5rem; right:2.2rem; z-index:900;
+  width:42px; height:42px; border-radius:50%;
+  background:rgba(10,45,110,0.8); border:1px solid rgba(58,123,213,0.4);
+  color:var(--white); cursor:pointer; font-size:0.9rem;
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; transition:all 0.3s;
+}
+.scroll-top.visible { opacity:1; }
+.scroll-top:hover { background:var(--blue-light); transform:translateY(-3px); }
+
+/* ===== RESPONSIVE ===== */
+.promo-grid {
+  display: grid; 
+  grid-template-columns: 1fr 3fr; 
+  gap: 1.5rem; 
+  align-items: center;
+}
+
+@media(max-width:900px){
+  nav { padding: 0 1rem; } /* Donne plus d'espace à la barre de navigation */
+  .school-name { font-size: 1rem !important; white-space: normal !important; }
+  .school-sub { font-size: 0.45rem !important; white-space: normal !important; }
+  section { padding: 3rem 1rem; } 
+  .hero-inner { grid-template-columns:1fr; gap: 2rem; }
+  .hero-right { display:block; margin-top: 2rem; } 
+  .promo-grid { grid-template-columns:1fr !important; text-align:center; } 
+  .promo-grid > div:first-child { margin: 0 auto 1rem auto; }
+  .footer-grid { grid-template-columns:1fr !important; gap: 2rem; text-align: center; } 
+  .footer-logo { justify-content: center; }
+  .footer-contact p { justify-content: center; }
+  .form-grid { grid-template-columns:1fr; }
+  .nav-menu { display:none; }
+  .mobile-menu-btn { display:flex; background:none; border:none; color:var(--white); font-size:1.6rem; cursor:pointer; }
+  .specs-grid { grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); } 
+}
+
+/* ===== PROGRESS BARS ===== */
+.progress-bar { background:rgba(255,255,255,0.1); border-radius:10px; height:6px; overflow:hidden; margin-top:0.5rem; }
+.progress-fill { height:100%; border-radius:10px; animation:progressGrow 1.5s ease; }
+@keyframes progressGrow { from{width:0} }
+
+/* ===== NOTIFICATION ===== */
+.notif {
+  position:fixed; top:80px; right:2rem; z-index:3000;
+  background:linear-gradient(135deg,rgba(29,185,84,0.9),rgba(15,140,58,0.9));
+  border-radius:16px; padding:1rem 1.5rem; max-width:320px;
+  transform:translateX(400px); transition:all 0.4s;
+  box-shadow:0 10px 40px rgba(0,0,0,0.4);
+  display:flex; align-items:center; gap:10px;
+}
+.notif.show { transform:translateX(0); }
+.notif i { font-size:1.2rem; }
+.notif-text h4 { font-size:0.9rem; font-weight:700; }
+.notif-text p { font-size:0.78rem; opacity:0.85; }
+
+/* mobile nav */
+#mobile-nav {
+  position:fixed; inset:0; z-index:1100;
+  background:rgba(6,13,31,0.98); backdrop-filter:blur(20px);
+  transform:translateX(100%); transition:transform 0.3s;
+  padding:2rem; overflow-y:auto;
+}
+#mobile-nav.open { transform:translateX(0); }
+.mobile-nav-close {
+  position:absolute; top:1.2rem; right:1.5rem;
+  background:none; border:none; color:var(--white); font-size:1.5rem; cursor:pointer;
+}
+.mobile-nav-links { margin-top:4rem; display:flex; flex-direction:column; gap:0.5rem; }
+.mobile-nav-links a {
+  padding:14px 16px; border-radius:12px; color:var(--white); text-decoration:none;
+  font-weight:600; font-size:1rem; border:1px solid rgba(58,123,213,0.2);
+  transition:all 0.2s; display:flex; align-items:center; gap:10px;
+}
+.mobile-nav-links a:hover { background:var(--glass); border-color:var(--blue-light); }
+/* ===== ANNOUNCEMENT TICKER ===== */
+.ticker-wrap {
+  background: var(--orange-dark);
+  color: var(--white);
+  padding: 8px 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 999;
+  margin-top: 70px; /* Pushes it just below the fixed navbar */
+  border-bottom: 1px solid var(--orange);
+}
+.ticker-content {
+  display: flex;
+  white-space: nowrap;
+  animation: ticker 45s linear infinite;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.ticker-content:hover { animation-play-state: paused; }
+.ticker-item { padding: 0 2rem; display: inline-flex; align-items: center; gap: 8px; }
+@keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+</style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '981275201257875');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=981275201257875&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+</head>
+<body>
+
+<div class="bg-anim"></div>
+
+<!-- NOTIFICATION -->
+<div class="notif" id="notif">
+  <i class="fas fa-check-circle"></i>
+  <div class="notif-text">
+    <h4>Inscription reçue !</h4>
+    <p>Nous vous contacterons très bientôt.</p>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="logo-area" style="display:flex; align-items:center; gap:15px; text-decoration:none;">
+      <img src="assets/images/school-logo.jpg.jpeg" alt="Logo STT-CAM" style="width: 65px; height: 65px; border-radius: 50%; object-fit: cover; border: 2px solid var(--blue-light); box-shadow: 0 0 15px rgba(58,123,213,0.8), 0 0 30px rgba(29,185,84,0.4); transition: transform 0.3s;">
+      
+     <div class="logo-text">
+        <div class="school-name" style="font-size: clamp(1.1rem, 3vw, 1.4rem); white-space: nowrap;">STT - CAMEROUN</div>
+        <div class="school-sub" style="font-size: 0.55rem; color: var(--white); font-weight: 600; white-space: nowrap; line-height: 1.4; margin-top: 2px;">
+          Institut de Formation Professionnelle d'Ingénierie<br>
+          <span style="color: var(--orange); font-style: italic; text-transform: uppercase;">L'ÉCOLE DES FUTURS ENTREPRENEURS</span>
+        </div>
+      </div>
+    </a>
+
+    <ul class="nav-menu">
+      <li class="nav-item">
+        <a href="#formations" class="nav-link">
+          <i class="fas fa-graduation-cap"></i> Formations <i class="fas fa-chevron-down chevron"></i>
+        </a>
+        <div class="dropdown">
+          <a href="#" onclick="showSector('sante')"><span class="dot"></span> Paramédical & Santé</a>
+          <a href="#" onclick="showSector('tic')"><span class="dot"></span> TIC & Numérique</a>
+          <a href="#" onclick="showSector('gestion')"><span class="dot"></span> Gestion & Administration</a>
+          <a href="#" onclick="showSector('industrie')"><span class="dot"></span> Industrie & Génie Civil</a>
+          <a href="#" onclick="showSector('langues')"><span class="dot"></span> Langues</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="#ia-data" class="nav-link"><i class="fas fa-brain"></i> IA & DATA</a>
+      </li>
+      <li class="nav-item">
+        <a href="#galerie" class="nav-link"><i class="fas fa-images"></i> Galerie</a>
+      </li>
+      <li class="nav-item">
+        <a href="#online" class="nav-link"><i class="fas fa-laptop"></i> Formation en ligne</a>
+      </li>
+      <li class="nav-item">
+        <a href="#projets" class="nav-link">
+          <i class="fas fa-rocket"></i> Projets <i class="fas fa-chevron-down chevron"></i>
+        </a>
+        <div class="dropdown">
+          <a href="#projets"><span class="dot"></span> Projets à venir</a>
+          <a href="#post-graduation"><span class="dot" style="background: var(--orange);"></span> Post-Graduation</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fas fa-handshake"></i> Partenaires <i class="fas fa-chevron-down chevron"></i>
+        </a>
+        <div class="dropdown">
+          <a href="#"><span class="dot" style="background: var(--orange);"></span> AbbaTek Cameroon</a>
+          </div>
+      </li>
+      <li class="nav-item">
+        <a href="#inscription" class="nav-link nav-cta"><i class="fas fa-pen"></i> S'inscrire</a>
+      </li>
+    </ul>
+
+  
+    <button class="mobile-menu-btn" onclick="openMobileNav()"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<div class="ticker-wrap">
+  <div class="ticker-content">
+    <div class="ticker-item"><i class="fas fa-bullhorn"></i> URGENT: Les inscriptions pour la session de Septembre 2026 sont officiellement ouvertes !</div>
+    <div class="ticker-item"><i class="fas fa-star"></i> NOUVEAU: Lancement de la filière Intelligence Artificielle & Data Science.</div>
+    <div class="ticker-item"><i class="fas fa-gift"></i> PROMO: Bourse de 10% pour les 50 premiers inscrits. Contactez-nous !</div>
+  </div>
+</div>
+<!-- MOBILE NAV -->
+<div id="mobile-nav">
+  <button class="mobile-nav-close" onclick="closeMobileNav()"><i class="fas fa-times"></i></button>
+  <div class="mobile-nav-links">
+    <a href="#formations" onclick="closeMobileNav()"><i class="fas fa-graduation-cap"></i> Formations</a>
+    <a href="#ia-data" onclick="closeMobileNav()"><i class="fas fa-brain"></i> IA & Data</a>
+    <a href="#galerie" onclick="closeMobileNav()"><i class="fas fa-images"></i> Galerie</a>
+    <a href="#online" onclick="closeMobileNav()"><i class="fas fa-laptop"></i> Formation en ligne</a>
+    <a href="#projets" onclick="closeMobileNav()"><i class="fas fa-rocket"></i> Projets à venir</a>
+    <a href="#" onclick="closeMobileNav()"><i class="fas fa-handshake"></i> Partenaires (AbbaTek)</a>
+    <a href="#inscription" onclick="closeMobileNav()"><i class="fas fa-pen"></i> Inscription</a>
+    <a href="#contact" onclick="closeMobileNav()"><i class="fas fa-phone"></i> Contact</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="rentree-banner">
+        <div style="font-size: 0.85rem; color: var(--gray); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px;">
+          <i class="fas fa-calendar-check" style="color: var(--green);"></i> Rentrée Académique
+        </div>
+        <div class="highlight">28 SEPTEMBRE 2026</div>
+      </div>
+      
+      <h1 class="hero-title">
+        <span class="hl-blue">DEVENEZ UN PROFESSIONNEL</span><br>
+        <span class="hl-green">CERTIFIÉ ET COMPÉTENT</span><br>
+        EN <span class="hl-orange">12 MOIS</span>
+      </h1>
+      <p class="hero-sub">
+        L'Institut de Formation Professionnelle et d'Ingénierie STT-Cameroun vous ouvre les portes d'un avenir brillant. Formateurs experts, stages garantis, internet Starlink gratuit.
+      </p>
+      <div class="hero-btns">
+        <a href="#inscription" class="btn btn-orange">
+          <i class="fas fa-pen-to-square"></i> Réserver ma place
+        </a>
+        <a href="#formations" class="btn btn-primary">
+          <i class="fas fa-list"></i> Voir les filières
+        </a>
+        <a href="#ia-data" class="btn btn-outline">
+          <i class="fas fa-brain"></i> IA & Data
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-num" id="countFormations">30+</div>
+          <div class="stat-lbl">Spécialités</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">12</div>
+          <div class="stat-lbl">Mois de formation</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">100%</div>
+          <div class="stat-lbl">Stage garanti</div>
+        </div>
+      </div>
+    </div>
+        <div class="hero-right" style="display: flex; flex-direction: column;">
+      
+      <div id="heroCarousel" onclick="openCarouselModal()" style="position: relative; border-radius: 16px; overflow: hidden; border: 2px solid var(--blue-light); margin-bottom: 1.5rem; box-shadow: 0 0 20px rgba(58,123,213,0.3); background: var(--dark); height: 350px; flex-shrink: 0; transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+        
+        <div id="carouselImages" style="height: 100%; position: relative;">
+          </div>
+        
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(6,13,31,0.98) 30%, rgba(6,13,31,0)); padding: 40px 10px 15px 10px; text-align: center;">
+          <div id="carouselSubTitle" style="font-size: 0.75rem; color: var(--green); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; margin-bottom: 4px; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">
+            </div>
+          <div id="carouselMainTitle" style="font-size: 1.1rem; color: var(--white); font-family: 'Orbitron', monospace; font-weight: 900; letter-spacing: 0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">
+             </div>
+        </div>
+      </div>
+      <div class="ai-showcase" style="height: auto; flex: 1; padding: 1.5rem; justify-content: center;">
+        <div class="ai-icon" style="font-size: 2.2rem; margin-bottom: 0.5rem;"><i class="fas fa-brain"></i></div>
+     
+        <h3 style="font-size: 1.1rem;">Intelligence Artificielle & Data</h3>
+        <p style="margin-bottom: 1rem;">La filière du futur ! Maîtrisez l'IA, le Machine Learning et la Data Science.</p>
+        
+        <div class="ai-modules" style="gap: 6px;">
+          <div class="ai-mod"><i class="fas fa-robot"></i> Machine Learning</div>
+          <div class="ai-mod"><i class="fas fa-database"></i> Big Data</div>
+          <div class="ai-mod"><i class="fas fa-chart-line"></i> Data Analyse</div>
+          <div class="ai-mod"><i class="fas fa-network-wired"></i> Deep Learning</div>
+          <div class="ai-mod"><i class="fas fa-eye"></i> Computer Vision</div>
+          <div class="ai-mod"><i class="fas fa-comments"></i> NLP / ChatBot</div>
+        </div>
+        
+        <div style="margin-top:1rem">
+          <a href="#ia-data" class="btn btn-primary" style="width:100%; justify-content:center; padding: 12px;">
+            <i class="fas fa-arrow-right"></i> Découvrir cette filière
+          </a>
+        </div>
+      </div>
+      </div>
+  </div>
+</section>
+
+<!-- VISITOR COUNTER -->
+<section id="mot-du-promoteur" style="padding: 3rem 2rem; margin: 0 auto; position: relative; z-index: 2;">
+  <div class="promo-grid" style="max-width: 950px; margin: 0 auto; background: linear-gradient(135deg, rgba(29,185,84,0.1), rgba(6,13,31,0.8)); border: 1px solid var(--green); border-radius: 20px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(29,185,84,0.1);">
+    
+    <div style="position: relative; max-width: 140px; cursor: pointer; transition: transform 0.3s;" 
+         onmouseover="this.style.transform='scale(1.05)'" 
+         onmouseout="this.style.transform='scale(1)'"
+         onclick="document.getElementById('modalTitle').textContent='Mr. Steve Thierry TANKEU'; document.getElementById('modalContent').innerHTML='<img src=&quot;assets/images/promoteur.jpg.jpeg&quot; style=&quot;width:100%; border-radius:12px; object-fit:cover;&quot;>'; document.getElementById('specModal').classList.add('open'); document.body.style.overflow='hidden';">
+      
+      <img src="assets/images/promoteur.jpg.jpeg" alt="Le Promoteur" style="width: 100%; border-radius: 12px; border: 2px solid var(--green); box-shadow: 0 5px 15px rgba(29,185,84,0.2);">
+      <div style="position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); background: var(--orange); padding: 5px 12px; border-radius: 6px; font-weight: 900; font-size: 0.6rem; color: var(--white); white-space: nowrap; box-shadow: 0 4px 10px rgba(249,115,22,0.4);">Mr. Steve Thierry TANKEU</div>
+    </div>
+    
+    <div style="display: flex; flex-direction: column; justify-content: center;">
+      <div class="section-tag" style="margin-bottom: 0.5rem; padding: 3px 10px; font-size: 0.65rem; background: rgba(29,185,84,0.2); border-color: var(--green); color: var(--green); align-self: flex-start; margin-left: auto; margin-right: auto;"><i class="fas fa-quote-left"></i> Mot du Promoteur</div>
+      <h2 class="section-title" style="font-size: clamp(0.95rem, 2.5vw, 1.2rem); margin-bottom: 0.5rem; line-height: 1.2;">Bienvenue à <span class="green">STT-Cameroun</span></h2>
+      <p style="color: var(--white); line-height: 1.5; font-size: 0.85rem; font-weight: 700; font-style: italic; margin: 0; text-align: justify; text-align-last: center;">
+        "Chers futurs apprenants, le monde change et la technologie est son moteur. Notre institut s'est donné pour mission de vous transformer en experts opérationnels. Ne subissez plus le marché de l'emploi, dominez-le par vos compétences. Rejoignez-nous pour une année qui changera votre vie."
+      </p>
+    </div>
+    
+  </div>
+</section>
+<div id="visitors">
+  <div class="visitors-inner">
+    <div style="text-align:left">
+      <div class="section-tag"><i class="fas fa-chart-bar"></i> Statistiques du site</div>
+      <div style="font-size:0.85rem;color:var(--gray)">Compteur de visiteurs en temps réel</div>
+    </div>
+    <div class="visit-stat">
+      <div class="visit-icon vi-day"><i class="fas fa-sun"></i></div>
+      <div class="visit-info">
+        <div class="visit-num" id="vis-day">247</div>
+        <div class="visit-lbl">Visiteurs aujourd'hui</div>
+      </div>
+    </div>
+    <div class="visit-stat">
+      <div class="visit-icon vi-month"><i class="fas fa-calendar-alt"></i></div>
+      <div class="visit-info">
+        <div class="visit-num" id="vis-month">3 842</div>
+        <div class="visit-lbl">Ce mois-ci</div>
+      </div>
+    </div>
+    <div class="visit-stat">
+      <div class="visit-icon vi-year"><i class="fas fa-globe-africa"></i></div>
+      <div class="visit-info">
+        <div class="visit-num" id="vis-year">28 591</div>
+        <div class="visit-lbl">Cette année</div>
+      </div>
+    </div>
+    <div class="visit-stat">
+      <div class="visit-icon vi-online"><i class="fas fa-circle" style="animation:blink 1s infinite"></i></div>
+      <div class="visit-info">
+        <div class="visit-num" id="vis-online">12</div>
+        <div class="visit-lbl">Connectés maintenant</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IA & DATA HIGHLIGHT -->
+<section id="ia-data" style="background:linear-gradient(135deg,rgba(29,185,84,0.05),rgba(6,13,31,0.9))">
+  <div class="section-inner">
+    <div class="section-tag"><i class="fas fa-star"></i> Filière Phare</div>
+    <h2 class="section-title"><span class="green">Intelligence Artificielle</span> & <span class="blue">Data Science</span></h2>
+    <p class="section-sub">La formation la plus demandée ! Devenez expert en IA et transformez votre carrière. Niveau requis : BAC. Scolarité : 450 000 FCFA</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1.5fr;gap:2rem;align-items:start;margin-bottom:3rem" class="ia-grid-resp">
+      <div>
+        <div style="background:linear-gradient(135deg,rgba(29,185,84,0.1),rgba(6,13,31,0.8));border:1px solid var(--green);border-radius:20px;padding:2rem">
+          <div style="font-size:4rem;text-align:center;margin-bottom:1rem">🤖</div>
+          <h3 style="font-family:'Orbitron',monospace;color:var(--green);margin-bottom:1rem;text-align:center">IA & DATA</h3>
+          
+          <div style="display:flex;flex-direction:column;gap:0.8rem">
+            
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:0.82rem;color:var(--gray)">Niveau requis</span>
+              <span style="background:rgba(58,123,213,0.2);color:var(--blue-light);padding:3px 10px;border-radius:8px;font-size:0.75rem;font-weight:700">BAC</span>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:0.82rem;color:var(--gray)">Scolarité totale</span>
+              <span style="font-family:'Orbitron',monospace;color:var(--orange);font-size:1rem;font-weight:900">450 000 frs</span>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <!-- DURÉE ON THE SAME LINE -->
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:15px;">
+              <span style="font-size:0.82rem;color:var(--gray);flex-shrink:0;">Durée</span>
+              <span style="color:var(--green);font-weight:700;font-size:0.78rem;line-height:1.4;text-align:right;">1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>
+            </div>
+            
+          </div>
+          
+          <a href="#inscription" class="btn btn-orange" style="width:100%;justify-content:center;margin-top:1.5rem">
+            <i class="fas fa-pen"></i> S'inscrire maintenant
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--white);margin-bottom:1.2rem">
+          <i class="fas fa-list-check" style="color:var(--green)"></i> Modules de formation
+        </h3>
+        <ul class="module-list">
+          <li class="module-item"><i class="fas fa-python"></i> Python pour l'Intelligence Artificielle</li>
+          <li class="module-item"><i class="fas fa-robot"></i> Machine Learning & Algorithmes</li>
+          <li class="module-item"><i class="fas fa-brain"></i> Deep Learning & Réseaux de neurones</li>
+          <li class="module-item"><i class="fas fa-database"></i> Big Data & Gestion des données</li>
+          <li class="module-item"><i class="fas fa-chart-pie"></i> Data Visualisation (Power BI, Tableau)</li>
+          <li class="module-item"><i class="fas fa-eye"></i> Computer Vision & Traitement d'image</li>
+          <li class="module-item"><i class="fas fa-comments"></i> NLP & Chatbots intelligents</li>
+          <li class="module-item"><i class="fas fa-cloud"></i> Cloud Computing & déploiement IA</li>
+          <li class="module-item"><i class="fas fa-shield-alt"></i> Éthique & sécurité de l'IA</li>
+          <li class="module-item"><i class="fas fa-flask"></i> Projet de fin d'études (Mémoire)</li>
+        </ul>
+        <div style="margin-top:1.5rem;background:rgba(29,185,84,0.08);border:1px solid rgba(29,185,84,0.2);border-radius:12px;padding:1rem">
+          <p style="font-size:0.82rem;color:var(--gray);line-height:1.7">
+            <i class="fas fa-info-circle" style="color:var(--green)"></i>
+            Après cette formation, vous pourrez travailler comme <strong style="color:var(--white)">Data Scientist, AI Engineer, ML Engineer, Data Analyst</strong> dans des entreprises au Cameroun et à l'international.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATIONS -->
+<section id="formations">
+  <div class="section-inner">
+    <div class="section-tag"><i class="fas fa-graduation-cap"></i> Nos Filières</div>
+    <h2 class="section-title">Choisissez votre <span class="orange">Spécialité</span></h2>
+    <p class="section-sub">4 grands secteurs de formation pour construire votre avenir professionnel. Cliquez sur une spécialité pour voir ses modules.</p>
+
+    <div class="sector-tabs">
+      <button class="sector-tab active" onclick="showSector('tic')">
+        <i class="fas fa-laptop-code"></i> TIC & Numérique
+      </button>
+      <button class="sector-tab" onclick="showSector('sante')">
+        <i class="fas fa-heartbeat"></i> Paramédical & Santé
+      </button>
+      <button class="sector-tab" onclick="showSector('gestion')">
+        <i class="fas fa-briefcase"></i> Gestion & Admin
+      </button>
+      <button class="sector-tab" onclick="showSector('industrie')">
+        <i class="fas fa-hard-hat"></i> Industrie & Génie Civil
+      </button>
+      <button class="sector-tab" onclick="showSector('langues')">
+        <i class="fas fa-language"></i> Langues
+      </button>
+    </div>
+
+    <!-- TIC -->
+    <div class="tab-content active" id="sector-tic">
+      <div class="specs-grid" id="grid-tic"></div>
+    </div>
+    <!-- SANTE -->
+    <div class="tab-content" id="sector-sante">
+      <div class="specs-grid" id="grid-sante"></div>
+    </div>
+    <!-- GESTION -->
+    <div class="tab-content" id="sector-gestion">
+      <div class="specs-grid" id="grid-gestion"></div>
+    </div>
+    <!-- INDUSTRIE -->
+    <div class="tab-content" id="sector-industrie">
+      <div class="specs-grid" id="grid-industrie"></div>
+    </div>
+    <!-- LANGUES -->
+    <div class="tab-content" id="sector-langues">
+      <div class="lang-grid" id="grid-langues"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ATOUTS -->
+<section id="atouts" style="background:linear-gradient(135deg,rgba(10,45,110,0.15),rgba(6,13,31,0.9))">
+  <div class="section-inner">
+    <div class="section-tag"><i class="fas fa-trophy"></i> Nos Atouts</div>
+    <h2 class="section-title">Pourquoi choisir <span class="blue">STT-Cameroun</span> ?</h2>
+    <div class="atout-grid">
+      <div class="atout-card">
+        <div class="atout-icon">👨‍🏫</div>
+        <div class="atout-title">Formateurs qualifiés</div>
+        <div class="atout-desc">Des experts expérimentés dans leurs domaines respectifs</div>
+      </div>
+      <div class="atout-card">
+        <div class="atout-icon">🏢</div>
+        <div class="atout-title">Stage garanti</div>
+        <div class="atout-desc">Insertion professionnelle assurée grâce à notre réseau d'entreprises partenaires</div>
+      </div>
+      <div class="atout-card">
+        <div class="atout-icon">🛰️</div>
+        <div class="atout-title">Starlink gratuit</div>
+        <div class="atout-desc">Internet haut débit Starlink disponible gratuitement pour tous les apprenants</div>
+      </div>
+      <div class="atout-card">
+        <div class="atout-icon">🎯</div>
+        <div class="atout-title">Accompagnement</div>
+        <div class="atout-desc">Coaching et suivi personnalisé à la fin de la formation</div>
+      </div>
+      <div class="atout-card">
+        <div class="atout-icon">🏅</div>
+        <div class="atout-title">Diplôme d'État</div>
+        <div class="atout-desc">DQP, CQP, AQP délivrés par le Ministère de l'Emploi et de la Formation Professionnelle (MINEFOP) du Cameroun</div>
+      </div>
+      <div class="atout-card">
+        <div class="atout-icon">🚗</div>
+        <div class="atout-title">Auto-école gratuite</div>
+        <div class="atout-desc">Formation au permis de conduire offerte aux apprenants</div>
+      </div>
+      <div class="atout-card">
+        <div class="atout-icon">🌙</div>
+        <div class="atout-title">Cours jour & soir</div>
+        <div class="atout-desc">Flexibilité totale pour concilier études et vie professionnelle</div>
+      </div>
+      <div class="atout-card">
+        <div class="atout-icon">💻</div>
+        <div class="atout-title">Laptop disponible</div>
+        <div class="atout-desc">Accès aux équipements informatiques de l'école</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section id="galerie">
+  <div class="section-inner">
+    <div class="section-tag" style="background: rgba(29,185,84,0.1); border-color: var(--green); color: var(--green);"><i class="fas fa-certificate"></i> Agréments & Galerie</div>
+    <h2 class="section-title">Reconnaissance & <span class="green">Campus</span></h2>
+    <p class="section-sub">Consultez nos agréments officiels et découvrez les installations de notre établissement.</p>
+
+    <div class="gallery-grid">
+      
+      <div class="gallery-item" onclick="openGalleryModal(0)">
+        <div class="mini-slider">
+          <img src="assets/images/agrement-1.jpg.jpeg" alt="Agrément Page 1">
+          <img src="assets/images/agrement-2.jpg.jpeg" alt="Agrément Page 2">
+        </div>
+        <div class="gallery-caption">Agrément Officiel MINEFOP (2 Pages)</div>
+      </div>
+
+      <div class="gallery-item" onclick="openGalleryModal(1)">
+        <img src="assets/images/lecture-room.jpg.jpeg" alt="Salle informatique" class="gallery-img" style="object-fit: cover; object-position: center; background: #fff;">
+        <div class="gallery-caption">Salle informatique équipée</div>
+      </div>
+
+      <div class="gallery-item" onclick="openGalleryModal(2)">
+        <img src="assets/images/team-photo.jpeg" alt="Apprenants en formation" class="gallery-img" style="object-fit: cover; object-position: center; background: #fff;">
+        <div class="gallery-caption">Apprenants déjà en formation</div>
+      </div>
+
+      <div class="gallery-item" onclick="openGalleryModal(3)">
+        <img src="assets/images/lab-space.jpg.jpeg" alt="Travaux pratiques en laboratoire" class="gallery-img" style="object-fit: cover; object-position: center; background: #fff;">
+        <div class="gallery-caption">Travaux pratiques en laboratoire</div>
+      </div>
+
+      <div class="gallery-item" onclick="openGalleryModal(4)">
+        <div class="mini-slider">
+          <img src="assets/images/flyer-tic.jpg.jpeg" alt="Flyer TIC">
+          <img src="assets/images/flyer-sante.jpg.jpeg" alt="Flyer Santé">
+          <img src="assets/images/flyer-gestion.jpg.jpeg" alt="Flyer Gestion">
+          <img src="assets/images/flyer-geniecivil.jpg.jpeg" alt="Flyer Genie Civil">
+          <img src="assets/images/flyer-langues.jpeg" alt="Flyer Langues">
+        </div>
+        <div class="gallery-caption">Tous nos programmes de formation</div>
+      </div>
+
+      <div class="gallery-item" onclick="openGalleryModal(5)">
+        <div class="gallery-img" style="background:linear-gradient(135deg,#4a1fb5,#1a4fb5)">🛰️</div>
+        <div class="gallery-caption">Installation Starlink du campus</div>
+      </div>
+
+      <div class="gallery-item" onclick="openGalleryModal(6)">
+        <div class="gallery-img" style="background:linear-gradient(135deg,#b51a1a,#f97316)">📐</div>
+        <div class="gallery-caption">Ateliers de génie civil</div>
+      </div>
+
+      
+    </div>
+  </div>
+</section>
+
+<!-- FORMATION EN LIGNE -->
+<section id="online" style="background:linear-gradient(135deg,rgba(26,79,181,0.1),rgba(6,13,31,0.9))">
+  <div class="section-inner">
+    <div class="section-tag"><i class="fas fa-laptop"></i> E-Learning</div>
+    <h2 class="section-title">Formation <span class="orange">En Ligne</span></h2>
+    <p class="section-sub">Apprenez à votre rythme depuis chez vous grâce à notre plateforme numérique.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem">
+      <div class="online-card">
+        <div class="online-icon">🎥</div>
+        <div class="online-title">Cours Vidéo HD</div>
+        <div class="online-desc">Accédez à des centaines de vidéos pédagogiques enregistrées par nos formateurs experts.</div>
+        <span class="online-badge">Bientôt disponible</span>
+      </div>
+      <div class="online-card">
+        <div class="online-icon">📱</div>
+        <div class="online-title">Application Mobile</div>
+        <div class="online-desc">Suivez vos cours sur smartphone ou tablette, même sans connexion internet.</div>
+        <span class="online-badge">En développement</span>
+      </div>
+      <div class="online-card">
+        <div class="online-icon">🧪</div>
+        <div class="online-title">Quiz & Évaluations</div>
+        <div class="online-desc">Testez vos connaissances avec des évaluations interactives et obtenez votre score instantanément.</div>
+        <span class="online-badge">Bientôt disponible</span>
+      </div>
+      <div class="online-card">
+        <div class="online-icon">🏆</div>
+        <div class="online-title">Certificats en ligne</div>
+        <div class="online-desc">Obtenez des attestations de formation en ligne pour valoriser vos compétences.</div>
+        <span class="online-badge">En développement</span>
+      </div>
+      <div class="online-card">
+        <div class="online-icon">💬</div>
+        <div class="online-title">Sessions Live</div>
+        <div class="online-desc">Participez à des classes virtuelles en direct avec vos formateurs et posez vos questions.</div>
+        <span class="online-badge">Bientôt disponible</span>
+      </div>
+      <div class="online-card">
+        <div class="online-icon">📂</div>
+        <div class="online-title">Bibliothèque numérique</div>
+        <div class="online-desc">Accédez à des milliers de ressources, PDF, livres et supports de cours en ligne.</div>
+        <span class="online-badge">En développement</span>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2rem">
+      <a href="#inscription" class="btn btn-primary">
+        <i class="fas fa-bell"></i> Être notifié au lancement
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETS À VENIR -->
+<section id="projets">
+  <div class="section-inner">
+    <div class="section-tag"><i class="fas fa-rocket"></i> Projets à Venir</div>
+    <h2 class="section-title">L'avenir de <span class="blue">STT-Cameroun</span></h2>
+    <p class="section-sub">Nos grandes initiatives pour transformer l'éducation professionnelle au Cameroun.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem">
+      <div class="projet-card">
+        <span class="projet-tag tag-soon">🔥 Bientôt</span>
+        <div class="projet-title">Campus Numérique Intelligent</div>
+        <div class="projet-desc">Construction d'un campus 100% connecté avec salles intelligentes, laboratoires IA et espaces de coworking.</div>
+      </div>
+      <div class="projet-card">
+        <span class="projet-tag tag-plan">📋 Planifié</span>
+        <div class="projet-title">Incubateur de Startups</div>
+        <div class="projet-desc">Un espace dédié pour accompagner les jeunes entrepreneurs issus de nos formations à créer leurs entreprises.</div>
+      </div>
+      <div class="projet-card">
+        <span class="projet-tag tag-dev">⚙️ En développement</span>
+        <div class="projet-title">Plateforme E-Learning STT</div>
+        <div class="projet-desc">Notre propre plateforme de formation en ligne avec cours vidéo, quiz interactifs et suivi personnalisé.</div>
+      </div>
+      <div class="projet-card">
+        <span class="projet-tag tag-soon">🔥 Bientôt</span>
+        <div class="projet-title">Partenariats Internationaux</div>
+        <div class="projet-desc">Accords avec des universités et entreprises de France, Canada et Belgique pour des échanges académiques.</div>
+      </div>
+      <div class="projet-card">
+        <span class="projet-tag tag-plan">📋 Planifié</span>
+        <div class="projet-title">Centre de Certification Microsoft</div>
+        <div class="projet-desc">Devenir centre agréé Microsoft pour permettre aux apprenants d'obtenir des certifications internationales.</div>
+      </div>
+      <div class="projet-card">
+        <span class="projet-tag tag-dev">⚙️ En développement</span>
+        <div class="projet-title">Application Mobile STT</div>
+        <div class="projet-desc">Application iOS et Android pour suivre ses cours, payer ses frais et communiquer avec les formateurs.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSCRIPTION -->
+<section id="inscription" style="background:linear-gradient(135deg,rgba(10,45,110,0.2),rgba(6,13,31,0.95))">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:2.5rem">
+      <div class="section-tag" style="display:inline-flex"><i class="fas fa-pen-to-square"></i> Inscription en ligne</div>
+      <h2 class="section-title">Réservez votre <span class="orange">Place</span></h2>
+      <p style="color:var(--gray);max-width:550px;margin:0 auto">Remplissez ce formulaire et notre équipe vous contactera dans les 24h pour finaliser votre inscription.</p>
+    </div>
+    <div class="form-wrap">
+      <div id="formContainer">
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Nom *</label>
+            <input type="text" class="form-input" id="f-nom" placeholder="Votre nom de famille" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Prénom(s) *</label>
+            <input type="text" class="form-input" id="f-prenom" placeholder="Vos prénoms">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date de naissance</label>
+            <input type="date" class="form-input" id="f-dob">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Téléphone *</label>
+            <input type="tel" class="form-input" id="f-tel" placeholder="6XX XX XX XX">
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" id="f-email" placeholder="votre@email.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Secteur de formation *</label>
+            <select class="form-select" id="f-secteur" onchange="updateSpecialites()">
+              <option value="">-- Choisir un secteur --</option>
+              <option value="tic">TIC & Numérique</option>
+              <option value="sante">Paramédical & Santé</option>
+              <option value="gestion">Gestion & Administration</option>
+              <option value="industrie">Industrie & Génie Civil</option>
+              <option value="langues">Langues</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Spécialité souhaitée *</label>
+            <select class="form-select" id="f-spec">
+              <option value="">-- D'abord choisir le secteur --</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Niveau d'étude</label>
+            <select class="form-select" id="f-niveau">
+              <option value="">-- Votre niveau --</option>
+              <option>BEPC / PROBATOIRE</option>
+              <option>Terminale (Tle)</option>
+              <option>BAC</option>
+              <option>BAC+2</option>
+              <option>Licence et plus</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Horaire préféré</label>
+            <select class="form-select" id="f-horaire">
+              <option value="jour">Cours de jour</option>
+              <option value="soir">Cours du soir</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Message / Questions</label>
+            <textarea class="form-textarea" id="f-message" placeholder="Vos questions ou informations complémentaires..."></textarea>
+          </div>
+        </div>
+        <div style="margin-top:2rem; padding-top:1.5rem; border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 1.5rem;">
+          <label class="form-label" style="display:block; text-align:center; margin-bottom:1rem; color: var(--white);">Réglez vos frais d'inscription (25 000 FCFA) via :</label>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+            
+            <div style="background:#ffcc00; color:#000; padding:8px 15px; border-radius:8px; font-weight:800; font-size: 0.8rem;"><i class="fas fa-mobile-alt"></i> MTN MoMo</div>
+            <div style="background:#ff6600; color:#fff; padding:8px 15px; border-radius:8px; font-weight:800; font-size: 0.8rem;"><i class="fas fa-mobile-alt"></i> Orange Money</div>
+            <div style="background:#1434CB; color:#fff; padding:8px 15px; border-radius:8px; font-weight:800; font-size: 0.8rem;"><i class="fab fa-cc-visa"></i> Carte VISA</div>
+            <div style="background:#FFDE00; color:#000; padding:8px 15px; border-radius:8px; font-weight:800; font-size: 0.8rem;"><i class="fas fa-money-bill-transfer"></i> Western Union</div>
+            <div style="background:#D32F2F; color:#fff; padding:8px 15px; border-radius:8px; font-weight:800; font-size: 0.8rem;"><i class="fas fa-exchange-alt"></i> Express Union</div>
+
+          </div>
+        </div>
+        <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap">
+          
+          <button type="button" onclick="generatePDF()" class="btn btn-outline" style="flex:1;justify-content:center; border-color: var(--blue-light); color: var(--blue-light); background: rgba(58,123,213,0.1);">
+            <i class="fas fa-file-pdf" style="color: #ff4757;"></i> Télécharger ma fiche
+          </button>
+          
+          <button type="button" class="btn btn-orange" onclick="submitForm()" style="flex:1;justify-content:center">
+            <i class="fab fa-whatsapp"></i> Envoyer via WhatsApp
+          </button>
+
+        </div>
+        <div style="margin-top:1.2rem;background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.2);border-radius:12px;padding:1rem">
+          <p style="font-size:0.78rem;color:var(--gray)">
+            <i class="fas fa-info-circle" style="color:var(--orange)"></i>
+            <strong style="color:var(--white)"> Dossier d'inscription :</strong> Demande au promoteur, acte de naissance, CNI/Passeport, diplôme, 2 rames A4, 2 rouleaux papier hygiénique, enveloppe A4 + chemise. Frais d'inscription : <strong style="color:var(--orange)">25 000 FCFA</strong> | Uniforme : <strong style="color:var(--orange)">40 000 FCFA</strong>
+          </p>
+        </div>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <i class="fas fa-check-circle"></i>
+        <h3>Réservation envoyée !</h3>
+        <p style="color:var(--gray);margin-top:0.5rem">Notre équipe vous contactera dans les 24h pour finaliser votre dossier.</p>
+        <p style="margin-top:1rem;color:var(--gray);font-size:0.85rem">
+          <i class="fas fa-phone" style="color:var(--green)"></i> 
+          Vous pouvez aussi nous appeler : <strong style="color:var(--white)">695 40 35 80</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / FOOTER INFO -->
+<section id="contact" style="padding:3rem 2rem">
+  <div class="section-inner">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem">
+      <div style="background:var(--glass);border:1px solid rgba(58,123,213,0.2);border-radius:20px;padding:1.5rem;text-align:center;transition:all 0.3s" onmouseover="this.style.borderColor='var(--blue-light)'" onmouseout="this.style.borderColor='rgba(58,123,213,0.2)'">
+        <i class="fas fa-map-marker-alt" style="font-size:2rem;color:var(--orange);margin-bottom:0.8rem;display:block"></i>
+        <h4 style="margin-bottom:0.4rem">Localisation</h4>
+        <p style="font-size:0.82rem;color:var(--gray)">Rond-point Damas, Yaoundé, Cameroun</p>
+      </div>
+      <div style="background:var(--glass);border:1px solid rgba(58,123,213,0.2);border-radius:20px;padding:1.5rem;text-align:center;transition:all 0.3s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='rgba(58,123,213,0.2)'">
+        <i class="fas fa-phone" style="font-size:2rem;color:var(--green);margin-bottom:0.8rem;display:block"></i>
+        <h4 style="margin-bottom:0.4rem">Téléphone</h4>
+        <a href="tel:+237695403580" style="font-size:1rem;color:var(--white);text-decoration:none;font-weight:700">695 40 35 80</a>
+      </div>
+      <div style="background:var(--glass);border:1px solid rgba(58,123,213,0.2);border-radius:20px;padding:1.5rem;text-align:center;transition:all 0.3s" onmouseover="this.style.borderColor='var(--orange)'" onmouseout="this.style.borderColor='rgba(58,123,213,0.2)'">
+        <i class="fas fa-envelope" style="font-size:2rem;color:var(--blue-light);margin-bottom:0.8rem;display:block"></i>
+        <h4 style="margin-bottom:0.4rem">Email</h4>
+        <a href="mailto:ifpisttcam@gmail.com" style="font-size:0.9rem;color:var(--blue-light);text-decoration:none">ifpisttcam@gmail.com</a>
+      </div>
+      <div style="background:var(--glass);border:1px solid rgba(58,123,213,0.2);border-radius:20px;padding:1.5rem;text-align:center;transition:all 0.3s">
+        <i class="fas fa-clock" style="font-size:2rem;color:var(--orange);margin-bottom:0.8rem;display:block"></i>
+        <h4 style="margin-bottom:0.4rem">Horaires</h4>
+        <p style="font-size:0.82rem;color:var(--gray)">Lundi – Samedi<br><strong style="color:var(--white)">07h30 - 21h</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      
+      <div>
+        <div class="footer-logo">
+          <img src="assets/images/school-logo.jpg.jpeg" alt="Logo STT-CAM" style="width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 1px solid var(--blue-light); box-shadow: 0 0 10px rgba(58,123,213,0.5);">
+          <div>
+            <div style="font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;background:linear-gradient(135deg,var(--blue-light),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent">STT-CAMEROUN</div>
+          </div>
+        </div>
+        <div style="margin-top:2rem;background:rgba(249,115,22,0.1);border:1px solid rgba(249,115,22,0.2);border-radius:10px;padding:1rem;font-size:0.8rem;color:var(--gray); max-width: 350px;">
+          🏛️ <strong>Agrément MINEFOP :</strong><br>N°000508/MINEFOP/SG/DFOP/SDGSF/CSACD/CBAC
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-title">Formations</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="showSector('tic')"><i class="fas fa-chevron-right"></i> TIC & Numérique</a></li>
+          <li><a href="#" onclick="showSector('sante')"><i class="fas fa-chevron-right"></i> Paramédical & Santé</a></li>
+          <li><a href="#" onclick="showSector('gestion')"><i class="fas fa-chevron-right"></i> Gestion & Admin</a></li>
+          <li><a href="#" onclick="showSector('industrie')"><i class="fas fa-chevron-right"></i> Industrie & Génie Civil</a></li>
+          <li><a href="#" onclick="showSector('langues')"><i class="fas fa-chevron-right"></i> Langues</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-title">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="#ia-data"><i class="fas fa-chevron-right"></i> IA & Data</a></li>
+          <li><a href="#galerie"><i class="fas fa-chevron-right"></i> Galerie</a></li>
+          <li><a href="#online"><i class="fas fa-chevron-right"></i> Formation en ligne</a></li>
+          <li><a href="#projets"><i class="fas fa-chevron-right"></i> Projets à venir</a></li>
+          <li><a href="#inscription"><i class="fas fa-chevron-right"></i> S'inscrire</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <div class="footer-title">Contact</div>
+        <p><i class="fas fa-map-marker-alt"></i> Rond-point Damas, Yaoundé</p>
+        <p><i class="fas fa-phone"></i> <a href="tel:+237695403580" style="color:var(--gray);text-decoration:none">695 40 35 80</a></p>
+        <p><i class="fas fa-envelope"></i> <a href="mailto:ifpisttcam@gmail.com" style="color:var(--gray);text-decoration:none">ifpisttcam@gmail.com</a></p>
+        <p><i class="fas fa-calendar"></i> Rentrée : 28 Septembre 2026</p>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<!-- CHAT BUTTON -->
+<a href="https://wa.me/237695403580?text=Bonjour%20STT-Cameroun,%20j'aimerais%20avoir%20plus%20d'informations%20sur%20vos%20formations." target="_blank" id="chat-toggle" style="text-decoration: none;">
+  <i class="fab fa-whatsapp" style="font-size: 2rem;"></i>
+</a>
+
+<!-- MODAL (specialite modules) -->
+<div class="modal-overlay" id="specModal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title" id="modalTitle">Modules de formation</span>
+      <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- SCROLL TOP -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<script>
+// ===== DATA =====
+const SPECS = {
+  tic: [
+    { name:"Intelligence Artificielle & Data", level:"BAC", price:"450 000 frs", icon:"🤖", image:"assets/images/intelligence-artificielle.png", featured:true,
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
+      debouches:"Data Scientist, Data Analyst, Chef de projet IA, ML Engineer",
+      pdf:"assets/pdf/INTELLIGENCE ARTIFICIELLE & DATA SCIENCE.pdf",
+      modules:["Python pour l'IA","Machine Learning & Algorithmes","Deep Learning & Réseaux de neurones","Big Data & Gestion des données","Data Visualisation (Power BI, Tableau)","Computer Vision","NLP & Chatbots","Cloud Computing","Éthique de l'IA","Projet de fin d'études"] },
+    { name:"Cybersécurité & Hacking", level:"BAC", price:"450 000 frs", icon:"🔐", image:"assets/images/cybersecurite.jpg.jpeg", featured:false,
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
+      debouches:"Pentester (hacker éthique), analyste SOC, architecte sécurité, RSSI",
+      pdf:"assets/pdf/CYBERSECURITE & DATA.pdf",
+      modules:["Fondamentaux de la sécurité informatique","Ethical Hacking & Pentest","Cryptographie","Sécurité des réseaux","Forensique numérique","Gestion des vulnérabilités","Sécurité Web","SOC & Monitoring","RGPD & Conformité","CTF & Exercices pratiques"] },
+    { name:"Télécommunications et Réseaux", level:"BAC", price:"400 000 frs", icon:"📡", image:"assets/images/telecommunication.jpg.jpeg",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
+      debouches:"Technicien réseau, administrateur systèmes et réseaux, chef de projet",
+      pdf:"assets/pdf/TELECOMMUNICATIONS ET RESEAUX.pdf",
+      modules:["Réseaux TCP/IP","Administration Cisco","Fibre optique","Réseaux mobiles 4G/5G","VOIP & Téléphonie IP","Administration Linux/Windows Server","Wi-Fi & réseaux sans fil","Supervision réseau","Projet d'infrastructure","Stage professionnel"] },
+    { name:"Développeur Web & Mobile", level:"BAC", price:"350 000 frs", icon:"📱", image:"assets/images/developpeur-web-mobile.jpg.jpeg",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
+      debouches:"Développeur frontend, backend, full stack, ou concepteur d'applications mobiles",
+      pdf:"assets/pdf/DEVELOPPEUR WEB ET MOBILE.pdf",
+      modules:["HTML5, CSS3, JavaScript","React.js / Vue.js","Node.js & API REST","Flutter / React Native","Bases de données SQL/NoSQL","Git & contrôle de version","Déploiement cloud","UX/UI Design","Gestion de projet Agile","Projet de fin d'études"] },
+    { name:"Maintenance Informatique et Réseau", level:"Terminale", price:"350 000 frs", icon:"🔧", image:"assets/images/maintenance-informatique.jpg.jpeg",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
+      debouches:"Technicien de maintenance et support informatique, Administrateur systèmes et réseaux, Gestionnaire de parc",
+      pdf:"assets/pdf/MAINTENANCE DES RESEAUX INFORMATIQUES.pdf",
+      modules:["Assemblage & Réparation PC","Systèmes d'exploitation Windows/Linux","Réseaux locaux","Maintenance imprimantes","Récupération de données","Virtualisation VMware","Help Desk & Support","Sauvegarde & sécurité","Diagnostic hardware","Stage en entreprise"] },
+    { name:"Maintenance Informatique", level:"Probatoire", price:"300 000 frs", icon:"🖥️", image:"assets/images/maintenance-informatique.jpeg",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
+      debouches:"Technicien support, gestionnaire de parc, administrateur système, Technicien de maintenance",
+      modules:["Architecture et Montage Matériel (Hardware)", "Systèmes d'Exploitation (Software)", "Maintenance Préventive et Corrective", "Réseaux Informatiques", "Sécurité et Protection", "Maintenance des Connexions Internet", "Gestion de Parc et Support"] },
+    { name:"Community Management", level:"BAC", price:"350 000 frs", icon:"📣", image:"assets/images/community-manager.jpg.jpeg",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
+      debouches:"Community Manager, Social Media Manager, Content Manager, Chef de projet digital",
+      pdf:"assets/pdf/COMMUNITY MANAGEMENT.pdf",
+      modules:["Stratégie des réseaux sociaux","Création de contenu","Facebook & Instagram Ads","YouTube & TikTok","Analytics & Reporting","E-réputation","Outils de planification","Marketing d'influence","SEO & SEA","Projet de marque"] },
+    { name:"Marketing Digital", level:"BAC", price:"350 000 frs", icon:"📈", image:"assets/images/marketing-digital.jpg.jpeg",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
+      debouches:"Chef de projet digital, Digital Marketing Manager, Expert SEO, Traffic Manager",
+      pdf:"assets/pdf/MARKETING DIGITAL.pdf",
+      modules:["Fondamentaux du marketing","Google Ads & Meta Ads","SEO & Content Marketing","Email Marketing","Entonnoir de conversion","CRM & Automation","Analytics Web","E-commerce","Growth Hacking","Stratégie digitale"] },
+    { name:"Développeur d'Application", level:"BAC", price:"350 000 frs", icon:"💻", image:"assets/images/developpeur-application.jpg.jpeg",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
+      debouches:"Développeur Front-end / Back-end / Full Stack, Développeur d'applications mobiles",
+      pdf:"assets/pdf/DEVELOPPEUR D'APPLICATION.pdf",
+      modules:["Algorithmique et programmation","Java / Python / C#","POO & Design Patterns","Bases de données","API & Web Services","Tests unitaires","Architecture logicielle","Frameworks modernes","Versioning Git","Projet applicatif"] },
+    { name:"Webmaster", level:"BAC", price:"350 000 frs", icon:"🌐", image:"assets/images/WEBMASTER.jpg.jpeg",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
+      debouches:"Webmaster / Administrateur de site, Intégrateur web, Chef de projet web",
+      pdf:"assets/pdf/WEBMASTER.pdf",
+      modules:["Création de sites web","WordPress & CMS","HTML/CSS avancé","Optimisation SEO","Gestion hébergement","Sécurité web","Maintenance de sites","E-commerce (WooCommerce)","Analytics Google","Projet web professionnel"] },
+    { name:"Montage Audio Visuel", level:"BEPC-CAP", price:"350 000 frs", icon:"🎬", image:"assets/images/montage-audiovisuel.jpg.jpeg",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
+      debouches:"Monteur/Monteuse vidéo, Chef(fe) monteur, Motion Designer, Monteur son",
+      pdf:"assets/pdf/MONTAGE AUDIO VISUEL.pdf",
+      modules:["Techniques de prise de vue","Montage vidéo (Premiere Pro)","After Effects & Motion Design","Prise de son & mixage","Color Grading","Streaming & YouTube","Production de podcasts","Réalisation documentaire","Drone & captation aérienne","Projet audiovisuel"] },
+    { name:"Infographie 2D & 3D / Graphisme", level:"Terminale", price:"350 000 frs", icon:"🎨", image:"assets/images/INFOGRAPHIE.jpg.jpeg",
+      tranches:"<span style='color: #FFFFFF; font-weight: 900;'>Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)</span>",
+      debouches:"Infographe exécutant / Maquettiste, Designer graphique junior, Directeur artistique, UI/UX Designer",
+      pdf:"assets/pdf/INFOGRAPHIE.pdf",
+      modules:["Photoshop & Illustrator","InDesign & mise en page","Blender 3D","Motion Design","Design d'identité visuelle","UX/UI Design","Impression & pré-presse","Photographie professionnelle","Portfolio créatif","Projet de fin de formation"] }
+  ],
+   sante: [
+    { name:"Délégué Médical", level:"BAC+2", price:"500 000 frs", icon:"💊", image:"assets/images/delegue-medical.jpg.jpeg",
+      tranches:"Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)",
+      debouches:"Délégué médical, Délégué pharmaceutique, Délégué hospitalier, Chef de produit",
+      pdf:"assets/pdf/DELEGUE MEDICAL.pdf",
+      modules:["Anatomie & Physiologie","Pharmacologie de base","Réglementation pharmaceutique","Techniques de vente médicale","Terminologie médicale","Communication scientifique","Visites médicales","Gestion du territoire","Droit de la santé","Stage en laboratoire pharmaceutique"] },
+    { name:"Vendeur / Auxiliaire en Pharmacie", level:"Probatoire", price:"350 000 frs", icon:"🏥", image:"assets/images/vendeur-pharmacie.jpg.jpeg",
+      tranches:"Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)",
+      debouches:"Vendeur ou Assistant en pharmacie, Conseiller en parapharmacie, Gestionnaire de stocks",
+      pdf:"assets/pdf/VENDEUR EN PHARMACIE.pdf",
+      modules:["Médicaments & génériques","Hygiène et stérilisation","Conseil au patient","Dispensation médicamenteuse","Gestion des stocks","Réglementation pharmaceutique","Premiers secours","Terminologie médicale","Informatique de gestion","Stage en officine"] },
+    { name:"Technicien de Laboratoire / Aide Chimiste", level:"BEPC", price:"350 000 frs", icon:"🔬", image:"assets/images/technicien-laboratoire.jpg.png",
+      tranches:"Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)",
+      debouches:"Laboratoires d'analyses médicales et cliniques, Industrie pharmaceutique, Secteur agroalimentaire",
+      pdf:"assets/pdf/TECHNICIEN DE LABORATOIRE.pdf",
+      modules:["Biologie cellulaire","Techniques d'analyse biologique","Chimie analytique","Hématologie","Microbiologie","Biochimie clinique","Sécurité en laboratoire","Traitement des échantillons","Contrôle qualité","Stage en laboratoire"] },
+    { name:"Assistant en Kinésithérapie", level:"BEPC", price:"350 000 frs", icon:"🏃", image:"assets/images/KINESITHERAPIE.jpg.jpeg",
+      tranches:"Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)",
+      debouches:"Assistant kinésithérapeute, Massothérapeute / Spécialiste du bien-être, Prestataire à domicile",
+      pdf:"assets/pdf/ASSISTANT EN KINESITHERAPIE.pdf",
+      modules:["Anatomie musculo-squelettique","Techniques de massage","Kinésithérapie respiratoire","Rééducation motrice","Électrothérapie","Hydrologie & balnéothérapie","Ergonomie","Sport-santé","Accompagnement patient","Stage en clinique"] },
+    { name:"Auxiliaire de Vie / Aide Soignante", level:"BEPC", price:"350 000 frs", icon:"❤️‍🩹", image:"assets/images/auxilaire-de-vie.jpg.jpeg",
+      tranches:"Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)",
+      debouches:"À domicile, En établissements spécialisés, En milieu hospitalier",
+      pdf:"assets/pdf/AUXILLIAIRE DE VIE SOCIALE.pdf",
+      modules:["Soins de base","Hygiène corporelle","Nutrition & diététique","Soins aux personnes âgées","Premiers secours","Psychologie du patient","Maladies courantes","Communication soignant","Gestes et postures","Stage en milieu hospitalier"] }
+  ],
+  gestion: [
+    { name:"Logistique et Transport", level:"BAC", price:"350 000 frs", icon:"🚛", image:"assets/images/logistique.jpg.jpeg",
+      tranches:"Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)",
+      debouches:"Gestionnaire des stocks, Logisticien, Chef de quai, Supply Chain Manager",
+      pdf:"assets/pdf/LOGISTIQUE ET TRANSPORT.pdf",
+      modules:["Supply Chain Management","Transport routier/aérien/maritime","Gestion d'entrepôt","Incoterms & documents","Gestion des commandes","WMS & TMS","Douane & transit","Géolocalisation & tracking","Gestion des risques","Stage logistique"] },
+    { name:"Douane et Transit", level:"BAC", price:"350 000 frs", icon:"🛃", image:"assets/images/douane-transit.jpg.jpeg",
+      tranches:"Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)",
+      debouches:"Agent de transit, Déclarant en douane, Affréteur, Commissionnaire en douane agréé",
+      pdf:"assets/pdf/DOUANE ET TRANSIT.pdf",
+      modules:["Réglementation douanière","Nomenclature tarifaire","Déclaration en douane","Procédures d'import/export","Incoterms","Transit international","CAMCIS & SEGUCE","Contentieux douanier","Documentation commerciale","Stage en cabinet de transit"] },
+    { name:"Déclarant en Douane", level:"BEPC-CAP", price:"350 000 frs", icon:"📋", image:"assets/images/declarant-douane.jpg.jpeg",
+      tranches:"Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)",
+      debouches:"Déclarant en douane, Chef de service transit, Agent de transit international",
+      pdf:"assets/pdf/DECLARANT EN DOUANE.pdf",
+      modules:["Code des douanes","Tarif des douanes","Valeur en douane","Régimes douaniers","Documents douaniers","Fiscalité douanière","CAMCIS pratique","Contentieux","Éthique professionnelle","Stage pratique"] },
+    { name:"Comptabilité Informatisée et Gestion", level:"Terminale", price:"350 000 frs", icon:"📊", image:"assets/images/COMPTABILITE.jpeg",
+      tranches:"Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)",
+      debouches:"Chef comptable, responsable administratif et financier, auditeur interne, Assistant comptable",
+      pdf:"assets/pdf/COMPTABILITE INFORMATISEE ET GESTION.pdf",
+      modules:["SYSCOHADA révisé","Sage Comptabilité","Paie & charges sociales","Fiscalité des entreprises","Gestion budgétaire","Excel financier","Audit & contrôle","Déclarations fiscales","Gestion de trésorerie","Stage en cabinet comptable"] },
+    { name:"Secrétariat Comptable", level:"1ère", price:"350 000 frs", icon:"🗂️", image:"assets/images/secretariat-comptable.jpg.jpeg",
+      tranches:"Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)",
+      debouches:"Secrétaire comptable, Assistant comptable, Secrétaire administratif, Assistant de gestion",
+      pdf:"assets/pdf/SECRETARIAT COMPTABLE.pdf",
+      modules:["Comptabilité générale","Secrétariat & accueil","Bureautique avancée","Gestion des archives","Correspondance commerciale","Facturation & recouvrement","Excel comptable","Droit des affaires","Communication professionnelle","Stage en entreprise"] },
+    { name:"Secrétariat Bureautique", level:"3e-BEPC", price:"350 000 frs", icon:"⌨️", image:"assets/images/secretariat-bureautique.jpg.jpeg",
+      tranches:"Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)",
+      debouches:"Secrétaire bureautique, Secrétaire de direction, Opérateur de saisie, Standardiste",
+      pdf:"assets/pdf/SECRETARIAT  BUREAUTIQUE.pdf",
+      modules:["Word avancé","Excel & Tableaux","PowerPoint professionnel","Saisie rapide","Gestion du courrier","Accueil téléphonique","Rédaction administrative","Gestion d'agenda","Classement & archivage","Stage en administration"] },
+    { name:"Secrétariat de Direction", level:"BAC", price:"350 000 frs", icon:"👔", image:"assets/images/secretariat-direction.jpg.jpeg",
+      tranches:"Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)",
+      debouches:"Assistant de direction, Secrétaire de direction, Office Manager, Assistant de gestion/RH",
+      pdf:"assets/pdf/SECRETARIAT  DIRECTION.pdf",
+      modules:["Management & organisation","Communication managériale","Gestion de projet","Protocole & événementiel","Langues des affaires","Outils collaboratifs","Techniques de négociation","Droit du travail","Veille informationnelle","Stage en direction d'entreprise"] },
+    { name:"Management & Suivi-Évaluation de Projets", level:"Licence", price:"450 000 frs", icon:"📌", image:"assets/images/management-projets.jpg.jpeg",
+      tranches:"Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)",
+      debouches:"Chef de projet, Responsable PMO, Expert en Suivi et Évaluation, Directeur de programme",
+      pdf:"assets/pdf/MANAGEMENT DES PROJETS.pdf",
+      modules:["Cycle de vie des projets","Cadre logique","Planification & Gantt","MS Project","Passation de marchés","Gestion financière","Suivi-évaluation","Reporting bailleur","Coordination d'équipe","Gestion des risques projet"] },
+    { name:"Bureautique", level:"3e", price:"100 000 frs", icon:"💻", image:"assets/images/BUREAUTIQUE.jpeg",
+      tranches:"Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)",
+      debouches:"Secrétaire, Assistant(e) de gestion, Opérateur(trice) de saisie, Agent d'accueil",
+      pdf:"assets/pdf/BUREAUTIQUE.pdf",
+      modules:["Initiation à l'informatique", "Saisie de textes", "Microsoft Word", "Microsoft Excel", "Microsoft PowerPoint", "Internet et recherche", "Impression et scanner", "Maintenance de base"] }
+  ],
+    industrie: [
+    { name:"Énergie Renouvelable", level:"BAC", price:"400 000 frs", icon:"☀️", image:"assets/images/energie-renouvelable.jpg.jpeg",
+      tranches:"Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)",
+      debouches:"Technicien en énergies renouvelables, Installateur de panneaux photovoltaïques, Chef de projet en énergies",
+      pdf:"assets/pdf/ENERGIE RENOUVELLABLE.pdf",
+      modules:["Énergie solaire photovoltaïque","Énergie éolienne","Bioénergie & biomasse","Installation solaire","Dimensionnement de systèmes","Stockage (batteries)","Électricité générale","Réglementation énergétique","Gestion de projets ENR","Stage terrain"] },
+    { name:"Géomètre-Topographe", level:"BAC", price:"350 000 frs", icon:"📐", image:"assets/images/geometre-topographe.jpg.jpeg",
+      tranches:"Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)",
+      debouches:"Géomètre-Topographe, Dessinateur-Projeteur, Géomaticien / Chef de brigade",
+      modules:["Topographie générale","GPS & GNSS","Nivellement","Cadastre & foncier","AutoCAD Civil 3D","Drones de relevé","SIG & cartographie","Métrologie","Calculs topométriques","Stage sur chantier"] },
+      { name:"Dessin Bâtiment & Architecture", level:"BEPC-CAP", price:"250 000 frs", icon:"🏠", image:"assets/images/dessin-batiment.jpg.png",
+      tranches:"Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)",
+      debouches:"Cabinets d'architecture, Bureaux d'études techniques (BET), Entreprises de BTP",
+      pdf:"assets/pdf/DESSIN BATIMENT.pdf",
+      modules:["Dessin technique de base", "Lecture de plans architecturaux", "AutoCAD 2D et 3D", "ArchiCAD", "Conception de plans de maisons", "Devis quantitatif et estimatif", "Normes de construction", "Impression et traçage de plans"] },
+    { name:"Logiciel Génie Civil", level:"BEPC-CAP", price:"70 000 frs / logiciel", icon:"💻", image:"assets/images/logiciel-geniecivil.jpeg",
+      tranches:"Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)",
+      debouches:"Modélisation et Dessin (CAO/DAO), Calcul et Dimensionnement des Structures",
+      pdf:"assets/pdf/LOGICIEL DE GENIE CIVILE.pdf",
+      modules:["AutoCAD", "ArchiCAD", "Robot Structural Analysis", "Revit Structure", "CBS Pro", "Mensura", "Piste", "Covadis"] },
+    { name:"Plomberie-Installation Sanitaire", level:"BEPC-CAP", price:"350 000 frs", icon:"🔧", image:"assets/images/PLOMBERIE.jpg.jpeg",
+      tranches:"Durée : 1 an (9 mois de cours + 3 mois de stage + Soutenance + Examen National MINEFOP)",
+      debouches:"Plombier/Installateur sanitaire, Technicien en maintenance sanitaire, Chef de chantier",
+      pdf:"assets/pdf/PLOMBERIE SANIRAIRE.pdf",
+      modules:["Lecture de plans","Tuyauterie & raccords","Sanitaires & robinetterie","Chauffage & climatisation","Traitement des eaux","Normes de sécurité","Soudure & assemblage","Dépannage & maintenance","Devis & chiffrage","Stage en chantier"] }
+  ],
+ langues: [
+    { 
+      name: "Anglais", 
+      image: "assets/images/USA.png", 
+      details: `
+        <p style="margin-bottom: 1rem;">L’anglais est la langue internationale par excellence. Il est indispensable pour les affaires, les études à l’étranger, la recherche et la communication mondiale.</p>
+        <p style="margin-bottom: 0.5rem;"><strong style="color:var(--orange);">Méthodologie :</strong> Immersion totale, simulations de conversations, exercices multimédias. Nos cours sont structurés pour développer la compréhension et l'expression orale et écrite.</p>
+        <p style="margin-bottom: 0.5rem;"><strong style="color:var(--orange);">Préparation examens :</strong> IELTS, TOEFL avec documentation complète.</p>
+        <p style="margin-bottom: 1.5rem;"><strong style="color:var(--orange);">Durée :</strong> 2 mois par niveau (Durée moyenne : 06 mois).</p>
+        
+        <h5 style="color:var(--green); border-bottom: 1px solid var(--green); padding-bottom: 5px; margin-bottom: 10px;">TARIFS & FRAIS</h5>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.8rem;">
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+            <strong style="color:var(--blue-light);">COURS DU JOUR</strong><br>
+            • Inscription et Documentation : 25 000 XAF<br>
+            • Test : 5 000 XAF<br>
+            • A1 à B2 : 70 000 XAF / niveau<br>
+            • Accéléré : 85 000 XAF / niveau<br>
+            • Prépa IELTS/TOEFL : 100 000 XAF / mois
+          </div>
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+            <strong style="color:var(--blue-light);">COURS DU SOIR</strong><br>
+            • Inscription et Documentation : 25 000 XAF<br>
+            • Test : 5 000 XAF<br>
+            • Accéléré : 90 000 XAF / niveau<br>
+            • Prépa IELTS/TOEFL : 100 000 XAF / mois
+          </div>
+        </div>
+      ` 
+    },
+    { 
+      name: "Français", 
+      image: "assets/images/FRANCE.jpeg", 
+      details: `
+        <p style="margin-bottom: 1rem;">Le français est une langue officielle dans plus de 29 pays. Nos cours visent autant les étudiants locaux que les expatriés (communication quotidienne, concours et examens).</p>
+        <p style="margin-bottom: 0.5rem;"><strong style="color:var(--orange);">Public cible :</strong> Étudiants, expatriés, professionnels.</p>
+        <p style="margin-bottom: 0.5rem;"><strong style="color:var(--orange);">Examens préparés :</strong> DELF, DALF, TCF, TEF.</p>
+        <p style="margin-bottom: 1.5rem;"><strong style="color:var(--orange);">Durée :</strong> 2 mois par niveau (Durée moyenne : 06 mois).</p>
+        
+        <h5 style="color:var(--green); border-bottom: 1px solid var(--green); padding-bottom: 5px; margin-bottom: 10px;">TARIFS & FRAIS</h5>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.8rem;">
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+            <strong style="color:var(--blue-light);">COURS DU JOUR</strong><br>
+            • Inscription et Documentation : 25 000 XAF<br>
+            • Test : 5 000 XAF<br>
+            • A1 à C2 : 80 000 XAF / niveau<br>
+            • Prépa examens : 100 000 XAF / mois
+          </div>
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+            <strong style="color:var(--blue-light);">COURS DU SOIR</strong><br>
+            • Inscription et Documentation : 25 000 XAF<br>
+            • Test : 5 000 XAF<br>
+            • Accéléré : 100 000 XAF / niveau<br>
+            • Prépa examens : 100 000 XAF / mois
+          </div>
+        </div>
+      ` 
+    },
+    { 
+      name: "Allemand", 
+      image: "assets/images/ALLEMAND.jpeg", 
+      details: `
+        <p style="margin-bottom: 1rem;">L’allemand est la langue la plus parlée de l'espace Schengen. Idéal pour les études en Allemagne, un emploi avec des entreprises germanophones ou le voyage.</p>
+        <p style="margin-bottom: 0.5rem;"><strong style="color:var(--orange);">Méthodologie :</strong> Approche communicative, jeux de rôle, dialogues interactifs. Grammaire, vocabulaire, et prononciation.</p>
+        <p style="margin-bottom: 0.5rem;"><strong style="color:var(--orange);">Avantages :</strong> Préparation StartDeutsch et TestDaF, immersion culturelle.</p>
+        <p style="margin-bottom: 1.5rem;"><strong style="color:var(--orange);">Durée :</strong> 2 mois par niveau (Durée moyenne : 10 mois).</p>
+        
+        <h5 style="color:var(--green); border-bottom: 1px solid var(--green); padding-bottom: 5px; margin-bottom: 10px;">TARIFS & FRAIS</h5>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.8rem;">
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+            <strong style="color:var(--blue-light);">COURS DU JOUR</strong><br>
+            • Inscription et Documentation : 25 000 XAF<br>
+            • Test : 5 000 XAF<br>
+            • A1: 80k | A2: 100k | B1: 110k | B2: 120k | C1: 130k<br>
+            • Option prépa seule : 100 000 XAF / mois
+          </div>
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+            <strong style="color:var(--blue-light);">COURS DU SOIR</strong><br>
+            • Inscription et Documentation : 25 000 XAF<br>
+            • Test : 5 000 XAF<br>
+            • A1 & A2 : 115 000 XAF<br>
+            • B1, B2 & C1 : 140 000 XAF / niveau<br>
+            • Option prépa seule : 100 000 XAF / mois
+          </div>
+        </div>
+      ` 
+    },
+    { 
+      name: "Chinois (Mandarin)", 
+      image: "assets/images/CHINOIS.png", 
+      details: `
+        <p style="margin-bottom: 1rem;">Le chinois mandarin est aujourd’hui une langue incontournable dans les affaires et les échanges internationaux.</p>
+        <p style="margin-bottom: 0.5rem;"><strong style="color:var(--orange);">Méthodologie :</strong> Apprentissage progressif de la prononciation, écriture des caractères, communication orale et écrite, initiation à la culture chinoise.</p>
+        <p style="margin-bottom: 0.5rem;"><strong style="color:var(--orange);">Examens préparés :</strong> HSK (Hanyu Shuiping Kaoshi).</p>
+        <p style="margin-bottom: 1.5rem;"><strong style="color:var(--orange);">Durée :</strong> 2 mois par niveau (Durée moyenne : 09 mois).</p>
+        
+        <h5 style="color:var(--green); border-bottom: 1px solid var(--green); padding-bottom: 5px; margin-bottom: 10px;">TARIFS & FRAIS</h5>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.8rem;">
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+            <strong style="color:var(--blue-light);">COURS (Jour/Soir)</strong><br>
+            • Inscription et Documentation : 25 000 XAF<br>
+            • Test : 5 000 XAF<br>
+            • Pack complet HSK 1 à 6 : 90 000 XAF / niveau<br>
+            • Prépa examens HSK : 100 000 XAF / mois
+          </div>
+        </div>
+      ` 
+    },
+    { 
+      name: "Italien", 
+      image: "assets/images/ITALIEN.jpeg", 
+      details: `
+        <p style="margin-bottom: 1rem;">L’italien est une langue de culture et d’art, mais aussi un atout dans les domaines de la mode, du design, de la gastronomie et du commerce international.</p>
+        <p style="margin-bottom: 0.5rem;"><strong style="color:var(--orange);">Méthodologie :</strong> Cours interactifs, mises en situation réelles, culture et civilisation italiennes.</p>
+        <p style="margin-bottom: 0.5rem;"><strong style="color:var(--orange);">Examens préparés :</strong> CILS, PLIDA, CERT.IT.</p>
+        <p style="margin-bottom: 1.5rem;"><strong style="color:var(--orange);">Durée :</strong> 6 mois (pack complet).</p>
+        
+        <h5 style="color:var(--green); border-bottom: 1px solid var(--green); padding-bottom: 5px; margin-bottom: 10px;">TARIFS & FRAIS</h5>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.8rem;">
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+            <strong style="color:var(--blue-light);">COURS DU JOUR</strong><br>
+            • Inscription et Documentation : 25 000 XAF<br>
+            • Test : 5 000 XAF<br>
+            • Pack complet : 450 000 XAF<br>
+            • Tranches : 150k / 150k / 150k<br>
+            • Prépa examens : 100 000 XAF / mois
+          </div>
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+            <strong style="color:var(--blue-light);">COURS DU SOIR</strong><br>
+            • Inscription et Documentation : 25 000 XAF<br>
+            • Test : 5 000 XAF<br>
+            • Pack complet : 500 000 XAF<br>
+            • Tranches : 200k / 200k / 100k<br>
+            • Prépa examens : 100 000 XAF / mois
+          </div>
+        </div>
+      ` 
+    },
+    { name:"Espagnol", image:"assets/images/ESPAGNOLE.png", details:"<p>Programme détaillé en cours de mise à jour.</p>" },
+    { name:"Arabe", image:"assets/images/ARABE.png", details:"<p>Programme détaillé en cours de mise à jour.</p>" },
+    { name:"Russe", image:"assets/images/RUSSE.png", details:"<p>Programme détaillé en cours de mise à jour.</p>" }
+  ]
+};
+// ===== RENDER GRIDS =====
+function renderGrids() {
+  // TIC
+  const gTIC = document.getElementById('grid-tic');
+  SPECS.tic.forEach(s => {
+    gTIC.innerHTML += specCard(s);
+  });
+  // SANTE
+  const gSante = document.getElementById('grid-sante');
+  SPECS.sante.forEach(s => { gSante.innerHTML += specCard(s); });
+  // GESTION
+  const gG = document.getElementById('grid-gestion');
+  SPECS.gestion.forEach(s => { gG.innerHTML += specCard(s); });
+  // INDUSTRIE
+  const gI = document.getElementById('grid-industrie');
+  SPECS.industrie.forEach(s => { gI.innerHTML += specCard(s); });
+  // LANGUES
+  const gL = document.getElementById('grid-langues');
+  SPECS.langues.forEach(l => {
+    gL.innerHTML += `
+      <div class="lang-card" style="cursor: pointer;" onclick="openLangModal('${escapeQ(l.name)}')">
+        <img src="${l.image}" alt="${l.name}" style="width: 55px; height: 40px; object-fit: cover; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.4); flex-shrink: 0;">
+        <div class="lang-info">
+          <h4 style="margin: 0; font-size: 1.1rem; color: var(--white);">${l.name}</h4>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function specCard(s) {
+  const imgHtml = s.image 
+    ? `<img src="${s.image}" alt="${s.name}" style="width:100%;height:100%;object-fit:cover;z-index:1;position:relative;opacity:0.85;">`
+    : `<span style="font-size:4rem;z-index:1;position:relative">${s.icon}</span>`;
+
+  return `
+    <div class="spec-card ${s.featured?'featured':''}" onclick="openModal('${escapeQ(s.name)}')">
+      <div class="spec-img" style="background:linear-gradient(135deg,#0a2d6e,#060d1f)">
+        ${imgHtml}
+        <div class="spec-img-overlay"></div>
+      </div>
+      <div class="spec-body">
+        <div class="spec-name">${s.name}</div>
+        <span class="spec-level">${s.level}</span>
+        <div class="spec-price">${s.price}</div>
+        <div class="spec-tranches">${s.tranches}</div>
+        <button class="spec-btn" onclick="event.stopPropagation();openModal('${escapeQ(s.name)}')">
+          <i class="fas fa-list"></i> Voir les modules
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function escapeQ(s) { return s.replace(/'/g, "\\'"); }
+
+// ===== SECTOR TABS =====
+function showSector(sector) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.sector-tab').forEach(t => t.classList.remove('active','active-green','active-orange'));
+  document.getElementById('sector-' + sector).classList.add('active');
+  const tabs = document.querySelectorAll('.sector-tab');
+  const map = ['tic','sante','gestion','industrie','langues'];
+  const idx = map.indexOf(sector);
+  if(idx >= 0) tabs[idx].classList.add('active');
+  document.getElementById('formations').scrollIntoView({behavior:'smooth'});
+}
+
+// ===== MODAL =====
+function openLangModal(name) {
+  // 1. META PIXEL TRACKING
+  if (typeof fbq === 'function') {
+    fbq('track', 'ViewContent', { content_name: name, content_category: 'Langues' });
+  }
+
+  const found = SPECS.langues.find(l => l.name === name);
+  if(!found) return;
+
+  document.getElementById('modalTitle').textContent = "🗣️ Centre de Langues : " + found.name;
+  
+  let html = `
+    <div style="text-align:center; margin-bottom:1.5rem;">
+       <img src="${found.image}" style="width:120px; border-radius:8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); border: 2px solid var(--blue-light);">
+    </div>
+    
+    <div style="background:rgba(58,123,213,0.08); border:1px solid rgba(58,123,213,0.2); border-radius:12px; padding:1.5rem; margin-bottom:1.5rem; color: var(--white); line-height: 1.7; font-size: 0.9rem;">
+      ${found.details}
+    </div>
+
+    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+      <a href="#inscription" onclick="openForm('${escapeQ(found.name)}')" class="btn btn-orange" style="flex:1; justify-content:center; text-align:center; min-width:200px;">
+        <i class="fas fa-pen"></i> S'inscrire à ce cours
+      </a>
+      <button onclick="closeModal()" class="btn btn-outline" style="flex:1; justify-content:center; text-align:center; min-width:200px;">
+        Fermer
+      </button>
+    </div>
+  `;
+  
+  document.getElementById('modalContent').innerHTML = html;
+  document.getElementById('specModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function openModal(name) {
+  // 1. META PIXEL TRACKING: User viewed a course
+  if (typeof fbq === 'function') {
+    fbq('track', 'ViewContent', {
+      content_name: name,
+      content_category: 'Formation'
+    });
+  }
+
+  let found;
+  for(const key of ['tic','sante','gestion','industrie']) {
+    found = SPECS[key].find(s => s.name === name);
+    if(found) break;
+  }
+  if(!found) return;
+
+  document.getElementById('modalTitle').textContent = found.icon + ' ' + found.name;
+  
+  let html = `
+    <div style="margin-bottom:1rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center">
+      <span class="spec-level">${found.level}</span>
+      <span style="font-family:'Orbitron',monospace;color:var(--orange);font-size:1.1rem;font-weight:900">${found.price}</span>
+    </div>
+    
+    <!-- DURATION AND PAYMENT TERMS IN ONE BOX -->
+    <div style="background:rgba(58,123,213,0.08);border:1px solid rgba(58,123,213,0.2);border-radius:10px;padding:0.8rem;margin-bottom:1rem;font-size:0.78rem;color:var(--gray);line-height:1.6;">
+      <div style="margin-bottom: 4px;">
+        <strong style="color:var(--white)"><i class="fas fa-money-bill-wave" style="color:var(--orange)"></i> Modalités :</strong> Payable en 4 tranches maximum
+      </div>
+      <div>
+        <strong style="color:var(--white)"><i class="fas fa-graduation-cap" style="color:var(--green)"></i> Déroulement :</strong> ${found.tranches}
+      </div>
+    </div>
+    
+    <h4 style="font-family:'Orbitron',monospace;font-size:0.85rem;color:var(--green);margin-bottom:0.8rem">MODULES DE FORMATION</h4>
+    <ul class="module-list">
+  `;
+  
+  found.modules.forEach((m,i) => {
+    html += `<li class="module-item"><i class="fas fa-check-circle"></i> ${m}</li>`;
+  });
+  
+  html += `</ul>`;
+
+  // Inject the green Career Outcomes box dynamically if data exists
+  if (found.debouches) {
+    html += `
+    <div style="margin-top:1.5rem;background:rgba(29,185,84,0.08);border:1px solid rgba(29,185,84,0.2);border-radius:12px;padding:1rem">
+      <p style="font-size:0.82rem;color:var(--gray);line-height:1.7">
+        <i class="fas fa-info-circle" style="color:var(--green)"></i>
+        Après cette formation, vous pourrez travailler comme : <strong style="color:var(--white)">${found.debouches}</strong> dans des entreprises au Cameroun et à l'international.
+      </p>
+    </div>`;
+  }
+
+  // Dynamic PDF Button Logic
+  let pdfButton = found.pdf 
+      ? `<a href="${found.pdf}" target="_blank" download class="btn btn-outline" style="flex:1; justify-content:center; text-align:center; min-width:200px;"><i class="fas fa-file-pdf" style="color: #ff4757;"></i> Télécharger le programme</a>` 
+      : `<button class="btn btn-outline" style="flex:1; justify-content:center; text-align:center; min-width:200px; opacity:0.5; cursor:not-allowed;" disabled><i class="fas fa-file-pdf"></i> Programme en cours</button>`;
+
+  html += `
+    <div style="margin-top:1.5rem; display:flex; gap:1rem; flex-wrap:wrap;">
+      <a href="#inscription" onclick="openForm('${escapeQ(found.name)}')" class="btn btn-orange" style="flex:1; justify-content:center; text-align:center; min-width:200px;">
+        <i class="fas fa-pen"></i> S'inscrire à cette formation
+      </a>
+      ${pdfButton}
+    </div>
+  `;
+  
+  document.getElementById('modalContent').innerHTML = html;
+  document.getElementById('specModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('specModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+// ===== NEW FUNCTION: Routing & Trigger 2 =====
+function openForm(courseName) {
+  // 2. META PIXEL TRACKING: User clicked 'S'inscrire' inside the modal
+  if (typeof fbq === 'function') {
+    fbq('track', 'InitiateCheckout', {
+      course_name: courseName,
+      content_category: 'Formation'
+    });
+  }
+  
+  // Set the form dropdown value to the chosen course
+  document.getElementById('f-spec').value = courseName;
+  
+  // Close the modal so they can see the form
+  closeModal();
+}
+function openVacancesModal() {
+  document.getElementById('modalTitle').textContent = "🌟 Spécial Vacances Utiles 2026";
+  
+  const whatsappLink = "https://wa.me/237695403580?text=Bonjour%20STT-Cameroun%2C%20je%20souhaite%20inscrire%20mon%20enfant%20aux%20cours%20de%20vacances.";
+
+  let html = `
+    <div style="text-align:center; margin-bottom:1.5rem;">
+      <img src="assets/images/vacnces-utiles.jpeg" alt="Affiche Vacances" style="width:100%; max-height:45vh; object-fit:contain; border-radius:12px; border: 2px solid var(--blue-light); box-shadow: 0 5px 15px rgba(58,123,213,0.3); background:#fff; padding:5px;">
+    </div>
+    
+    <div style="color: var(--white); font-family: 'Raleway', sans-serif; line-height:1.6; font-size:0.9rem; text-align:justify;">
+      <p style="font-weight: bold; color: var(--orange); margin-bottom: 1rem; text-align: center; font-size: 1rem;">
+        "Chers parents, ne laissez pas vos enfants passer toutes leurs vacances devant les écrans... apprenez-leur à les maîtriser en leur offrant des vacances utiles ! 🎓"
+      </p>
+      
+      <p style="margin-bottom: 1rem; text-align: center;">
+        Nos cours de vacances en informatique & Anglais sont spécialement conçus pour les rendre créatifs et autonomes.
+      </p>
+
+      <h4 style="color: var(--green); font-family: 'Orbitron', monospace; font-size: 0.85rem; margin-bottom: 0.5rem; letter-spacing: 1px;">
+        POURQUOI LES INSCRIRE ?
+      </h4>
+      <ul style="list-style: none; padding-left: 0; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem;">
+        <li>🧠 <strong>Développement logique :</strong> Initiation à la programmation (création d'histoires et de jeux) à travers les Langages Web (HTML, CSS, JavaScript, PHP) et autres.</li>
+        <li>💼 <strong>Préparation scolaire :</strong> Maîtrise de l'outil informatique (Word, Excel, PowerPoint, Publisher), des Logiciels de Gestion (Sage Saari, ...), Logiciels de Génie civil & Bâtiment (AutoCAD, ArchiCAD, ...), l’Électricité, ...</li>
+        <li>🎨 <strong>Développement de la créativité IA :</strong> Infographie (Photoshop, InDesign, Illustrator, ...), création de contenu, ...</li>
+        <li>🛡️ <strong>Sécurité :</strong> Sensibilisation au bon usage et à l'utilisation d'Internet et de l'Intelligence Artificielle.</li>
+        <li>🗣️ <strong>Le Bilinguisme :</strong> Apprentissage de l’anglais, du français, et autres.</li>
+      </ul>
+
+      <div style="background:rgba(58,123,213,0.08); border:1px solid rgba(58,123,213,0.2); border-radius:12px; padding:1.2rem; margin-bottom:1rem;">
+        <div style="display:flex; flex-direction: column; gap: 10px; font-size: 0.85rem;">
+          <div>📅 <strong style="color:var(--white);">Date de début :</strong> 08 Juin 2026</div>
+          <div>📍 <strong style="color:var(--white);">Lieu :</strong> Rond-point Damas (en face du poste de police)</div>
+          <div>💰 <strong style="color:var(--white);">Tarif :</strong> Inscription : 5 000 FRS | Mensualité : 15 000 FRS <span style="font-size:0.75rem; color:var(--orange);">(payable en deux tranches)</span></div>
+        </div>
+      </div>
+
+      <div style="background:rgba(29,185,84,0.08); border:1px solid rgba(29,185,84,0.2); border-radius:12px; padding:1.2rem; margin-bottom:1.5rem;">
+        <h4 style="color: var(--orange); font-family: 'Orbitron', monospace; font-size: 0.85rem; margin-bottom: 0.8rem; letter-spacing: 1px;">
+          NOS ATOUTS
+        </h4>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 0.85rem;">
+          <div>🏆 Attestation de fin de formation</div>
+          <div>💻 Salle multimédia équipée</div>
+          <div>🛰️ Connectée à l’internet <strong>STARLINK</strong></div>
+          <div>👨‍🏫 Formateurs experts</div>
+        </div>
+      </div>
+
+      <p style="text-align:center; font-weight:bold; color:var(--blue-light); margin-bottom: 1rem; font-size: 0.95rem;">
+        📞 Places limitées ! Contactez-nous dès aujourd'hui au 695 40 35 80 ou visitez <a href="https://stt-cameroun.com/rentree" target="_blank" style="color: var(--orange); text-decoration: underline;">notre site web</a> pour réserver votre place.
+      </p>
+    </div>
+    
+    <div style="margin-top:1.5rem; display:flex; gap:1rem; flex-wrap:wrap;">
+      <a href="${whatsappLink}" target="_blank" class="btn btn-orange" style="flex:1; justify-content:center; text-align:center; min-width:200px; background: #25D366; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);">
+        <i class="fab fa-whatsapp"></i> Inscrire mon enfant
+      </a>
+      <button onclick="closeModal()" class="btn btn-outline" style="flex:1; justify-content:center; text-align:center; min-width:200px;">
+        Fermer
+      </button>
+    </div>
+  `;
+  
+  document.getElementById('modalContent').innerHTML = html;
+  document.getElementById('specModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+// ===== FORM =====
+const SPEC_BY_SECTOR = {
+  tic: SPECS.tic.map(s => s.name),
+  sante: SPECS.sante.map(s => s.name),
+  gestion: SPECS.gestion.map(s => s.name),
+  industrie: SPECS.industrie.map(s => s.name),
+  langues: SPECS.langues.map(s => s.name)
+};
+
+function updateSpecialites() {
+  const sector = document.getElementById('f-secteur').value;
+  const sel = document.getElementById('f-spec');
+  sel.innerHTML = '<option value="">-- Choisir une spécialité --</option>';
+  if(sector && SPEC_BY_SECTOR[sector]) {
+    SPEC_BY_SECTOR[sector].forEach(n => {
+      sel.innerHTML += `<option value="${n}">${n}</option>`;
+    });
+  }
+}
+
+// ===== FORM SUBMISSION (WhatsApp Data Payload Router) =====
+function submitForm() {
+  const nom = document.getElementById('f-nom').value.trim();
+  const prenom = document.getElementById('f-prenom').value.trim();
+  const tel = document.getElementById('f-tel').value.trim();
+  const dob = document.getElementById('f-dob').value;
+  const secteur = document.getElementById('f-secteur').options[document.getElementById('f-secteur').selectedIndex].text;
+  const spec = document.getElementById('f-spec').value;
+  const niveau = document.getElementById('f-niveau').value;
+  const horaire = document.getElementById('f-horaire').options[document.getElementById('f-horaire').selectedIndex].text;
+
+  // Basic validation
+  if(!nom || !prenom || !tel || !spec) {
+    alert('⚠️ Veuillez remplir les champs obligatoires (Nom, Prénom, Téléphone, Spécialité).');
+    return;
+  }
+
+  // --- 3. META PIXEL LEAD TRACKING (ENRICHED) ---
+  if (typeof fbq === 'function') {
+    fbq('track', 'Lead', {
+      content_name: spec,
+      content_category: secteur,
+      currency: 'XAF',
+      value: 25000 // Tracking the initial registration fee value
+    });
+  }
+  // ----------------------------------------------
+
+  // Hide form, show redirect message
+  document.getElementById('formContainer').style.display = 'none';
+  
+  // Update the visitor/registration counters
+  showNotif();
+
+  // AbbaTek WhatsApp Round-Robin Router
+  const admissionAgents = [
+      "237695403580", // Agent 1
+      // "237XXXXXXXXX" // You can add a second number here later
+  ];
+  const randomAgent = admissionAgents[Math.floor(Math.random() * admissionAgents.length)];
+
+  // Constructing the Professional WhatsApp Payload
+  const message = `*NOUVELLE PRÉ-INSCRIPTION* 🎓\n\n`
+    + `*👤 Étudiant :* ${prenom} ${nom}\n`
+    + `*📞 Téléphone :* ${tel}\n`
+    + `*📅 Date de Naissance :* ${dob || 'Non précisée'}\n`
+    + `*📚 Niveau d'études :* ${niveau || 'Non précisé'}\n`
+    + `*🎯 Filière :* ${secteur}\n`
+    + `*🎓 Spécialité :* ${spec}\n`
+    + `*⏰ Horaire :* ${horaire}\n\n`
+    + `_Je souhaite finaliser mon inscription et régler mes frais. Merci de m'indiquer la marche à suivre._\n\n`
+    + `🌐 _[Lead généré par AbbaTek Promo]_`;
+
+  const encodedMessage = encodeURIComponent(message);
+  const whatsappLink = `https://wa.me/${randomAgent}?text=${encodedMessage}`;
+
+  // Redirect after short delay to show the animation
+  setTimeout(() => {
+      window.open(whatsappLink, '_blank');
+      // Reset form UI just in case they come back to the tab
+      setTimeout(() => resetForm(), 1500);
+  }, 1500);
+}
+function showNotif() {
+  const n = document.getElementById('notif');
+  n.classList.add('show');
+  setTimeout(() => n.classList.remove('show'), 4000);
+}
+
+
+
+// ===== PARTICLES =====
+function createParticles() {
+  const container = document.getElementById('particles');
+  const colors = ['rgba(58,123,213,0.6)','rgba(29,185,84,0.5)','rgba(249,115,22,0.5)'];
+  for(let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 6 + 2;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-duration:${Math.random()*15+10}s;
+      animation-delay:${Math.random()*10}s;
+    `;
+    container.appendChild(p);
+  }
+}
+
+// ===== VISITORS (simulated) =====
+function initVisitors() {
+  const stored = sessionStorage.getItem('stt_vis');
+  let data = stored ? JSON.parse(stored) : { day: 240 + Math.floor(Math.random()*30), month: 3800 + Math.floor(Math.random()*200), year: 28000 + Math.floor(Math.random()*1000) };
+  
+  // increment for this visit
+  data.day++; data.month++; data.year++;
+  sessionStorage.setItem('stt_vis', JSON.stringify(data));
+  
+  // Safely update main stats if the section still exists
+  const visDay = document.getElementById('vis-day');
+  const visMonth = document.getElementById('vis-month');
+  const visYear = document.getElementById('vis-year');
+  
+  if(visDay) visDay.textContent = data.day.toLocaleString();
+  if(visMonth) visMonth.textContent = data.month.toLocaleString();
+  if(visYear) visYear.textContent = data.year.toLocaleString();
+  
+  // random online
+  let online = 8 + Math.floor(Math.random()*12);
+  const visOnline = document.getElementById('vis-online');
+  if(visOnline) visOnline.textContent = online;
+  
+  // live updates
+  setInterval(() => {
+    online += Math.random() > 0.5 ? 1 : -1;
+    online = Math.max(5, Math.min(30, online));
+    if(visOnline) visOnline.textContent = online;
+  }, 8000);
+}
+
+// ===== SCROLL =====
+window.addEventListener('scroll', () => {
+  const st = document.getElementById('scrollTop');
+  if(window.scrollY > 500) st.classList.add('visible');
+  else st.classList.remove('visible');
+});
+
+// ===== MOBILE NAV =====
+function openMobileNav() { document.getElementById('mobile-nav').classList.add('open'); }
+function closeMobileNav() { document.getElementById('mobile-nav').classList.remove('open'); }
+
+// ===== GALLERY MODAL =====
+const galleryItems = [
+  {
+    title: "Agrément MINEFOP", 
+    desc: "Arrêté d'Agrément officiel délivré par le MINEFOP et liste des filières autorisées.", 
+    images: ["assets/images/agrement-1.jpg.jpeg", "assets/images/agrement-2.jpg.jpeg"]
+  },
+  {
+    title: "Salle informatique", 
+    desc: "Nos salles sont équipées de postes modernes et connectés via Starlink.", 
+    img: "assets/images/lecture-room.jpg.jpeg"
+  },
+  {
+    title: "Apprenants déjà en formation", 
+    desc: "Découvrez nos étudiants actuels, futurs professionnels et entrepreneurs, en plein apprentissage sur notre campus.", 
+    img: "assets/images/team-photo.jpeg"
+  },
+  {
+    title: "Travaux pratiques", 
+    desc: "Les étudiants en biotechnologie et laboratoire lors de leurs TP.", 
+    img: "assets/images/lab-space.jpg.jpeg"
+  },
+  {
+    title: "Tous nos programmes", 
+    desc: "Découvrez l'ensemble de nos offres de formation professionnelle, conçues pour vous garantir une insertion rapide.", 
+    images: [
+      "assets/images/flyer-tic.jpg.jpeg", 
+      "assets/images/flyer-sante.jpg.jpeg", 
+      "assets/images/flyer-gestion.jpg.jpeg", 
+      "assets/images/flyer-geniecivil.jpg.jpeg",
+      "assets/images/flyer-langues.jpeg"
+    ]
+  },
+  {title:"Connexion Starlink", desc:"Notre antenne Starlink garantit une connexion haut débit gratuite pour tous.", img:""},
+  {title:"Ateliers de génie civil", desc:"Travaux pratiques sur les techniques de construction et d'architecture.", img:""}
+];
+
+function openGalleryModal(i) {
+  const g = galleryItems[i];
+  document.getElementById('modalTitle').textContent = g.title;
+  
+  let contentHtml = '';
+  
+  // Handle multiple images (arrays) safely
+  if (g.images && Array.isArray(g.images)) {
+    g.images.forEach(src => {
+      contentHtml += `<img src="${src}" style="width:100%; max-height:60vh; object-fit:contain; border-radius:12px; margin-bottom:1rem; background:#fff; padding:10px; border: 1px solid rgba(58,123,213,0.3);">`;
+    });
+  } 
+  // Handle single images
+  else if (g.img && g.img !== "") {
+    contentHtml += `<img src="${g.img}" style="width:100%; max-height:60vh; object-fit:contain; border-radius:12px; margin-bottom:1rem; background:#fff; padding:10px; border: 1px solid rgba(58,123,213,0.3);">`;
+  }
+  
+  contentHtml += `<p style="color:var(--gray);line-height:1.7;text-align:center;margin-top:0.5rem;">${g.desc}</p>`;
+  
+  document.getElementById('modalContent').innerHTML = contentHtml;
+  document.getElementById('specModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+// ===== INIT =====
+renderGrids();
+createParticles();
+initVisitors();
+
+// ===== SCROLL ANIMATION OBSERVER =====
+// 1. On crée l'outil d'animation qui manquait
+const observer = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+      obs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+// 2. On l'applique à toutes les cartes
+setTimeout(() => {
+  document.querySelectorAll('.spec-card, .lang-card').forEach(el => {
+    if(el.style.opacity === '') {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      observer.observe(el);
+    }
+  });
+}, 100);
+
+// ===== DYNAMIC PDF GENERATOR =====
+function generatePDF() {
+  const nom = document.getElementById('f-nom').value.trim();
+  const prenom = document.getElementById('f-prenom').value.trim();
+  const tel = document.getElementById('f-tel').value.trim();
+  const spec = document.getElementById('f-spec').value;
+  const niveau = document.getElementById('f-niveau').value;
+
+  if(!nom || !tel || !spec) {
+    alert("⚠️ Veuillez remplir au moins votre Nom, Téléphone et Spécialité avant de télécharger la fiche.");
+    return;
+  }
+
+  // Initialize jsPDF
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  
+  // Design the PDF
+  doc.setFontSize(18);
+  doc.setTextColor(10, 45, 110); // STT Blue
+  doc.text("FICHE DE PRE-INSCRIPTION : STT-CAMEROUN", 20, 20);
+  
+  doc.setFontSize(12);
+  doc.setTextColor(0, 0, 0); // Black
+  doc.text(`Date : ${new Date().toLocaleDateString('fr-FR')}`, 20, 30);
+  doc.text("----------------------------------------------------------------", 20, 35);
+  
+  doc.text(`Nom de l'etudiant : ${prenom} ${nom}`, 20, 45);
+  doc.text(`Telephone : ${tel}`, 20, 55);
+  doc.text(`Niveau d'etudes : ${niveau || 'Non precise'}`, 20, 65);
+  doc.text(`Filiere choisie : ${spec}`, 20, 75);
+  
+  doc.text("----------------------------------------------------------------", 20, 85);
+  doc.setFontSize(10);
+  doc.setTextColor(100, 100, 100); // Gray
+  doc.text("Ceci est un document de pre-reservation genere en ligne.", 20, 95);
+  doc.text("Veuillez cliquer sur 'Envoyer via WhatsApp' sur le site pour valider votre place.", 20, 102);
+
+  // Trigger the download automatically
+  doc.save(`Pre-inscription_STT_${nom.toUpperCase()}.pdf`);
+}
+// ===== CAROUSEL GALERIE =====
+let slideIndex = 1;
+let slideTimer;
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("carousel-slide");
+  let dots = document.getElementsByClassName("dot");
+  if (!slides.length) return;
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].classList.remove("active");
+  }
+  slides[slideIndex-1].style.display = "block";
+  if(dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+}
+
+function moveSlide(n) {
+  clearTimeout(slideTimer);
+  showSlides(slideIndex += n);
+  autoSlide();
+}
+
+function currentSlide(n) {
+  clearTimeout(slideTimer);
+  showSlides(slideIndex = n);
+  autoSlide();
+}
+
+function autoSlide() {
+  slideTimer = setTimeout(() => {
+    slideIndex++;
+    showSlides(slideIndex);
+    autoSlide();
+  }, 5000); // Change image every 5 seconds
+}
+
+// Démarrer le carousel au chargement
+setTimeout(() => { showSlides(1); autoSlide(); }, 1000);
+
+// ===== 4-GROUP HERO CAROUSEL & MODAL =====
+const heroCarouselData = [
+  // GROUP 1: INSCRIPTION
+  { src: "assets/images/I-1.jpeg", sub: "<i class='fas fa-pen-to-square'></i> Inscriptions en cours", main: "Réservez votre place dès maintenant !", color: "var(--orange)" },
+  { src: "assets/images/I-2.png", sub: "<i class='fas fa-pen-to-square'></i> Inscriptions en cours", main: "N'attendez plus, inscrivez-vous !", color: "var(--orange)" },
+  { src: "assets/images/I-3.png", sub: "<i class='fas fa-pen-to-square'></i> Inscriptions en cours", main: "Rejoignez l'école des futurs entrepreneurs !", color: "var(--orange)" },
+  { src: "assets/images/I-4.png", sub: "<i class='fas fa-pen-to-square'></i> Inscriptions en cours", main: "Sécurisez votre avenir aujourd'hui !", color: "var(--orange)" },
+ 
+  // GROUP 2: FORMATION
+  { src: "assets/images/F-3.jpeg", sub: "<i class='fas fa-laptop-code'></i> Rentrée Académique", main: "Ton avenir commence ici !", color: "var(--blue-light)" },
+  { src: "assets/images/F-6.jpeg", sub: "<i class='fas fa-graduation-cap'></i> Formations Professionnelles", main: "Devenez un professionnel certifié en 12 mois !", color: "var(--blue-light)" },
+  { src: "assets/images/F-8.png", sub: "<i class='fas fa-heartbeat'></i> Paramédical & Santé", main: "Devenez un professionnel de la santé !", color: "var(--blue-light)" },
+  { src: "assets/images/F-1.jpeg", sub: "<i class='fas fa-brain'></i> IA & Data", main: "Maîtrisez l'Intelligence Artificielle et le Digital !", color: "var(--blue-light)" },
+  { src: "assets/images/F-5.png", sub: "<i class='fas fa-briefcase'></i> Gestion & Administration", main: "Devenez un professionnel en management !", color: "var(--blue-light)" },
+  { src: "assets/images/F-4.png", sub: "<i class='fas fa-hard-hat'></i> Industrie & Génie Civil", main: "Construisez l'avenir avec notre formation BTP !", color: "var(--blue-light)" },
+  { src: "assets/images/F-2.jpeg", sub: "<i class='fas fa-robot'></i> Intelligence Artificielle", main: "Formation complète 4 en 1 en IA !", color: "var(--blue-light)" },
+  { src: "assets/images/F-7.png", sub: "<i class='fas fa-laptop-code'></i> Formations Pratiques", main: "Des compétences réelles pour le marché de l'emploi !", color: "var(--blue-light)" },
+  
+  // GROUP 3: LANGUES
+  { src: "assets/images/L-1.png", sub: "<i class='fas fa-language'></i> Centre de Langues", main: "Cours intensifs de langues étrangères !", color: "var(--orange)" },
+  { src: "assets/images/L-2.png", sub: "<i class='fas fa-language'></i> Centre de Langues", main: "Formation professionnelle en langues !", color: "var(--orange)" },
+  { src: "assets/images/L-3.jpeg", sub: "<i class='fas fa-language'></i> Centre de Langues", main: "Votre avenir linguistique commence ici !", color: "var(--orange)" },
+  { src: "assets/images/L-4.jpeg", sub: "<i class='fas fa-language'></i> Centre de Langues", main: "Ouvrez-vous au monde avec STT-Cameroun !", color: "var(--orange)" },
+  
+// GROUP 4: SOUTENANCE
+  { src: "assets/images/image_1c5cf3de.png", sub: "<i class='fas fa-award'></i> Soutenances DQP 2026", main: "Félicitations à nos Lauréats !", color: "var(--green)" },
+  { src: "assets/images/image_6c14ca12.png", sub: "<i class='fas fa-award'></i> Soutenances DQP 2026", main: "Félicitations à nos Lauréats !", color: "var(--green)" },
+  { src: "assets/images/image_6e38be13.png", sub: "<i class='fas fa-award'></i> Soutenances DQP 2026", main: "Félicitations à nos Lauréats !", color: "var(--green)" },
+  { src: "assets/images/image_23a44473 (1).png", sub: "<i class='fas fa-award'></i> Soutenances DQP 2026", main: "Félicitations à nos Lauréats !", color: "var(--green)" },
+  { src: "assets/images/soutenance-5.png", sub: "<i class='fas fa-award'></i> Soutenances DQP 2026", main: "Félicitations à nos Lauréats !", color: "var(--green)" }
+];
+let currentHeroIndex = 0;
+const carouselImagesDiv = document.getElementById('carouselImages');
+const carouselSubTitle = document.getElementById('carouselSubTitle');
+const carouselMainTitle = document.getElementById('carouselMainTitle');
+
+// 1. Pre-load and inject all images into the container
+heroCarouselData.forEach((data, index) => {
+  const img = document.createElement('img');
+  img.src = data.src;
+  img.style.cssText = `
+    position: absolute; inset: 0; width: 100%; height: 100%; 
+    object-fit: contain; object-position: center; 
+    opacity: ${index === 0 ? 1 : 0}; 
+    transition: opacity 1s ease-in-out;
+    background: var(--dark);
+  `;
+  
+  // Future-Proofing: Any image in the "Graduation" group (Green theme) automatically gets the 'cover' styling!
+  if(data.color === 'var(--green)') {
+     img.style.objectFit = 'cover';
+     img.style.objectPosition = 'center 15%';
+  }
+  
+  carouselImagesDiv.appendChild(img);
+});
+// 2. The Rotation Logic
+function rotateHeroCarousel() {
+  const images = carouselImagesDiv.getElementsByTagName('img');
+  
+  // Fade out current
+  images[currentHeroIndex].style.opacity = 0;
+  
+  // Move to next index
+  currentHeroIndex = (currentHeroIndex + 1) % heroCarouselData.length;
+  
+  // Fade in next and update text/colors dynamically
+  images[currentHeroIndex].style.opacity = 1;
+  carouselSubTitle.innerHTML = heroCarouselData[currentHeroIndex].sub;
+  carouselMainTitle.innerHTML = heroCarouselData[currentHeroIndex].main;
+  carouselSubTitle.style.color = heroCarouselData[currentHeroIndex].color;
+}
+
+// 3. Initialize first text and start loop
+carouselSubTitle.innerHTML = heroCarouselData[0].sub;
+carouselMainTitle.innerHTML = heroCarouselData[0].main;
+carouselSubTitle.style.color = heroCarouselData[0].color;
+setInterval(rotateHeroCarousel, 4000);
+
+// ===== FULL SCREEN CAROUSEL MODAL =====
+function openCarouselModal() {
+  const currentData = heroCarouselData[currentHeroIndex];
+  
+  // Strip out the font-awesome HTML to make a clean title
+  const cleanTitle = currentData.sub.replace(/<[^>]*>?/gm, '');
+  document.getElementById('modalTitle').textContent = "🖼️ " + cleanTitle;
+  
+  let html = `
+    <div style="text-align:center; margin-bottom: 1rem;">
+      <img src="${currentData.src}" style="width:100%; max-height:65vh; object-fit:contain; border-radius:12px; border: 2px solid var(--blue-light); background:#fff; padding: 5px;">
+    </div>
+    <div style="text-align:center; margin-bottom: 1.5rem;">
+        <p style="color: var(--white); font-family: 'Orbitron', monospace; font-size: 1.1rem; font-weight: 700;">${currentData.main}</p>
+    </div>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+      <a href="#inscription" onclick="closeModal()" class="btn btn-orange" style="flex:1; justify-content:center; text-align:center; min-width:200px;">
+        <i class="fas fa-pen"></i> S'inscrire maintenant
+      </a>
+      <button onclick="closeModal()" class="btn btn-outline" style="flex:1; justify-content:center; text-align:center; min-width:200px;">
+        Fermer
+      </button>
+    </div>
+  `;
+  
+  document.getElementById('modalContent').innerHTML = html;
+  document.getElementById('specModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+</script>
+
+</body>
+</html>
