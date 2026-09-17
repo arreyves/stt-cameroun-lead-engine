@@ -1,864 +1,180 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STT Engineering SARL | Vos Projets, Notre Expertise</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>STT Group | Central Command Hub</title>
     <style>
-        :root {
-            --dark: #060d1f;
-            --blue-light: #3a7bd5;
-            --blue-deep: #0a2d6e;
-            --green: #1db954;
-            --green-light: #a3e635; /* New light green for legal text */
-            --orange: #f97316;
-            --white: #ffffff;
-            --gray: #8899bb;
-            --glass: rgba(255, 255, 255, 0.03);
-            --border-glass: rgba(58, 123, 213, 0.15);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--dark);
-            color: var(--white);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        html { scroll-behavior: smooth; }
-
-        .bg-glow {
-            position: fixed; inset: 0; z-index: -1; pointer-events: none;
-            background: radial-gradient(circle at 50% 15%, rgba(26,79,181,0.25) 0%, transparent 60%);
-        }
-
-        /* Top Bar Updated with Light Green Headers */
-        .legal-top-bar {
-            background: rgba(10, 45, 110, 0.4);
-            border-bottom: 1px solid var(--border-glass);
-            padding: 8px 2rem;
-            font-size: 0.7rem;
-            color: var(--gray);
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .legal-top-bar span strong { color: var(--blue-light); }
-        .legal-label { color: var(--green-light); font-weight: 700; letter-spacing: 0.5px; }
-
-        nav {
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-            gap: 20px;
-        }
-        
-        /* Bloc Gauche - Entreprise */
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .logo-img {
-            width: 65px; height: 65px;
-            border-radius: 50%;
-            border: 2px solid var(--blue-light);
-            box-shadow: 0 0 15px rgba(58,123,213,0.4);
-            object-fit: cover;
-            background: #fff;
-        }
-        .logo-text {
+            margin: 0;
+            background-color: #0B1320;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
             display: flex;
             flex-direction: column;
             justify-content: center;
-        }
-        .logo-text h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--white), var(--blue-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 0.5px;
-            line-height: 1.2;
-        }
-        .logo-text p { 
-            font-size: 0.72rem; 
-            color: var(--gray); 
-            font-weight: 600; 
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 2px;
-            white-space: nowrap;
-        }
-
-        /* Bloc Droite - École */
-        .school-portal-block {
-            display: flex;
-            align-items: center; 
-            justify-content: flex-end;
-        }
-        .portal-header-group {
-            display: flex;
             align-items: center;
-            gap: 15px;
-        }
-        .portal-school-logo {
-            width: 65px; height: 65px;
-            border-radius: 50%;
-            object-fit: cover;
-            background: #fff;
-            border: 2px solid var(--blue-light);
-            box-shadow: 0 0 15px rgba(58,123,213,0.4);
-        }
-        .portal-text-group {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            text-align: right;
-            gap: 4px;
-        }
-        .portal-title-text {
-            font-size: 1.25rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--blue-light), var(--green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 0.5px;
-            line-height: 1.2;
-        }
-        .portal-sub-line {
-            font-size: 0.72rem;
-            font-weight: 600;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-            margin-bottom: 2px;
+            height: 100vh;
+            /* Pure CSS Hexagonal-style Grid Background */
+            background-image: 
+                linear-gradient(rgba(11, 19, 32, 0.92), rgba(11, 19, 32, 0.92)), 
+                repeating-linear-gradient(60deg, transparent, transparent 49px, #1a2a40 49px, #1a2a40 50px), 
+                repeating-linear-gradient(-60deg, transparent, transparent 49px, #1a2a40 49px, #1a2a40 50px);
         }
         
-        /* ===== VA-ET-VIENT ANIMATION ===== */
-        @keyframes vaEtVient {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(-8px); }
-        }
-
-        .btn-school-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 5px 14px;
-            background: linear-gradient(135deg, var(--orange), #d95e00);
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.72rem;
-            font-weight: 700;
-            border-radius: 50px;
-            box-shadow: 0 4px 12px rgba(249,115,22,0.25);
-            transition: all 0.3s ease;
-            animation: vaEtVient 2s ease-in-out infinite; /* Animation active */
-        }
-        .btn-school-link:hover {
-            animation: none; /* Stops sliding when user hovers */
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(249,115,22,0.45);
-        }
-
-        header.hero {
-            max-width: 1000px;
-            margin: 3rem auto 4rem auto;
+        /* Dual-Tone Synergy Title Style */
+        .main-title {
+            font-size: 2.2em;
+            font-weight: 800;
+            letter-spacing: 6px;
+            margin-bottom: 50px;
+            z-index: 10;
             text-align: center;
-            padding: 0 2rem;
         }
-        .badge {
-            display: inline-block;
-            padding: 6px 16px;
-            background: rgba(58,123,213,0.1);
-            border: 1px solid var(--blue-light);
-            color: var(--blue-light);
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 1.5rem;
+        .groupe-text {
+            color: #FFFFFF;
         }
-        header.hero h2 {
-            font-size: clamp(1.8rem, 4.5vw, 3rem);
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
+        .stt-text {
+            /* Gradient bridging Company Orange and Institute Blue */
+            background: linear-gradient(90deg, #FF7A00, #0078FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        header.hero h2 span { color: var(--orange); }
 
-        .services-section {
-            max-width: 1400px;
-            margin: 0 auto 6rem auto;
-            padding: 0 2rem;
+        .hub-container {
+            display: flex;
+            gap: 50px;
+            z-index: 10;
         }
-        .section-headline {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            border-left: 4px solid var(--orange);
-            padding-left: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 5rem;
-        }
-        
-        .flyer-card {
-            background: var(--glass);
-            border: 1px solid var(--border-glass);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.3s ease;
+        .portal-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 40px 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            width: 340px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            color: white;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
         }
-        .flyer-card:hover {
+        .portal-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(58, 123, 213, 0.4);
-            box-shadow: 0 20px 40px rgba(6, 13, 31, 0.7);
         }
-        .flyer-img-container {
-            width: 100%;
-            height: 420px;
+        .portal-card.company:hover {
+            border-color: #FF7A00; 
+            box-shadow: 0 0 30px rgba(255, 122, 0, 0.15);
+        }
+        .portal-card.institute:hover {
+            border-color: #0078FF; 
+            box-shadow: 0 0 30px rgba(0, 120, 255, 0.15);
+        }
+        .logo-placeholder {
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
             overflow: hidden;
-            background: #fff;
-            border-bottom: 1px solid var(--border-glass);
-            cursor: pointer;
+            border: 2px solid rgba(255,255,255,0.1);
         }
-        .flyer-img-container img {
+        .logo-placeholder img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            transition: transform 0.5s ease;
-        }
-        .flyer-card:hover .flyer-img-container img {
-            transform: scale(1.03);
-        }
-        .flyer-body {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .flyer-body h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--white);
-        }
-        .flyer-body p {
-            color: var(--gray);
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-        }
-        
-        .btn-zoom {
-            background: rgba(58, 123, 213, 0.1);
-            border: 1px solid var(--blue-light);
-            color: var(--blue-light);
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            align-self: flex-start;
-            transition: all 0.2s;
-        }
-        .btn-zoom:hover {
-            background: var(--blue-light);
-            color: var(--white);
-        }
-
-        /* ===== NOUVELLE GRILLE DES PRESTATIONS HIGH-TECH (IMAGE CARDS) ===== */
-        .tech-services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-        .tech-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(58, 123, 213, 0.15);
-            border-radius: 16px;
-            transition: all 0.3s ease;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        .tech-card:hover {
-            border-color: var(--blue-light);
-            background: rgba(58, 123, 213, 0.05);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(58, 123, 213, 0.15);
-        }
-        .tech-card-img {
-            width: 100%;
-            height: 200px;
             object-fit: cover;
-            border-bottom: 3px solid var(--orange);
         }
-        .tech-card-fallback {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, rgba(10, 45, 110, 0.8), rgba(6, 13, 31, 0.9));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: var(--blue-light);
-            border-bottom: 3px solid var(--orange);
-        }
-        .tech-card-body {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        .tech-card-body h4 {
-            font-size: 1.1rem;
+        .entity-title {
+            font-size: 1.2em;
             font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
         }
-        .tech-card-body h4 i {
-            color: var(--orange);
-            font-size: 1.2rem;
-        }
-        .tech-card-body p {
-            color: var(--gray);
-            font-size: 0.85rem;
-            line-height: 1.6;
-            margin-bottom: 0.5rem;
-        }
-        .tech-card-body ul {
-            color: var(--gray);
-            font-size: 0.85rem;
-            line-height: 1.6;
-            padding-left: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-        .tech-card-body ul li {
-            margin-bottom: 0.4rem;
-        }
-
-        /* ===== RICH FOOTER UPGRADE ===== */
-        footer {
-            background: rgba(4, 9, 22, 0.98);
-            border-top: 1px solid var(--border-glass);
-            padding: 4rem 2rem 1.5rem 2rem;
-        }
-        .footer-inner {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1.5fr;
-            gap: 3rem;
-            margin-bottom: 2rem;
-        }
-        .footer-logo { display:flex; align-items:center; gap:12px; margin-bottom:1rem; }
-        .footer-title {
-            font-family:'Orbitron',monospace; font-size:0.85rem; color:var(--white);
-            margin-bottom:1rem; padding-bottom:0.5rem;
-            border-bottom:2px solid var(--blue-light);
+        .entity-subtitle {
+            font-size: 0.75em;
             text-transform: uppercase;
+            color: #A0ABC0;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
         }
-        .footer-links { list-style:none; display:flex; flex-direction:column; gap:0.6rem; }
-        .footer-links a {
-            color:var(--gray); text-decoration:none; font-size:0.82rem; transition:all 0.2s;
-            display:flex; align-items:center; gap:8px;
+        .reg-number {
+            font-size: 0.75em;
+            color: #FF7A00;
+            background: rgba(255, 122, 0, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 25px;
         }
-        .footer-links a:hover { color:var(--green); padding-left:5px; }
-        .footer-contact p { font-size:0.82rem; color:var(--gray); margin-bottom:0.6rem; display:flex; align-items:center; gap:8px; }
-        .footer-contact p i { color:var(--blue-light); width:16px; }
-        
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
-            font-size: 0.8rem;
-            color: var(--gray);
+        .institute .reg-number {
+            color: #0078FF;
+            background: rgba(0, 120, 255, 0.1);
         }
-
-        /* ===== ACTION BUTTONS ===== */
-        #chat-toggle {
-            position: fixed; bottom: 2rem; right: 2rem; z-index: 1500;
-            width: 60px; height: 60px; border-radius: 50%;
-            background: linear-gradient(135deg, var(--green), #0f8c3a);
-            border: none; cursor: pointer; color: var(--white); font-size: 1.8rem;
-            box-shadow: 0 8px 30px rgba(29,185,84,0.5);
-            transition: all 0.3s; display: flex; align-items: center; justify-content: center;
-            animation: chatBounce 2s ease-in-out infinite;
+        .tagline {
+            font-size: 1.05em;
+            font-weight: 300;
+            line-height: 1.5;
+            margin-bottom: 30px;
         }
-        @keyframes chatBounce {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-6px) scale(1.05); }
+        .access-text {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
         }
-        #chat-toggle:hover { transform: scale(1.1) !important; animation: none; }
-
-        .scroll-top {
-            position: fixed; bottom: 6.5rem; right: 2.2rem; z-index: 900;
-            width: 42px; height: 42px; border-radius: 50%;
-            background: rgba(10,45,110,0.8); border: 1px solid rgba(58,123,213,0.4);
-            color: var(--white); cursor: pointer; font-size: 0.9rem;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; transition: all 0.3s;
+        .portal-card.company:hover .access-text {
+            color: #FF7A00;
+            opacity: 1;
         }
-        .scroll-top.visible { opacity: 1; }
-        .scroll-top:hover { background: var(--blue-light); transform: translateY(-3px); }
-
-        @media(max-width: 900px) {
-            .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
-            .footer-logo { justify-content: center; }
-            .footer-contact p { justify-content: center; }
-            .footer-links a { justify-content: center; }
-            .footer-title { margin-left: auto; margin-right: auto; max-width: 200px; }
-            .footer-bottom { justify-content: center; text-align: center; }
+        .portal-card.institute:hover .access-text {
+            color: #0078FF;
+            opacity: 1;
         }
-
-        @media(max-width: 768px) {
-            nav { flex-direction: column; gap: 1.5rem; text-align: center; }
-            .school-portal-block { justify-content: center; }
-            .portal-header-group { flex-direction: column-reverse; text-align: center; }
-            .portal-text-group { align-items: center; text-align: center; }
-            .legal-top-bar { justify-content: center; text-align: center; font-size: 0.65rem; }
+        @media (max-width: 800px) {
+            .hub-container { flex-direction: column; gap: 30px; }
+            .portal-card { padding: 30px 20px; width: 280px; }
+            .main-title { font-size: 1.8em; margin-bottom: 30px; }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js"></script>
 </head>
 <body>
-
-    <div class="bg-glow"></div>
-
-    <div class="legal-top-bar">
-        <span><i class="fas fa-file-contract"></i> <span class="legal-label">RCCM:</span> <strong>RC/YAO/2024/B/522</strong></span>
-        <span><i class="fas fa-fingerprint"></i> <span class="legal-label">NIU:</span> <strong>M022416498543H</strong></span>
-        <span><i class="fas fa-building"></i> <strong style="font-size: 0.95rem; color: var(--green-light); text-transform: uppercase;">Groupe STT</strong></span>
+    <!-- Dual-Tone Synergy Title -->
+    <div class="main-title">
+        <span class="groupe-text">GROUPE</span> <span class="stt-text">STT</span>
     </div>
 
-    <nav>
-        <div class="logo-container">
-            <img src="assets/Logo.jpeg" alt="STT Engineering Logo" class="logo-img">
-            <div class="logo-text">
-                <h1>STT ENGINEERING SARL</h1>
-                <p>PRESTATIONS DIVERSES & SERVICES</p>
+    <div class="hub-container">
+        <!-- Structure de Prestation Portal -->
+        <a href="/stt-cameroun-lead-engine/index.html" class="portal-card company">
+            <div class="logo-placeholder">
+                <img src="/stt-cameroun-lead-engine/assets/Logo.jpeg" alt="STT Structure de Prestation">
             </div>
-        </div>
-        
-        <div class="school-portal-block">
-            <div class="portal-header-group">
-                <div class="portal-text-group">
-                    <span class="portal-title-text">STT-CAMEROUN</span>
-                    <span class="portal-sub-line">Institut De Formation Professionnelle</span>
-                    <a href="/rentree/" class="btn-school-link">
-                        <i class="fas fa-external-link-alt"></i> Se connecter à l'école
-                    </a>
-                </div>
-                <img src="rentree/assets/images/school-logo.jpg.jpeg" alt="Logo École" class="portal-school-logo">
+            <div class="entity-title">STT ENGINEERING SARL</div>
+            <div class="entity-subtitle">PRESTATIONS DIVERSES & SERVICES</div>
+            <div class="reg-number">RCCM: RC/YAO/2019/B/832</div>
+            
+            <div class="tagline">Enterprise Logistics & Tactical Execution</div>
+            <div class="access-text">Access Portal ➔</div>
+        </a>
+
+        <!-- Institut de Formation Portal -->
+        <a href="/stt-cameroun-lead-engine/rentree/index.html" class="portal-card institute">
+            <div class="logo-placeholder">
+                <img src="/stt-cameroun-lead-engine/rentree/assets/images/school-logo.jpg.jpeg" alt="STT Institut de Formation">
             </div>
-        </div>
-    </nav>
-
-    <header class="hero">
-        <span class="badge">Expertise Industrielle & Numérique</span>
-        <h2>Prestations Technologiques & solutions d'Ingénierie Clé en Main</h2>
-        <p>Découvrez notre catalogue complet de services aux entreprises professionnels.</p>
-    </header>
-
-    <section class="services-section">
-        
-        <h3 class="section-headline">📂 Catalogues Illustrés</h3>
-        <div class="services-grid">
-
-            <div class="flyer-card">
-                <div class="flyer-img-container" onclick="openPreview('assets/AllServices.jpeg')">
-                    <img src="assets/AllServices.jpeg" alt="Nos Services & Prestations Totales">
-                </div>
-                <div class="flyer-body">
-                    <div>
-                        <h3>1. Panorama des Prestations</h3>
-                        <p>Vue d'ensemble de nos services d'ingénierie, de fiscalité, d'informatique, de secrétariat et de gestion de parcs.</p>
-                    </div>
-                    <button class="btn-zoom" onclick="openPreview('assets/AllServices.jpeg')">
-                        <i class="fas fa-search-plus"></i> Agrandir l'image
-                    </button>
-                </div>
-            </div>
-
-            <div class="flyer-card">
-                <div class="flyer-img-container" onclick="openPreview('assets/Services.jpeg')">
-                    <img src="assets/Services.jpeg" alt="Impôts, CNPS & DSF">
-                </div>
-                <div class="flyer-body">
-                    <div>
-                        <h3>2. Pôle Impôts & Fiscalité</h3>
-                        <p>Attestations d'immatriculation (NIU), télédéclarations fiscales et CNPS, obtention d'ACF, et montage des DSF réglementaires.</p>
-                    </div>
-                    <button class="btn-zoom" onclick="openPreview('assets/Services.jpeg')">
-                        <i class="fas fa-search-plus"></i> Agrandir l'image
-                    </button>
-                </div>
-            </div>
-
-            <div class="flyer-card">
-                <div class="flyer-img-container" onclick="openPreview('assets/Services1.jpeg')">
-                    <img src="assets/Services1.jpeg" alt="Secrétariat, Saisie & CV">
-                </div>
-                <div class="flyer-body">
-                    <div>
-                        <h3>3. Pôle Bureautique & Documents</h3>
-                        <p>Saisie de textes, numérisation, traductions certifiées, certificats médicaux officiels en ligne et conception de CV Canadiens/PRO.</p>
-                    </div>
-                    <button class="btn-zoom" onclick="openPreview('assets/Services1.jpeg')">
-                        <i class="fas fa-search-plus"></i> Agrandir l'image
-                    </button>
-                </div>
-            </div>
-
-            <div class="flyer-card">
-                <div class="flyer-img-container" onclick="openPreview('assets/Services2.jpeg')">
-                    <img src="assets/Services2.jpeg" alt="Enrôlements & Business Plans">
-                </div>
-                <div class="flyer-body">
-                    <div>
-                        <h3>4. Enrôlements & Business Plans</h3>
-                        <p>Pré-enrôlements rapides pour la CNI et le passeport biométrique, création légale de structures (SARL, ETS), et montage de business plans.</p>
-                    </div>
-                    <button class="btn-zoom" onclick="openPreview('assets/Services2.jpeg')">
-                        <i class="fas fa-search-plus"></i> Agrandir l'image
-                    </button>
-                </div>
-            </div>
-
-            <div class="flyer-card">
-                <div class="flyer-img-container" onclick="openPreview('assets/Services3.jpeg')">
-                    <img src="assets/Services3.jpeg" alt="Montage Dossier Agrément & Statuts">
-                </div>
-                <div class="flyer-body">
-                    <div>
-                        <h3>5. Ingenierie Juridique & Agréments</h3>
-                        <p>Rédaction de statuts aux normes OHADA, légalisation d'associations et montage complet de dossiers d'agrément ou renouvellement MINEFOP.</p>
-                    </div>
-                    <button class="btn-zoom" onclick="openPreview('assets/Services3.jpeg')">
-                        <i class="fas fa-search-plus"></i> Agrandir l'image
-                    </button>
-                </div>
-            </div>
-
-        </div>
-
-        <h3 class="section-headline">⚡ Prestations Spécialisées & Ingénierie High-Tech</h3>
-        
-        <div class="tech-services-grid">
-
-            <div class="tech-card">
-                <img src="assets/BTP & GENIE CIVILE.jpeg" class="tech-card-img" alt="BTP & Génie Civil">
-                <div class="tech-card-body">
-                    <h4><i class="fas fa-hard-hat"></i> BTP & Génie Civil</h4>
-                    <ul>
-                        <li>Étude géotechnique et étude de projet</li>
-                        <li>Conception, réalisation et rénovation</li>
-                        <li>Architecture et dessin industriel</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="tech-card">
-                <img src="assets/HYDRO-INFORMATIQUE1.png" class="tech-card-img" alt="Hydroinformatics & Smart Water">
-<div class="tech-card-body">
-<h4><i class="fas fa-water"></i> Hydroinformatique & Eau Intelligente</h4>
-<p>Exploration d'opportunités et contribution aux infrastructures d'eau avancées :</p>
-<ul>
-    <li>Hydroinformatique & Jumeaux Numériques</li>
-    <li>Modélisation Hydraulique & Hydrologique</li>
-    <li>Ingénierie des Données & Automatisation des Systèmes d'Eau</li>
-    <li>Machine Learning & IA pour les Solutions d'Eau Intelligentes</li>
-    <li>Plateformes d'Aide à la Décision pour les Infrastructures d'Eau</li>
-</ul>
-                </div>
-            </div>
-
-            <div class="tech-card">
-                <img src="assets/COMPTABILITE-GESTION-ADMINISTRATION.jpeg" class="tech-card-img" alt="Comptabilité">
-                <div class="tech-card-body">
-                    <h4><i class="fas fa-calculator"></i> Comptabilité & Gestion</h4>
-                    <ul>
-                        <li>Gestion financière et suivi automatisé</li>
-                        <li>Suivi de stock et Fiscalité</li>
-                        <li>Audit et Contrôle de gestion</li>
-                        <li>Déclaration des Statistiques Fiscales (DSF)</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="tech-card">
-                <img src="assets/COMMERCE GENERAL.jpeg" class="tech-card-img" alt="Commerce Général">
-                <div class="tech-card-body">
-                    <h4><i class="fas fa-shopping-cart"></i> Commerce Général</h4>
-                    <p>Achat et livraison de matériel : Informatique, Génie Civil, Topographie, Médical, Bureau, Engrais Agricole, Aliments d'élevage, Décoration, Traiteur, Automobile...</p>
-                </div>
-            </div>
-
-            <div class="tech-card">
-                <img src="assets/DEVELOPPEMENT WEB & PLATEFORME.jpeg" class="tech-card-img" alt="Développement Web">
-                <div class="tech-card-body">
-                    <h4><i class="fas fa-code"></i> Développement Web</h4>
-                    <p>Conception sur mesure de vitrines d'entreprise modernes, d'écosystèmes applicatifs et de plateformes logicielles cloud intelligentes.</p>
-                </div>
-            </div>
-
-            <div class="tech-card">
-                <img src="assets/DEVELOPPEMENT D'APPLICATION IA.png" class="tech-card-img" alt="Développement Applications IA">
-                <div class="tech-card-body">
-                    <h4><i class="fas fa-mobile-alt"></i> Développement d'App IA</h4>
-                    <p>Programmation d'applications natives et cross-platform performantes (iOS & Android) dotées de fonctionnalités prédictives adaptatives.</p>
-                </div>
-            </div>
-
-            <div class="tech-card">
-                <img src="assets/CAPAGNE PUBLICITAIRE & BOOST.jpeg" class="tech-card-img" alt="Campagnes Publicitaires">
-                <div class="tech-card-body">
-                    <h4><i class="fas fa-bullhorn"></i> Campagnes Pub & Boost</h4>
-                    <p>Ingénierie de croissance, paramétrage de pixels publicitaires et gestion de campagnes d'acquisition massives (Meta Ads & Google Ads).</p>
-                </div>
-            </div>
-
-            <div class="tech-card">
-                <img src="assets/GESTION & ADMINISTRATION DE COMPTE.jpeg" class="tech-card-img" alt="Gestion de Comptes">
-                <div class="tech-card-body">
-                    <h4><i class="fas fa-users-cog"></i> Administration de Comptes</h4>
-                    <p>Déploiement stratégique et gestion de l'e-réputation de vos profils d'entreprise officiels sur Facebook, WhatsApp, TikTok, Instagram, etc.</p>
-                </div>
-            </div>
-
-            <div class="tech-card">
-                <img src="assets/GESTION DES PROJETS.jpeg" class="tech-card-img" alt="Gestion de Projets">
-                <div class="tech-card-body">
-                    <h4><i class="fas fa-project-diagram"></i> Montage & Suivi de Projets</h4>
-                    <p>Rédaction de cahiers des charges fonctionnels, architecture de plans d'action et suivi-évaluation d'infrastructures d'ingénierie.</p>
-                </div>
-            </div>
-
-            <div class="tech-card">
-                <img src="assets/ESPACE CYBERCAFE HAUT DEBIT.png" class="tech-card-img" alt="Cybercafé">
-                <div class="tech-card-body">
-                    <h4><i class="fas fa-desktop"></i> Cybercafé Haut Débit</h4>
-                    <p>Mise à disposition de postes rapides connectés pour vos opérations d'impression de volumes, numérisation de documents et démarches web.</p>
-                </div>
-            </div>
-
-            <div class="tech-card">
-                <img src="assets/INFORMATIQUE-RESEAU-TELECOMMUNICATION.jpeg" class="tech-card-img" alt="Info, Réseau & Télécom">
-                <div class="tech-card-body">
-                    <h4><i class="fas fa-wifi"></i> Info, Réseau & Télécom</h4>
-                    <ul>
-                        <li>Vidéosurveillance et récupération des données</li>
-                        <li>Contrôle d’accès, alarmes, GPS véhicules</li>
-                        <li>Cybersécurité et systèmes de sécurité incendie</li>
-                        <li>Mise en œuvre de réseaux informatiques</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="tech-card">
-                <img src="assets/MAINTENANCE - DEPANNAGE.jpeg" class="tech-card-img" alt="Maintenance & Dépannage">
-                <div class="tech-card-body">
-                    <h4><i class="fas fa-wrench"></i> Maintenance & Dépannage</h4>
-                    <ul>
-                        <li>Ordinateurs : Laptop, Desktop, MacBook</li>
-                        <li>Smartphones & Tablettes : Android, iOS</li>
-                        <li>Consoles de jeux : PlayStation, Xbox</li>
-                        <li>Téléviseurs : Écrans plats, Plasma</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="tech-card">
-                <img src="assets/AgroAliment image1.jpg" class="tech-card-img" alt="Agro-Alimentaire & Agro-Industrie">
-                <div class="tech-card-body">
-                    <h4><i class="fas fa-seedling"></i> AGRO-ALIMENTAIRE & AGRO-INDUSTRIE</h4>
-                    <ul>
-                        <li>Agriculture</li>
-                        <li>Élevage</li>
-                        <li>Transformation</li>
-                        <li>Commercialisation & Distribution</li>
-                        <li>Étude-Montage-Mise en œuvre-suivi des projets</li>
-                    </ul>
-                </div>
-            </div>
-
-<div class="tech-card">
-                <img src="assets/EVENNEMENTIEL-DECORATION-TRAITEUR-LOCATION.jpeg" class="tech-card-img" alt="Événementiel">
-                <div class="tech-card-body">
-                    <h4><i class="fas fa-glass-cheers"></i> Événementiel & Location</h4>
-                    <ul>
-                        <li>Mariage, anniversaire, promotion, baptême...</li>
-                        <li>Décoration, traiteur, impresario, wedding planner</li>
-                        <li>Location : Tables, chaises, tentes VIP, couverts...</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-   <div style="display: none;">
-        <img id="modalPreviewImg" src="" alt="Aperçu HD">
+            <div class="entity-title">STT-CAMEROUN</div>
+            <div class="entity-subtitle">INSTITUT DE FORMATION PROFESSIONNELLE</div>
+            <div class="reg-number">AGRÉMENT MINEFOP: N°000508/MINEFOP/SG/DFOP/SDGSF/CSACD/CBAC</div>
+            
+            <div class="tagline">Strategic Innovation & Technical Mastery</div>
+            <div class="access-text">Access Portal ➔</div>
+        </a>
     </div>
-
-    <footer>
-        <div class="footer-inner">
-            <div class="footer-grid">
-                
-                <div>
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem;">
-                        
-                        <img src="assets/Logo.jpeg" alt="Logo STT Engineering" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 1px solid var(--blue-light); box-shadow: 0 0 10px rgba(58,123,213,0.5);">
-                        
-                        <img src="rentree/assets/images/school-logo.jpg.jpeg" alt="Logo STT Cameroun" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 1px solid var(--green); box-shadow: 0 0 10px rgba(29,185,84,0.4);">
-                        
-                        <div style="font-family:'Orbitron',monospace; font-size:1.3rem; font-weight:900; background:linear-gradient(135deg, var(--white), var(--blue-light)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing: 1px;">
-                            GROUPE STT
-                        </div>
-
-                    </div>
-
-                    <div style="background:rgba(249,115,22,0.1);border:1px solid rgba(249,115,22,0.2);border-radius:10px;padding:1rem;font-size:0.8rem;color:var(--gray); max-width: 350px; line-height: 1.6;">
-                        🏛️ <strong>RCCM :</strong> RC/YAO/2024/B/522<br>
-                        📄 <strong>NIU :</strong> M022416498543H<br>
-                        🏅 <strong>Agrément MINEFOP :</strong> N°000508
-                    </div>
-                </div>
-                
-                <div>
-                    <div class="footer-title">Nos Prestations</div>
-                    <ul class="footer-links">
-                        <li><a href="#" onclick="openPreview('assets/AllServices.jpeg'); return false;"><i class="fas fa-chevron-right"></i> Panorama des Services</a></li>
-                        <li><a href="#" onclick="openPreview('assets/Services.jpeg'); return false;"><i class="fas fa-chevron-right"></i> Impôts & Fiscalité</a></li>
-                        <li><a href="#" onclick="openPreview('assets/Services1.jpeg'); return false;"><i class="fas fa-chevron-right"></i> Pôle Bureautique</a></li>
-                        <li><a href="#" onclick="openPreview('assets/Services2.jpeg'); return false;"><i class="fas fa-chevron-right"></i> Enrôlements & Business Plan</a></li>
-                        <li><a href="#" onclick="openPreview('assets/Services3.jpeg'); return false;"><i class="fas fa-chevron-right"></i> Ingénierie Juridique</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <div class="footer-title">Navigation Rapide</div>
-                    <ul class="footer-links">
-                        <li><a href="#" onclick="window.scrollTo(0,0); return false;"><i class="fas fa-chevron-right"></i> Accueil Corporate</a></li>
-                        <li><a href="/rentree/"><i class="fas fa-chevron-right"></i> Portail Académique</a></li>
-                        <li><a href="https://wa.me/237695403580" target="_blank"><i class="fas fa-chevron-right"></i> Demander un Devis</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-contact">
-                    <div class="footer-title">Contact & Horaires</div>
-                    <p><i class="fas fa-map-marker-alt"></i> Rond-point Damas, Yaoundé</p>
-                    <p><i class="fas fa-phone-alt"></i> <a href="tel:+237695403580" style="color:var(--gray);text-decoration:none">695 40 35 80</a></p>
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:direction@stt-cameroun.com" style="color:var(--gray);text-decoration:none">direction@stt-cameroun.com</a></p>
-                    <p style="margin-top: 15px; color: var(--blue-light); font-weight: bold; font-style: italic;">"Ensemble, bâtissons un avenir meilleur!"</p>
-                </div>
-
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2026 Groupe STT. Tous droits réservés.</p>
-            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <p><i class="fas fa-clock" style="color: var(--orange);"></i> Lundi - Vendredi: 07h30 - 19h00</p>
-                <p style="color: var(--gray);">|</p>
-                <p><i class="fas fa-calendar-day" style="color: var(--orange);"></i> Samedi: 07h30 - 14h00</p>
-            </div>
-        </div>
-    </footer>
-
-    <a href="https://wa.me/237695403580?text=Bonjour%20STT%20Engineering,%20j'aimerais%20avoir%20plus%20d'informations%20sur%20vos%20prestations." target="_blank" id="chat-toggle" title="Discuter sur WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <button class="scroll-top" id="scrollTop" title="Remonter" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-
-    <script>
-        let galleryViewer = null;
-
-        function openPreview(imageSrc) {
-            const imgElement = document.getElementById('modalPreviewImg');
-            imgElement.src = imageSrc;
-
-            if (galleryViewer) {
-                galleryViewer.destroy();
-            }
-
-            galleryViewer = new Viewer(imgElement, {
-                inline: false,
-                button: true,    
-                navbar: false,    
-                title: false,     
-                toolbar: {
-                    zoomIn: 4,
-                    zoomOut: 4,
-                    oneToOne: 4,
-                    reset: 4,
-                    prev: 0,      
-                    play: 0,
-                    next: 0,
-                    rotateLeft: 4,
-                    rotateRight: 4,
-                    flipHorizontal: 4,
-                    flipVertical: 4,
-                },
-                viewed() {
-                    galleryViewer.zoomTo(0.15);
-                }
-            });
-
-            galleryViewer.show();
-        }
-
-        function closePreview() {
-            if (galleryViewer) {
-                galleryViewer.hide();
-            }
-        }
-
-        // Scroll to top button visibility logic
-        window.addEventListener('scroll', () => {
-            const st = document.getElementById('scrollTop');
-            if(window.scrollY > 500) st.classList.add('visible');
-            else st.classList.remove('visible');
-        });
-    </script>
 </body>
 </html>
