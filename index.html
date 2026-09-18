@@ -14,7 +14,10 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: auto !important;
+            min-height: 100vh;
+            padding: 40px 20px;
+            box-sizing: border-box;
             /* Pure CSS Hexagonal-style Grid Background */
             background-image: 
                 linear-gradient(rgba(11, 19, 32, 0.92), rgba(11, 19, 32, 0.92)), 
@@ -27,7 +30,7 @@
             font-size: 2.2em;
             font-weight: 800;
             letter-spacing: 6px;
-            margin-bottom: 50px;
+            margin-bottom: 25px;
             z-index: 10;
             text-align: center;
         }
@@ -35,13 +38,54 @@
             color: #FFFFFF;
         }
         .stt-text {
-            /* Gradient bridging Company Orange and Institute Blue */
             background: linear-gradient(90deg, #FF7A00, #0078FF);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
+        /* Value Pillars Section */
+        .pillars-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 45px;
+            z-index: 10;
+            flex-wrap: wrap;
+        }
+        .pillar-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 180px;
+            gap: 12px;
+        }
+        .pillar-icon {
+            width: 75px;
+            height: 75px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        .pillar-card:hover .pillar-icon {
+            transform: translateY(-6px) scale(1.08);
+        }
+        .orange-pillar:hover .pillar-icon { filter: drop-shadow(0 0 15px rgba(255, 122, 0, 0.6)); }
+        .green-pillar:hover .pillar-icon { filter: drop-shadow(0 0 15px rgba(39, 201, 63, 0.6)); }
+        .blue-pillar:hover .pillar-icon { filter: drop-shadow(0 0 15px rgba(0, 120, 255, 0.6)); }
+
+        .pillar-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #E2E8F0;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            line-height: 1.3;
+        }
+
+        /* Hub Cards Container */
         .hub-container {
             display: flex;
             gap: 50px;
@@ -105,10 +149,11 @@
             font-size: 0.75em;
             color: #FF7A00;
             background: rgba(255, 122, 0, 0.1);
-            padding: 4px 8px;
+            padding: 6px 10px;
             border-radius: 4px;
             display: inline-block;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            line-height: 1.4;
         }
         .institute .reg-number {
             color: #0078FF;
@@ -118,135 +163,75 @@
             font-size: 1.05em;
             font-weight: 300;
             line-height: 1.5;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
+
+        /* Va-et-vient Sliding Keyframe Animation */
+        @keyframes vaEtVient {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(8px); }
+        }
+
+        /* Action Buttons: Visible, Animated & Color-Coded */
         .access-text {
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            display: inline-block !important;
+            opacity: 1 !important;
+            animation: vaEtVient 2s ease-in-out infinite !important;
             font-size: 0.85em;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 600;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-top: 15px;
+            transition: transform 0.3s ease;
         }
-        .portal-card.company:hover .access-text {
-            color: #FF7A00;
-            opacity: 1;
+
+        /* Company Button Blue (#0078FF), School Button Orange (#FF7A00) */
+        .portal-card.company .access-text {
+            color: #0078FF !important;
         }
-        .portal-card.institute:hover .access-text {
-            color: #0078FF;
-            opacity: 1;
+        .portal-card.institute .access-text {
+            color: #FF7A00 !important;
         }
+
+        .portal-card:hover .access-text {
+            animation-play-state: paused !important;
+        }
+
         @media (max-width: 800px) {
             .hub-container { flex-direction: column; gap: 30px; }
             .portal-card { padding: 30px 20px; width: 280px; }
-            .main-title { font-size: 1.8em; margin-bottom: 30px; }
+            .main-title { font-size: 1.8em; margin-bottom: 25px; }
+            .pillars-container { gap: 20px; }
         }
-        /* Add to existing CSS */
-    body {
-        height: auto !important;
-        min-height: 100vh;
-        padding: 40px 20px;
-    }
-    .main-title {
-        margin-bottom: 25px;
-    }
-    .pillars-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 30px;
-        margin-bottom: 45px;
-        z-index: 10;
-        flex-wrap: wrap;
-    }
-    .pillar-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        width: 180px;
-        gap: 12px;
-    }
-    .pillar-icon {
-        width: 75px;
-        height: 75px;
-        object-fit: contain;
-        filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
-        transition: transform 0.3s ease, filter 0.3s ease;
-    }
-    .pillar-card:hover .pillar-icon {
-        transform: translateY(-6px) scale(1.08);
-    }
-    .orange-pillar:hover .pillar-icon { filter: drop-shadow(0 0 15px rgba(255, 122, 0, 0.6)); }
-    .green-pillar:hover .pillar-icon { filter: drop-shadow(0 0 15px rgba(39, 201, 63, 0.6)); }
-    .blue-pillar:hover .pillar-icon { filter: drop-shadow(0 0 15px rgba(0, 120, 255, 0.6)); }
-
-    .pillar-title {
-        font-size: 0.8rem;
-        font-weight: 700;
-        color: #E2E8F0;
-        text-transform: uppercase;
-        letter-spacing: 0.8px;
-        line-height: 1.3;
-    }
-    /* Va-et-vient Sliding Animation */
-@keyframes vaEtVient {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(8px); }
-}
-
-.access-text {
-    display: inline-block;
-    animation: vaEtVient 2s ease-in-out infinite;
-    font-size: 0.85em;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 700;
-    margin-top: 15px;
-}
-
-/* Pause animation on card hover for clean interaction */
-.portal-card:hover .access-text {
-    animation-play-state: paused;
-}
-
-/* Color Updates: Company Link Blue, School Link Orange */
-.portal-card.company .access-text {
-    color: #0078FF; /* Corporate Blue */
-}
-
-.portal-card.institute .access-text {
-    color: #FF7A00; /* School Orange */
-}
     </style>
 </head>
 <body>
-    <!-- Dual-Tone Synergy Title -->
-   <!-- Dual-Tone Synergy Title -->
-   <div class="main-title">
-    <span class="groupe-text">GROUPE</span> <span class="stt-text">STT</span>
-</div>
+    <!-- Title -->
+    <div class="main-title">
+        <span class="groupe-text">GROUPE</span> <span class="stt-text">STT</span>
+    </div>
 
-<!-- VALUE PILLARS SECTION (PASTE HERE) -->
-<div class="pillars-container">
-  <div class="pillar-card orange-pillar">
-    <img src="entreprise/assets/Calque3.png" alt="Innovations et Technologies" class="pillar-icon">
-    <span class="pillar-title">Innovations & Technologies</span>
-  </div>
-  
-  <div class="pillar-card green-pillar">
-    <img src="entreprise/assets/Calque4.png" alt="Accompagnement et Entrepreneuriat" class="pillar-icon">
-    <span class="pillar-title">Accompagnement & Entrepreneuriat</span>
-  </div>
-  
-  <div class="pillar-card blue-pillar">
-    <img src="entreprise/assets/Calque2.png" alt="Formations et Qualité" class="pillar-icon">
-    <span class="pillar-title">Formations de Qualité</span>
-  </div>
-</div>
+    <!-- Value Pillars Section -->
+    <div class="pillars-container">
+        <div class="pillar-card orange-pillar">
+            <img src="entreprise/assets/Calque3.png" alt="Innovations et Technologies" class="pillar-icon">
+            <span class="pillar-title">Innovations & Technologies</span>
+        </div>
+        
+        <div class="pillar-card green-pillar">
+            <img src="entreprise/assets/Calque4.png" alt="Accompagnement et Entrepreneuriat" class="pillar-icon">
+            <span class="pillar-title">Accompagnement & Entrepreneuriat</span>
+        </div>
+        
+        <div class="pillar-card blue-pillar">
+            <img src="entreprise/assets/Calque2.png" alt="Formations et Qualité" class="pillar-icon">
+            <span class="pillar-title">Formations de Qualité</span>
+        </div>
+    </div>
 
-<div class="hub-container">
-        <!-- Structure de Prestation Portal -->
+    <!-- Dual Portal Cards -->
+    <div class="hub-container">
+        <!-- STT ENGINEERING SARL Portal -->
         <a href="/entreprise/index.html" class="portal-card company">
             <div class="logo-placeholder">
                 <img src="/entreprise/assets/Logo.jpeg" alt="STT Structure de Prestation">
@@ -257,13 +242,13 @@
             <div class="reg-number">
                 RCCM: RC/YAO/2019/B/832<br>
                 Autorisation: N°2024/215B/ACE/APME/CFCE-Yde/CC
-              </div>
+            </div>
             
             <div class="tagline">Enterprise Logistics & Tactical Execution</div>
             <div class="access-text">Accéder à l'entreprise ➔</div>
         </a>
 
-        <!-- Institut de Formation Portal -->
+        <!-- STT-CAMEROUN Portal -->
         <a href="/entreprise/rentree/index.html" class="portal-card institute">
             <div class="logo-placeholder">
                 <img src="/entreprise/rentree/assets/images/school-logo.jpg.jpeg" alt="STT Institut de Formation">
