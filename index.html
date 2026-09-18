@@ -189,6 +189,35 @@
         letter-spacing: 0.8px;
         line-height: 1.3;
     }
+    /* Va-et-vient Sliding Animation */
+@keyframes vaEtVient {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(8px); }
+}
+
+.access-text {
+    display: inline-block;
+    animation: vaEtVient 2s ease-in-out infinite;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+/* Pause animation on card hover for clean interaction */
+.portal-card:hover .access-text {
+    animation-play-state: paused;
+}
+
+/* Color Updates: Company Link Blue, School Link Orange */
+.portal-card.company .access-text {
+    color: #0078FF; /* Corporate Blue */
+}
+
+.portal-card.institute .access-text {
+    color: #FF7A00; /* School Orange */
+}
     </style>
 </head>
 <body>
@@ -202,17 +231,17 @@
 <div class="pillars-container">
   <div class="pillar-card orange-pillar">
     <img src="entreprise/assets/Calque3.png" alt="Innovations et Technologies" class="pillar-icon">
-    <span class="pillar-title">Innovations et Technologies</span>
+    <span class="pillar-title">Innovations & Technologies</span>
   </div>
   
   <div class="pillar-card green-pillar">
     <img src="entreprise/assets/Calque4.png" alt="Accompagnement et Entrepreneuriat" class="pillar-icon">
-    <span class="pillar-title">Accompagnement et Entrepreneuriat</span>
+    <span class="pillar-title">Accompagnement & Entrepreneuriat</span>
   </div>
   
   <div class="pillar-card blue-pillar">
     <img src="entreprise/assets/Calque2.png" alt="Formations et Qualité" class="pillar-icon">
-    <span class="pillar-title">Formations et Qualité</span>
+    <span class="pillar-title">Formations de Qualité</span>
   </div>
 </div>
 
