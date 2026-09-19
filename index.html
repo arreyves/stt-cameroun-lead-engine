@@ -25,24 +25,41 @@
                 repeating-linear-gradient(-60deg, transparent, transparent 49px, #1a2a40 49px, #1a2a40 50px);
         }
         
-        /* Dual-Tone Synergy Title Style */
+        /* 3D Extruded Title Styling */
         .main-title {
-            font-size: 2.2em;
-            font-weight: 800;
-            letter-spacing: 6px;
-            margin-bottom: 25px;
-            z-index: 10;
-            text-align: center;
-        }
-        .groupe-text {
-            color: #FFFFFF;
-        }
-        .stt-text {
-            background: linear-gradient(90deg, #FF7A00, #0078FF);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+    font-size: 2.5em;
+    font-weight: 900;
+    letter-spacing: 8px;
+    margin-bottom: 25px;
+    z-index: 10;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.groupe-text {
+    color: #FFFFFF;
+    text-shadow: 
+        0 1px 0 #cccccc,
+        0 2px 0 #c9c9c9,
+        0 3px 0 #bbb,
+        0 4px 0 #b9b9b9,
+        0 5px 0 #aaa,
+        0 6px 1px rgba(0,0,0,.1),
+        0 10px 20px rgba(0,0,0,.3);
+}
+
+.stt-text {
+    background: linear-gradient(90deg, #FF7A00, #0078FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* Layered drop-shadow filter creates 3D depth for gradient text */
+    filter: 
+        drop-shadow(0px 1px 0px #b9b9b9)
+        drop-shadow(0px 2px 0px #aaa)
+        drop-shadow(0px 3px 0px #888)
+        drop-shadow(0px 6px 10px rgba(0,0,0,0.5));
+}
 
         /* Value Pillars Section */
         .pillars-container {
