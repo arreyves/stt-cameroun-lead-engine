@@ -203,6 +203,46 @@
             .main-title { font-size: 1.8em; margin-bottom: 25px; }
             .pillars-container { gap: 20px; }
         }
+        /* Placed at the end of the <style> tag to override all previous .access-text rules */
+@keyframes vaEtVient {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(8px); }
+}
+
+.access-text {
+    display: inline-block !important;
+    opacity: 1 !important;
+    animation: vaEtVient 2s ease-in-out infinite !important;
+    font-size: 0.8em !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    font-weight: 700 !important;
+    margin-top: 15px !important;
+    padding: 8px 20px !important;
+    border-radius: 50px !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Company Card Button: Corporate Blue Pill */
+.portal-card.company .access-text {
+    color: #FFFFFF !important;
+    background: linear-gradient(135deg, #0078FF, #0040A0) !important;
+    border: 1px solid #3A7BD5 !important;
+    box-shadow: 0 4px 12px rgba(0, 120, 255, 0.3) !important;
+}
+
+/* School Card Button: School Orange Pill */
+.portal-card.institute .access-text {
+    color: #FFFFFF !important;
+    background: linear-gradient(135deg, #FF7A00, #D95E00) !important;
+    border: 1px solid #FF9A3C !important;
+    box-shadow: 0 4px 12px rgba(255, 122, 0, 0.3) !important;
+}
+
+.portal-card:hover .access-text {
+    animation-play-state: paused !important;
+    transform: scale(1.05) !important;
+}
     </style>
 </head>
 <body>
