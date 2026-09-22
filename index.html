@@ -16,50 +16,97 @@
             align-items: center;
             height: auto !important;
             min-height: 100vh;
-            padding: 40px 20px;
+            padding: 80px 20px 40px; /* Extra top padding for floating QR badge */
             box-sizing: border-box;
-            /* Pure CSS Hexagonal-style Grid Background */
             background-image: 
                 linear-gradient(rgba(11, 19, 32, 0.92), rgba(11, 19, 32, 0.92)), 
                 repeating-linear-gradient(60deg, transparent, transparent 49px, #1a2a40 49px, #1a2a40 50px), 
                 repeating-linear-gradient(-60deg, transparent, transparent 49px, #1a2a40 49px, #1a2a40 50px);
         }
+
+        /* Top-Left Cyber-Glow QR Badge Floating Container */
+        .top-left-qr-card {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(11, 19, 32, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1.5px solid #0078FF;
+            border-radius: 12px;
+            padding: 8px 12px;
+            box-shadow: 0 0 20px rgba(0, 120, 255, 0.3);
+        }
+
+        .qr-info-text {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .qr-title {
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: #27C93F;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .qr-subtitle {
+            font-size: 0.6rem;
+            color: #A0ABC0;
+            margin-top: 2px;
+        }
+
+        .qr-hint {
+            font-size: 0.55rem;
+            color: #FF7A00;
+            background: rgba(255, 122, 0, 0.15);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-top: 4px;
+            display: inline-block;
+            font-weight: 700;
+        }
         
         /* 3D Extruded Title Styling */
         .main-title {
-    font-size: 2.5em;
-    font-weight: 900;
-    letter-spacing: 8px;
-    margin-bottom: 25px;
-    z-index: 10;
-    text-align: center;
-    text-transform: uppercase;
-}
+            font-size: 2.5em;
+            font-weight: 900;
+            letter-spacing: 8px;
+            margin-bottom: 25px;
+            z-index: 10;
+            text-align: center;
+            text-transform: uppercase;
+        }
 
-.groupe-text {
-    color: #FFFFFF;
-    text-shadow: 
-        0 1px 0 #cccccc,
-        0 2px 0 #c9c9c9,
-        0 3px 0 #bbb,
-        0 4px 0 #b9b9b9,
-        0 5px 0 #aaa,
-        0 6px 1px rgba(0,0,0,.1),
-        0 10px 20px rgba(0,0,0,.3);
-}
+        .groupe-text {
+            color: #FFFFFF;
+            text-shadow: 
+                0 1px 0 #cccccc,
+                0 2px 0 #c9c9c9,
+                0 3px 0 #bbb,
+                0 4px 0 #b9b9b9,
+                0 5px 0 #aaa,
+                0 6px 1px rgba(0,0,0,.1),
+                0 10px 20px rgba(0,0,0,.3);
+        }
 
-.stt-text {
-    background: linear-gradient(90deg, #FF7A00, #0078FF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    /* Layered drop-shadow filter creates 3D depth for gradient text */
-    filter: 
-        drop-shadow(0px 1px 0px #b9b9b9)
-        drop-shadow(0px 2px 0px #aaa)
-        drop-shadow(0px 3px 0px #888)
-        drop-shadow(0px 6px 10px rgba(0,0,0,0.5));
-}
+        .stt-text {
+            background: linear-gradient(90deg, #FF7A00, #0078FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: 
+                drop-shadow(0px 1px 0px #b9b9b9)
+                drop-shadow(0px 2px 0px #aaa)
+                drop-shadow(0px 3px 0px #888)
+                drop-shadow(0px 6px 10px rgba(0,0,0,0.5));
+        }
 
         /* Value Pillars Section */
         .pillars-container {
@@ -189,80 +236,57 @@
             50% { transform: translateX(8px); }
         }
 
-        /* Action Buttons: Visible, Animated & Color-Coded */
         .access-text {
             display: inline-block !important;
             opacity: 1 !important;
             animation: vaEtVient 2s ease-in-out infinite !important;
-            font-size: 0.85em;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 700;
-            margin-top: 15px;
-            transition: transform 0.3s ease;
+            font-size: 0.8em !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1.5px !important;
+            font-weight: 700 !important;
+            margin-top: 15px !important;
+            padding: 8px 20px !important;
+            border-radius: 50px !important;
+            transition: all 0.3s ease !important;
         }
 
-        /* Company Button Blue (#0078FF), School Button Orange (#FF7A00) */
+        /* Company Card Button: Corporate Blue Pill */
         .portal-card.company .access-text {
-            color: #0078FF !important;
+            color: #FFFFFF !important;
+            background: linear-gradient(135deg, #0078FF, #0040A0) !important;
+            border: 1px solid #3A7BD5 !important;
+            box-shadow: 0 4px 12px rgba(0, 120, 255, 0.3) !important;
         }
+
+        /* School Card Button: School Orange Pill */
         .portal-card.institute .access-text {
-            color: #FF7A00 !important;
+            color: #FFFFFF !important;
+            background: linear-gradient(135deg, #FF7A00, #D95E00) !important;
+            border: 1px solid #FF9A3C !important;
+            box-shadow: 0 4px 12px rgba(255, 122, 0, 0.3) !important;
         }
 
         .portal-card:hover .access-text {
             animation-play-state: paused !important;
+            transform: scale(1.05) !important;
         }
 
         @media (max-width: 800px) {
+            .top-left-qr-card { position: relative; top: 0; left: 0; margin-bottom: 20px; }
             .hub-container { flex-direction: column; gap: 30px; }
             .portal-card { padding: 30px 20px; width: 280px; }
             .main-title { font-size: 1.8em; margin-bottom: 25px; }
             .pillars-container { gap: 20px; }
         }
-        /* Placed at the end of the <style> tag to override all previous .access-text rules */
-@keyframes vaEtVient {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(8px); }
-}
-
-.access-text {
-    display: inline-block !important;
-    opacity: 1 !important;
-    animation: vaEtVient 2s ease-in-out infinite !important;
-    font-size: 0.8em !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1.5px !important;
-    font-weight: 700 !important;
-    margin-top: 15px !important;
-    padding: 8px 20px !important;
-    border-radius: 50px !important;
-    transition: all 0.3s ease !important;
-}
-
-/* Company Card Button: Corporate Blue Pill */
-.portal-card.company .access-text {
-    color: #FFFFFF !important;
-    background: linear-gradient(135deg, #0078FF, #0040A0) !important;
-    border: 1px solid #3A7BD5 !important;
-    box-shadow: 0 4px 12px rgba(0, 120, 255, 0.3) !important;
-}
-
-/* School Card Button: School Orange Pill */
-.portal-card.institute .access-text {
-    color: #FFFFFF !important;
-    background: linear-gradient(135deg, #FF7A00, #D95E00) !important;
-    border: 1px solid #FF9A3C !important;
-    box-shadow: 0 4px 12px rgba(255, 122, 0, 0.3) !important;
-}
-
-.portal-card:hover .access-text {
-    animation-play-state: paused !important;
-    transform: scale(1.05) !important;
-}
     </style>
 </head>
 <body>
+    <!-- Top-Left QR Code Badge -->
+    <div class="top-left-qr-card">
+        <canvas id="sttHeaderQr" width="90" height="90" style="border-radius: 8px; background: #0B1320; padding: 4px; cursor: pointer;" title="Right-click and select 'Save Image As' to download PNG for flyers!"></canvas>
+       
+    </div>
+
     <!-- Title -->
     <div class="main-title">
         <span class="groupe-text">GROUPE</span> <span class="stt-text">STT</span>
@@ -318,5 +342,55 @@
             <div class="access-text">Se connecter à l'école ➔</div>
         </a>
     </div>
+
+    <!-- QR Generator Script -->
+    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+    <script>
+      (function generateSTTQR() {
+        const canvas = document.getElementById('sttHeaderQr');
+        if (!canvas) return;
+
+        // 1. Render High-Res QR Code to main Hub URL
+        const qr = new QRious({
+          element: canvas,
+          value: 'https://stt-cameroun.com', // Points to central portal
+          size: 180, // Rendered at 2x resolution for ultra-sharp PNG export
+          level: 'H', // High error correction for logo overlay
+          foreground: '#0078FF',
+          background: '#0B1320'
+        });
+
+        // 2. Overlay Circular STT Logo
+        const ctx = canvas.getContext('2d');
+        const logo = new Image();
+        logo.src = '/entreprise/rentree/assets/images/school-logo.jpg.jpeg';
+        
+        logo.onload = function() {
+          const logoSize = 42;
+          const x = (canvas.width - logoSize) / 2;
+          const y = (canvas.height - logoSize) / 2;
+
+          // Outer Orange Ring
+          ctx.beginPath();
+          ctx.arc(canvas.width / 2, canvas.height / 2, (logoSize / 2) + 3, 0, 2 * Math.PI);
+          ctx.fillStyle = '#FF7A00';
+          ctx.fill();
+
+          // Inner Dark Border
+          ctx.beginPath();
+          ctx.arc(canvas.width / 2, canvas.height / 2, (logoSize / 2) + 1, 0, 2 * Math.PI);
+          ctx.fillStyle = '#0B1320';
+          ctx.fill();
+
+          // Circular Logo Crop
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(canvas.width / 2, canvas.height / 2, logoSize / 2, 0, 2 * Math.PI);
+          ctx.clip();
+          ctx.drawImage(logo, x, y, logoSize, logoSize);
+          ctx.restore();
+        };
+      })();
+    </script>
 </body>
 </html>
