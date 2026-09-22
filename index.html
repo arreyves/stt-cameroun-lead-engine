@@ -343,54 +343,23 @@
         </a>
     </div>
 
-    <!-- QR Generator Script -->
-    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
-    <script>
-      (function generateSTTQR() {
-        const canvas = document.getElementById('sttHeaderQr');
-        if (!canvas) return;
+    <!-- Clean, Pure QR Generator Script (No Logo) -->
+<script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+<script>
+  (function generateCleanSTTQR() {
+    const canvas = document.getElementById('sttHeaderQr');
+    if (!canvas) return;
 
-        // 1. Render High-Res QR Code to main Hub URL
-        const qr = new QRious({
-          element: canvas,
-          value: 'https://stt-cameroun.com', // Points to central portal
-          size: 180, // Rendered at 2x resolution for ultra-sharp PNG export
-          level: 'H', // High error correction for logo overlay
-          foreground: '#0078FF',
-          background: '#0B1320'
-        });
-
-        // 2. Overlay Circular STT Logo
-        const ctx = canvas.getContext('2d');
-        const logo = new Image();
-        logo.src = '/entreprise/rentree/assets/images/school-logo.jpg.jpeg';
-        
-        logo.onload = function() {
-          const logoSize = 42;
-          const x = (canvas.width - logoSize) / 2;
-          const y = (canvas.height - logoSize) / 2;
-
-          // Outer Orange Ring
-          ctx.beginPath();
-          ctx.arc(canvas.width / 2, canvas.height / 2, (logoSize / 2) + 3, 0, 2 * Math.PI);
-          ctx.fillStyle = '#FF7A00';
-          ctx.fill();
-
-          // Inner Dark Border
-          ctx.beginPath();
-          ctx.arc(canvas.width / 2, canvas.height / 2, (logoSize / 2) + 1, 0, 2 * Math.PI);
-          ctx.fillStyle = '#0B1320';
-          ctx.fill();
-
-          // Circular Logo Crop
-          ctx.save();
-          ctx.beginPath();
-          ctx.arc(canvas.width / 2, canvas.height / 2, logoSize / 2, 0, 2 * Math.PI);
-          ctx.clip();
-          ctx.drawImage(logo, x, y, logoSize, logoSize);
-          ctx.restore();
-        };
-      })();
-    </script>
+    // Render a high-contrast, pure QR Code pointing directly to the main portal URL
+    const qr = new QRious({
+      element: canvas,
+      value: 'https://stt-cameroun.com', // Points directly to the central hub
+      size: 180, // High resolution for crisp right-click PNG download
+      level: 'M', // Standard medium error correction for ultra-fast scanning
+      foreground: '#0078FF', // Deep Electric Blue data modules
+      background: '#0B1320'  // Matching dark background
+    });
+  })();
+</script>
 </body>
 </html>
