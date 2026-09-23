@@ -271,13 +271,41 @@
             transform: scale(1.05) !important;
         }
 
-        @media (max-width: 800px) {
-            .top-left-qr-card { position: relative; top: 0; left: 0; margin-bottom: 20px; }
-            .hub-container { flex-direction: column; gap: 30px; }
-            .portal-card { padding: 30px 20px; width: 280px; }
-            .main-title { font-size: 1.8em; margin-bottom: 25px; }
-            .pillars-container { gap: 20px; }
-        }
+        /* Updated QR Code Container Styling */
+.top-left-qr-card {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(11, 19, 32, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1.5px solid #0078FF;
+    border-radius: 12px;
+    padding: 8px 12px;
+    box-shadow: 0 0 20px rgba(0, 120, 255, 0.3);
+}
+
+/* Mobile Responsive Fix */
+@media (max-width: 800px) {
+    body {
+        padding-top: 20px; /* Reset top padding on mobile */
+    }
+    .top-left-qr-card {
+        position: relative; /* Removes absolute floating on mobile */
+        top: 0;
+        left: 0;
+        margin: 0 auto 25px auto; /* Centers the QR card cleanly above the main title */
+        width: fit-content;
+    }
+    .hub-container { flex-direction: column; gap: 30px; }
+    .portal-card { padding: 30px 20px; width: 280px; }
+    .main-title { font-size: 1.8em; margin-bottom: 25px; }
+    .pillars-container { gap: 20px; }
+}
     </style>
 </head>
 <body>
