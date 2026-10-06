@@ -250,13 +250,23 @@
             .main-title { font-size: 1.8em; margin-bottom: 25px; }
             .pillars-container { gap: 20px; }
         }
+
+    .qr-code-container {
+      background-color: #FFFFFF !important;
+      padding: 10px;
+      border-radius: 8px;
+      display: inline-block;
+    }
+    .qr-code-container img {
+      filter: grayscale(100%) contrast(200%);
+    }
     </style>
 </head>
 <body>
-    <!-- Top-Left QR Code Badge -->
-    <div class="top-left-qr-card">
-        <canvas id="sttHeaderQr" width="90" height="90" style="border-radius: 8px; background: #0B1320; padding: 4px; cursor: pointer;" title="Right-click and select 'Save Image As' to download PNG for flyers!"></canvas>
-    </div>
+   <!-- Top-Left QR Code Badge -->
+<div class="top-left-qr-card">
+    <canvas id="sttHeaderQr" width="90" height="90" style="border-radius: 8px; background: #FFFFFF; padding: 4px; cursor: pointer;" title="Right-click to download PNG"></canvas>
+</div>
 
     <!-- Title -->
     <div class="main-title">
@@ -316,20 +326,20 @@
 
     <!-- Clean, Pure QR Generator Script (No Logo) -->
     <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
-    <script>
-      (function generateCleanSTTQR() {
-        const canvas = document.getElementById('sttHeaderQr');
-        if (!canvas) return;
+<script>
+  (function generateCleanSTTQR() {
+    const canvas = document.getElementById('sttHeaderQr');
+    if (!canvas) return;
 
-        const qr = new QRious({
-          element: canvas,
-          value: 'https://stt-cameroun.com',
-          size: 180,
-          level: 'M',
-          foreground: '#0078FF',
-          background: '#0B1320'
-        });
-      })();
-    </script>
+    const qr = new QRious({
+      element: canvas,
+      value: 'https://stt-cameroun.com',
+      size: 180,
+      level: 'M',
+      foreground: '#000000', // <-- Solid Black QR Modules
+      background: '#FFFFFF'  // <-- Solid White Canvas Background
+    });
+  })();
+</script>
 </body>
 </html>
